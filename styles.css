@@ -129,6 +129,25 @@ h2 {
   margin: 0 auto;
 }
 
+.profile-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
 .about-content p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
