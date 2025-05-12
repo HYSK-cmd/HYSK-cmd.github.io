@@ -3,39 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michelle's Portfolio</title>
+  <title>Hoon Yang's Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
-    <h1>Michelle Lie</h1>
-    <p>Computer Engineering Student at UCI</p>
+  <nav>
+    <div class="nav-content">
+      <div class="logo">HY</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Hoon Yang</h1>
+      <p class="subtitle">Computer Engineering Student at UCI</p>
+      <div class="cta-buttons">
+        <a href="#projects" class="cta-primary">View My Work</a>
+        <a href="#resume" class="cta-secondary">View Resume</a>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>About Me</h2>
-      <p>Hello! I'm Michelle, a sophomore at UCI studying Computer Engineering. I love embedded systems and machine learning, and I'm always working on cool projects with STM32 and Python.</p>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <p>Hello! I'm Hoon, a sophomore at the University of California, Irvine studying Computer Engineering. I'm passionate about technology and engineering, constantly exploring new ways to solve problems through innovative solutions.</p>
+          <div class="skills">
+            <h3>Technical Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">Circuit Design</span>
+              <span class="skill-tag">Embedded Systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Talking Clock:</strong> ESP32-based voice time announcer with compliment feature.</li>
-        <li><strong>Image Filter in C:</strong> Built basic image processing tools using C and pointer math.</li>
-        <li><strong>Portfolio Website:</strong> You're looking at it!</li>
-      </ul>
+    <section id="resume" class="section">
+      <div class="container">
+        <h2>Resume</h2>
+        <div class="resume-content">
+          <div class="resume-section">
+            <h3>Education</h3>
+            <div class="resume-item">
+              <h4>University of California, Irvine</h4>
+              <p class="resume-date">2022 - Present</p>
+              <p>B.S. Computer Engineering</p>
+              <ul class="resume-details">
+                <li>Sophomore standing</li>
+                <li>Relevant Coursework: Data Structures, Computer Architecture, Digital Logic</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Technical Experience</h3>
+            <div class="resume-item">
+              <h4>Projects & Research</h4>
+              <ul class="resume-details">
+                <li>Developed personal portfolio website using modern web technologies</li>
+                <li>Implemented embedded systems projects using various microcontrollers</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Skills</h3>
+            <div class="resume-item">
+              <div class="skill-category">
+                <h4>Programming Languages:</h4>
+                <p>Python, C++, Java, HTML/CSS</p>
+              </div>
+              <div class="skill-category">
+                <h4>Tools & Technologies:</h4>
+                <p>Git, VS Code, Circuit Design, Embedded Systems</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="download-resume">Download Full Resume (PDF)</a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contact</h2>
-      <p>Email: michelle@example.com</p>
-      <p>GitHub: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></p>
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-content">
+              <h3>Portfolio Website</h3>
+              <p>A responsive personal portfolio website built with modern HTML and CSS, showcasing my projects and skills.</p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Responsive Design</span>
+              </div>
+            </div>
+          </div>
+          <!-- Add more project cards as you complete them -->
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Let's Connect</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:hoonyang00@gmail.com">hoonyang00@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <a href="https://github.com/HYSK-cmd" target="_blank">GitHub</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/seungheon-yang-0b5753343/" target="_blank">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Michelle Lie</p>
+    <div class="container">
+      <p>&copy; 2024 Hoon Yang. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
