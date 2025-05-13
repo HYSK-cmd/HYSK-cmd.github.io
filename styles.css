@@ -119,6 +119,36 @@ body {
   margin-bottom: 2rem;
 }
 
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: var(--transition);
+  backdrop-filter: blur(5px);
+}
+
+.social-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.social-item i {
+  font-size: 1.2rem;
+}
+
 .hero-cta {
   margin-top: 2rem;
 }
@@ -297,41 +327,6 @@ h2::after {
   border-radius: 15px;
   font-size: 0.8rem;
   font-weight: 500;
-}
-
-/* Contact Section */
-.contact-container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: var(--section-bg);
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--text-color);
-  transition: var(--transition);
-}
-
-.contact-item:hover {
-  transform: translateX(5px);
-  background: rgba(9, 132, 227, 0.1);
-  color: var(--secondary-color);
-}
-
-.contact-item i {
-  font-size: 1.2rem;
-  color: var(--secondary-color);
 }
 
 /* Footer */
