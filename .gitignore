@@ -3,5 +3,5 @@ node_modules/
 *.log
 .env
 .vscode/ 
-resume.pdf
+./resume/resume_HYS.pdf
 assets/private/
