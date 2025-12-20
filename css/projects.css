@@ -200,14 +200,14 @@ a:hover{
     font-style: italic;
 }
 .hierarchical{
-    width: 65%;
+    width: 35%;
     height: 390px;
     border: 4px solid var(--primary-color);
     border-radius: 40px;
     margin:0;
 }
 .zeroshot{
-    width: 35%;
+    width: 65%;
     height: 390px;
     border: 4px solid var(--primary-color);
     border-radius: 40px;

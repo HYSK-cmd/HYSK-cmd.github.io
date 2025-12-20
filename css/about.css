@@ -146,6 +146,10 @@ p{
     padding-right: 10px;
     perspective: 800px;
     perspective-origin: center;
+    overflow-y: auto;
+}
+.text::-webkit-scrollbar{
+    display: none;
 }
 .hi{
     font-size: 32px;
@@ -246,6 +250,7 @@ p{
         margin-right: 40px;
         padding: 15px 20px;
         overflow-y: auto;
+        margin-top: 0px;
     }
     .text::-webkit-scrollbar{
         display: none;
