@@ -1,0 +1,390 @@
+body{
+    background-color: #eddace;
+}
+.frame{
+    margin: 100px 450px;
+    display: flex;
+    height: 80vh;
+
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    background-color: white;
+    background-image: url(image/grass.png);
+    background-repeat: no-repeat;
+    background-position:bottom;
+    background-size: 100% 470px;
+
+    border: 20px solid white;
+    border-style: double;
+    border-radius: 100px;
+    background-clip:padding-box;
+}
+/*----------BODY DESIGN----------*/
+.running_dog_class{
+    position: absolute;
+    bottom: 5px;
+    left: -120px;
+    animation: run 6s linear infinite;
+}
+@keyframes run{
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100vw)); }
+}
+.walking_dog{
+    width: 300px;
+    transform: translateY(-52px);
+    display: block;
+}
+.emoji{
+    font-family: sans-serif;
+    font-size: 14px;
+    position: absolute;
+
+    left: 170px;
+    bottom: 200px;
+
+    padding: 5px 14px;
+    background: white;
+    border: 2px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+}
+/*----------NAVIGATOR----------*/
+.navigator{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+h3{
+    font-size: 44px;
+    font-family: "BBH Bogle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 3px;
+    padding: 0 70px;
+    margin: 0;
+    margin-bottom: 50px;
+    display: inline-block;
+    transition: 0.3s;
+}
+h3:hover{
+    transform: scaleX(1.1);
+    transform: scaleY(1.05);
+}
+.home_menu{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.home_sign{
+    font-family: "Sriracha", cursive;
+    padding-left: 265px;
+    margin: 0;
+    margin-top: 14.3px;
+}
+ul{
+    margin: 0;
+    margin-left: auto;
+    font-family: "Orbitron", sans-serif;
+    padding: 0 70px;
+}
+li{
+    display: inline;
+    align-self: center;
+    margin-left: 40px;
+    font-size: 20px;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+    color:black;
+    transition: 0.3s;
+}
+a:hover{
+    transform: scaleX(1.1);
+    color: #6b6b6b;
+}
+/*----------HOME----------*/
+.home{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+}
+.sub_main{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.intro{
+    font-family: "DynaPuff", system-ui;
+    font-size: 46px;
+    display:block;
+    margin-left: 50px;
+    line-height: 50px;
+    color: black;
+}
+.profile{
+    width: 350px;
+    height: 420px;
+
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin-left: 50px;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+.dog_image{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+}
+/*-----NAME-----*/
+.name{
+    font-family: "Sriracha", cursive;
+    font-size: 52px;
+    margin: 0;
+    margin-left: 100px;
+    letter-spacing: 4px;
+    margin-top: -40px;
+}
+
+/*-----SOCIAL MEDIA-----*/
+.social_media{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-left: 137px;
+}
+.social_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    border-radius: 50%;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    transition: 1s;
+}
+.mail_icon{
+    overflow: hidden;
+    width: 76%;
+    height: 76%;
+}
+.social_item.mail:hover, .social_item.linkedin:hover{
+    transform: translateY(-10px);
+}
+.social_item.github:hover{
+    color:black;
+    transform: translateY(-10px);
+}
+.social_item.linkedin{
+    color:rgba(10, 102, 194, 1)
+}
+.social_item i {
+    font-size: 2.2rem;
+}
+
+/*----------SCREEN DISPLAY----------*/
+/* MAC (13 ~ 15inches) */
+@media screen and (max-width: 1440px) {
+    .frame {
+        margin: 80px 200px;
+        height: 105vh;
+    }
+    h3 {
+        font-size: 38px;
+        padding: 0 50px;
+    }
+    .home_sign {
+        padding-left: 200px;
+    }
+    ul {
+        padding: 0 50px;
+    }
+    li {
+        margin-left: 30px;
+        font-size: 18px;
+    }
+    .intro {
+        font-size: 30px;
+        margin-left: 40px;
+        line-height: 30px;
+    }
+    .profile {
+        width: 300px;
+        height: 360px;
+        margin-left: 40px;
+    }
+    .name {
+        font-size: 46px;
+        margin-left: 80px;
+    }
+    .social_media {
+        margin-left: 110px;
+    }
+}
+
+/* Mobile Phone - Portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .frame{
+        margin: 40px 20px;
+        border-radius: 40px;
+        height: 200vh;
+        border-style: double;
+    }
+    .navigator{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .home_menu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h3{
+        font-size: 50px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .home_sign{
+        padding-left: 0;
+        text-align: center;
+        font-size: 20px;
+    }
+    ul{
+        padding: 0 20px 20px 20px;
+        margin-left: 0;
+    }
+    li{
+        display: block;
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .sub_main {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .intro {
+        font-size: 28px;
+        margin-left: 0;
+        text-align: center;
+        line-height: 35px;
+    }
+    .profile{
+        width: 220px;
+        height: 260px;
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+    .name{
+        font-size: 36px;
+        margin-left: 0;
+        margin-top: -20px;
+        text-align: center;
+    }
+    .social_media{
+        margin-left: 0;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .social_item{
+        width: 40px;
+        height: 40px;
+    }
+    .social_item i{
+        font-size: 1.8rem;
+    }
+    .walking_dog{
+        width: 150px;
+        transform: translateY(-35px);
+    }
+    .emoji{
+        left: 100px;
+        bottom: 150px;
+        font-size: 12px;
+    }
+}
+
+/* Mobile Phone - Landscape */
+@media screen and (max-height: 768px) and (orientation: landscape){
+    .frame{
+        margin: 20px 80px;
+        border-radius: 40px;
+        height: 220vh;
+    }
+    .navigator{
+        flex-direction: row;
+    }
+    h3{
+        font-size: 20px;
+        padding: 0 30px;
+        margin-bottom: 20px;
+    }
+    .home_sign{
+        padding-left: 100px;
+        font-size: 16px;
+    }
+    ul{
+        padding: 0 30px;
+    }
+    li{
+        display: inline;
+        margin-left: 15px;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+    .sub_main{
+        flex-direction: row;
+        gap: 20px;
+    }
+    .intro{
+        font-size: 24px;
+        margin-left: 30px;
+        line-height: 30px;
+    }
+    .profile{
+        width: 180px;
+        height: 220px;
+        margin-left: 30px;
+    }
+    .name{
+        font-size: 32px;
+        margin-left: 50px;
+        margin-top: -20px;
+    }
+    .social_media{
+        margin-left: 70px;
+        gap: 1rem;
+    }
+    .social_item{
+        width: 35px;
+        height: 35px;
+    }
+    .social_item i{
+        font-size: 1.6rem;
+    }
+    .walking_dog{
+        width: 180px;
+        transform: translateY(-40px);
+    }
+    .emoji{
+        left: 120px;
+        bottom: 120px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,381 @@
+:root {
+    --primary-color: #eddace;
+    --secondary-color: rgba(171, 130, 130, 0.2);
+}
+body{
+    background-color: var(--primary-color);
+}
+.frame{
+    margin: 100px 450px;
+    display: flex;
+    height: 80vh;
+
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    background-color: white;
+    background-image: url(../image/grass.png);
+    background-repeat: no-repeat;
+    background-position:bottom;
+    background-size: 100% 470px;
+
+    border: 20px solid white;
+    border-style: double;
+    border-radius: 100px;
+    background-clip:padding-box;
+}
+/*----------NAVIGATOR----------*/
+.navigator{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+h3{
+    font-size: 44px;
+    font-family: "BBH Bogle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 3px;
+    padding: 0 70px;
+}
+ul{
+    margin: 0;
+    margin-left: auto;
+    font-family: "Orbitron", sans-serif;
+    padding: 0 70px;
+}
+li{
+    display: inline;
+    align-self: center;
+    margin-left: 40px;
+    font-size: 20px;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+    color:black;
+    transition: 0.3s;
+}
+a:hover{
+    transform: scaleX(1.1);
+    color: #6b6b6b;
+}
+/*----------MAIN----------*/
+.main{
+    margin: 5px 100px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-right: 100px;
+    align-items: center;
+    gap: 50px;
+}
+p{
+    font-family: "Sriracha", cursive;
+    font-size: 52px;
+    margin: 0;
+    margin-top: -50px;
+    margin-bottom: -40px;
+}
+/*-----BOX-----*/
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 700px;
+}
+.user_email_box, .subject_box{
+    height: 50px;
+
+    border: 4px solid var(--primary-color);
+    border-radius: 999px;
+    box-shadow: 0 8px 8px var(--secondary-color);
+
+    padding: 0 26px;
+    font-size: 20px;
+}
+.comment_box{
+    padding: 20px 24px;
+    font-size: 20px;
+    width: 700px;
+    height: 300px;
+
+    border: 4px solid var(--primary-color);
+    border-radius: 28px;
+    box-shadow: 0 8px 8px var(--secondary-color);
+    resize: none;
+}
+.user_email_box, .subject_box, .comment_box{
+    display: block;
+    box-sizing: border-box;
+}
+.user_email_box:focus-visible, 
+.subject_box:focus-visible, 
+.comment_box:focus-visible{
+  outline: none;
+}
+/*-----BUTTON-----*/
+.button{
+    margin-top: -20px;
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.btn{
+    width: 200px;
+    height: 60px;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 8px 8px var(--secondary-color);
+    border-radius: 999px;
+    flex: 0 0 200px;
+    font-size: 24px;
+    background-color: white;
+    transition: 0.3s;
+}
+.button:has(.send:hover) .send{
+    transform-origin: left center;
+    transform: scaleX(1.1);
+}
+.button:has(.send:hover) .reset{
+    transform-origin: right center;
+    transform: scaleX(0.95);
+}
+.button:has(.reset:hover) .reset{
+    transform-origin: right center;
+    transform: scaleX(1.1);
+}
+.button:has(.reset:hover) .send{
+    transform-origin: left center;
+    transform: scaleX(0.95)
+}
+/*----------BODY DESIGN----------*/
+.running_dog_class{
+    position: absolute;
+    bottom: 5px;
+    left: -120px;
+    animation: run 6s linear infinite;
+}
+@keyframes run{
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100vw)); }
+}
+.walking_dog{
+    width: 300px;
+    transform: translateY(-52px);
+    display: block;
+}
+.emoji{
+    font-family: sans-serif;
+    font-size: 14px;
+    position: absolute;
+
+    left: 170px;
+    bottom: 200px;
+
+    padding: 5px 14px;
+    background: white;
+    border: 2px solid rgba(0,0,0,0.12);
+    border-radius: 14px;
+}
+/*----------SCREEN DISPLAY----------*/
+/* MAC (13 ~ 15inches) */
+@media screen and (max-width: 1440px){
+    .frame{
+        margin: 80px 200px;
+        height: 110vh;
+    }
+    h3{
+        font-size: 38px;
+        padding: 0 50px;
+    }
+    ul{
+        padding: 0 50px;
+    }
+    li{
+        margin-left: 30px;
+        font-size: 18px;
+    }
+    .main{
+        margin: 5px 80px;
+        justify-content: center;
+    }
+    .contact{
+        padding-right: 0;
+        align-items: center;
+    }
+    p{
+        font-size: 40px;
+        text-align: center;
+    }
+    .box{
+        width: 500px;
+        align-items: center;
+    }
+    .user_email_box, .subject_box{
+        width: 100%;
+        font-size: 18px;
+    }
+    .comment_box{
+        width: 500px;
+        height: 200px;
+        font-size: 18px;
+    }
+}
+
+/* Mobile Phone - Portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .frame{
+        margin: 40px 20px;
+        border-radius: 40px;
+        height: 135vh;
+        background-size: 100% 250px;
+    }
+    .navigator{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    h3{
+        font-size: 24px;
+        padding: 20px;
+    }
+    ul{
+        padding: 0 20px 20px 20px;
+        margin-left: 0;
+    }
+    li{
+        display: block;
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .main{
+        margin: 5px 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact{
+        padding-right: 0;
+        gap: 30px;
+    }
+    p{
+        font-size: 18px;
+        margin-top: -30px;
+        margin-bottom: -20px;
+    }
+    .box{
+        width: 100%;
+        max-width: 400px;
+        align-items: center;
+    }
+    .user_email_box, .subject_box{
+        width: 250px;
+        height: 45px;
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    .comment_box{
+        width: 100%;
+        width: 250px;
+        height: 200px;
+        font-size: 16px;
+        padding: 15px 20px;
+    }
+    .button{
+        margin-top: -10px;
+        gap: 10px;
+    }
+    .btn{
+        height: 45px;
+        font-size: 10px;
+        flex: 0 0 115px;
+    }
+    .walking_dog{
+        width: 150px;
+        transform: translateY(-35px);
+    }
+    .emoji{
+        left: 100px;
+        bottom: 150px;
+        font-size: 12px;
+    }
+}
+
+/* Mobile Phone - Landscape */
+@media screen and (max-height: 768px) and (orientation: landscape) {
+    .frame{
+        margin: 20px 80px;
+        border-radius: 40px;
+        height: 200vh;
+        background-size: 100% 200px;
+    }
+    .navigator{
+        flex-direction: row;
+    }
+    h3{
+        font-size: 20px;
+        padding: 0 30px;
+    }
+    ul{
+        padding: 0 30px;
+    }
+    li{
+        display: inline;
+        margin-left: 15px;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+    .main{
+        margin: 5px 60px;
+        margin-left: 100px;
+        align-items: center;
+    }
+    .contact{
+        padding-right: 50px;
+        gap: 30px;
+    }
+    p{
+        font-size: 20px;
+        margin-top: -30px;
+        margin-bottom: -20px;
+    }
+    .box{
+        width: 500px;
+        align-items: center;
+    }
+    .user_email_box, .subject_box{
+        width: 300px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .comment_box{
+        width: 300px;
+        height: 200px;
+        font-size: 16px;
+    }
+    .btn{
+        width: 160px;
+        height: 50px;
+        font-size: 20px;
+        flex: 0 0 160px;
+    }
+    .walking_dog{
+        width: 180px;
+        transform: translateY(-40px);
+    }
+    .emoji{
+        left: 120px;
+        bottom: 120px;
+        font-size: 12px;
+    }
+}

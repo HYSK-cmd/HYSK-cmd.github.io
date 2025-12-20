@@ -1,0 +1,645 @@
+:root {
+    --primary-color: #eddace;
+    --secondary-color: rgba(171, 130, 130, 0.2);
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--primary-color);
+}
+.frame{
+    margin: 100px 450px;
+    display: flex;
+    height: auto;
+
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    background-color: white;
+    border: 20px solid white;
+    border-style: double;
+    border-radius: 100px;
+    background-clip: padding-box;
+}
+/*----------NAVIGATOR----------*/
+.navigator{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav_menu_heading{
+    font-size: 44px;
+    font-family: "BBH Bogle", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 3px;
+    padding: 0 70px;
+}
+.navigator ul{
+    margin: 0;
+    margin-left: auto;
+    font-family: "Orbitron", sans-serif;
+    padding: 0 70px;
+}
+.navigator li{
+    display: inline;
+    align-self: center;
+    margin-left: 40px;
+    font-size: 20px;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+    color:black;
+    transition: 0.3s;
+}
+a:hover{
+    transform: scaleX(1.1);
+    color: #6b6b6b;
+}
+.subnav{
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 -30px -30px;
+    padding-left: 30px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+}
+.subnav a{
+    padding: 8px 14px;
+    border: 2px solid var(--primary-color);
+    border-radius: 999px;
+}
+.subnav a:hover{
+    transform: none;
+    background: rgba(171,130,130,0.2);
+}
+.subnav:has(.project_btn:hover) .project_btn{
+    transform-origin: left center;
+    transform: scaleX(1.05);
+}
+.subnav:has(.project_btn:hover) .research_btn{
+    transform-origin: right center;
+    transform: scaleX(0.95);
+}
+.subnav:has(.research_btn:hover) .project_btn{
+    transform-origin: left center;
+    transform: scaleX(0.95);
+}
+.subnav:has(.research_btn:hover) .research_btn{
+    transform-origin: left right center;
+    transform: scaleX(1.05); 
+}
+.subnav:has(.research_btn:hover) .experience_btn{
+    transform-origin: right center;
+    transform: scaleX(0.95);
+}
+.subnav:has(.experience_btn:hover) .research_btn{
+    transform-origin: left center;
+    transform: scaleX(0.95);
+}
+.subnav:has(.experience_btn:hover) .experience_btn{
+    transform-origin: right center;
+    transform: scaleX(1.05);
+}
+/*----------MAIN----------*/
+.main{
+    margin: 5px 235px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0px;
+}
+/*-----SECTION-----*/
+.projects, .research, .experience{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+}
+/*-----HEADING-----*/
+.heading{
+    font-family: "Sriracha", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.zotbotics_heading, .drone_heading, .calculator_heading, 
+.log_parser_heading, .hacker_heading,.mailpilot_heading, 
+.AICPS_heading, .ops_heading, .la_heading
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -30px;
+    padding-top: 30px; 
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.zotbotics, .drone, .mailpilot,
+.calculator, .log_parser, .AICPS, 
+.IEEE, .Hacker, .LA{
+    width: 100%;
+    height: 300px;
+    border: 4px solid var(--primary-color);
+    border-radius: 30px;
+    box-shadow: 0 8px 8px var(--secondary-color);
+    
+    height: auto;
+}
+/*-----TITLE/DATE-----*/
+.title{
+    font-family: sans-serif;
+    font-size: 28px;
+}
+.date{
+    font-family: sans-serif;
+    padding-left: 40px;
+    font-size: 16px;
+    font-weight:400;
+    opacity: 0.7;
+    white-space: nowrap;
+    font-style: italic;
+}
+/*-----CONTENT-----*/
+.content{
+    height: auto;
+    padding-left: 30px;
+    padding-right: 40px;
+    margin-top: -20px;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 30px;
+}
+.src{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    gap: 8px;
+}
+/*-----PROJECTS-----*/
+/*-ZOTBOTICS-*/
+.content.interstellar{
+    font-style: italic;
+}
+.hierarchical{
+    width: 65%;
+    height: 390px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+}
+.zeroshot{
+    width: 35%;
+    height: 390px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+}
+/*-DRONE-*/
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 50px;
+    text-align: left;
+    list-style: disc;
+}
+.list li{
+    text-align: left;
+    max-width: 67ch;
+}
+.drone_pic{
+    width: 50%;
+    height: 380px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+}
+.drone_vid{
+    width: 50%;
+    height: 380px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+    object-fit: cover;
+}
+/*-CALCULATOR-*/
+.sep{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.cal_content{
+    height: auto;
+    padding-left: 30px;
+    padding-right: 40px;
+    margin-top: -20px;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 30px;
+    max-width: 58ch;
+}
+.calc{
+    margin-top: -20px;
+    margin-right: 40px;
+    margin-bottom: 50px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    width: 250px;
+    height: 300px;
+}
+/*-----RESEARCH-----*/
+.plot{
+    width: 70%;
+    height: 280px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+}
+.vid{
+    width: 30%;
+    height: 280px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+    object-fit: contain;
+}
+/*-----EXPERIENCE-----*/
+/*-OPS-*/
+.ops{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 23px;
+}
+.ops_vid{
+    width: 30%;
+    height: 250px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    margin:0;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.odd{
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    align-items: center;
+}
+.even{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 50px;
+    align-items: center;
+}
+.odd_num_content{
+    padding-left: 0;
+    margin-left: 40px;
+    margin-right: 20px;
+    max-width: 45ch;
+}
+.even_num_content{
+    padding-right: 0;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+/*-----BUTTON-----*/
+.btn{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    background-color: transparent;
+    outline: none;
+
+    width: 100px;
+    height: 30px;
+}
+
+/*----------SCREEN DISPLAY----------*/
+/* MAC (13 ~ 15inches) */
+@media screen and (max-width: 1440px) {
+    .frame{
+        margin: 80px 200px;
+    }
+    .nav_menu_heading{
+        font-size: 38px;
+        padding: 0 50px;
+    }
+    .navigator ul{
+        padding: 0 50px;
+    }
+    .navigator li{
+        margin-left: 30px;
+        font-size: 18px;
+    }
+    .main{
+        margin: 5px 150px;
+    }
+    .subnav{
+        font-size: 20px;
+    }
+}
+
+/* Mobile Phone - Portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .frame{
+        margin: 40px 20px;
+        border-radius: 40px;
+        height: auto;
+        min-height: 100vh;
+    }
+    .navigator{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .nav_menu_heading{
+        font-size: 28px;
+        padding: 20px;
+    }
+    .navigator ul{
+        padding: 0 20px 20px 20px;
+        margin-left: 0;
+    }
+    .navigator li{
+        display: block;
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .subnav{
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 0 20px 0;
+        padding-left: 0;
+        font-size: 16px;
+    }
+    .subnav a{
+        padding: 6px 12px;
+    }
+    .main{
+        margin: 5px 20px;
+    }
+    .heading{
+        font-size: 36px;
+    }
+    .projects, .research, .experience{
+        font-size: 16px;
+        gap: 30px;
+    }
+    .zotbotics_heading, .drone_heading, .calculator_heading, 
+    .log_parser_heading, .hacker_heading, .mailpilot_heading, 
+    .AICPS_heading, .ops_heading, .la_heading{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 10px;
+    }
+    .zotbotics, .drone, .mailpilot,
+    .calculator, .log_parser, .AICPS, 
+    .IEEE, .Hacker, .LA{
+        height: auto;
+        min-height: 200px;
+    }
+    .title{
+        font-size: 22px;
+    }
+    .date{
+        padding-left: 0;
+        font-size: 14px;
+    }
+    .content{
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        height: auto;
+        box-sizing: border-box;
+    }
+    .img, .vid{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    .sep{
+        flex-direction: column;
+        align-items: center;
+    }
+    .list li{
+        text-align: left;
+        margin-left: -60px;
+    }
+    .cal_content{
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .calc{
+        width: 200px;
+        height: 240px;
+        margin: 20px auto;
+    }
+    .src {
+        flex-direction: column;
+        gap: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .hierarchical, .zeroshot{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    .plot{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    .drone_pic, .drone_vid{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    .odd, .even{
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 15px;
+    }
+    .ops_vid{
+        width: 90%;
+        height: auto;
+        max-height: 180px;
+    }
+    .odd_num_content, .even_num_content {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+    .ops{
+        font-size: 16px;
+        gap: 20px;
+    }
+}
+
+/* Mobile Phone - Landscape */
+@media screen and (max-height: 768px) and (orientation: landscape) {
+    .frame{
+        margin: 20px 80px;
+        border: 8px solid white;
+        border-radius: 40px;
+        height: auto;
+        min-height: 90vh;
+    }
+    .navigator{
+        flex-direction: row;
+    }
+    .nav_menu_heading{
+        font-size: 20px;
+        padding: 0 30px;
+    }
+    .navigator ul{
+        padding: 0 30px;
+    }
+    .navigator li{
+        display: inline;
+        margin-left: 15px;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+    .subnav{
+        font-size: 14px;
+        gap: 12px;
+        margin: 0 0 10px 0;
+        padding-left: 20px;
+    }
+    .subnav a{
+        padding: 5px 10px;
+    }
+    .main{
+        margin: 5px 60px;
+    }
+    .heading{
+        font-size: 32px;
+    }
+    .projects, .research, .experience{
+        font-size: 16px;
+        gap: 25px;
+    }
+    .zotbotics_heading, .drone_heading, .calculator_heading, 
+    .log_parser_heading, .hacker_heading, .mailpilot_heading, 
+    .AICPS_heading, .ops_heading, .la_heading{
+        padding: 15px 20px;
+    }
+    .zotbotics, .drone, .mailpilot,
+    .calculator, .log_parser, .AICPS, 
+    .IEEE, .Hacker, .LA{
+        height: auto;
+        min-height: 180px;
+    }
+    .title{
+        font-size: 20px;
+    }
+    .date{
+        padding-left: 20px;
+        font-size: 13px;
+    }
+    .content{
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: auto;
+        box-sizing: border-box;
+    }
+    .img, .vid{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 160px;
+    }
+    .sep{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .cal_content{
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .calc{
+        width: 180px;
+        height: 220px;
+        margin: 15px auto;
+    }
+    .src{
+        flex-direction: column;
+        gap: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .hierarchical, .zeroshot{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 160px;
+    }
+    .plot {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 160px;
+    }
+    .drone_pic, .drone_vid{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 160px;
+    }
+    .odd, .even{
+        padding-left: 30px;
+        padding-right: 30px;
+        gap: 20px;
+    }
+    .ops_vid{
+        width: 35%;
+        height: auto;
+        max-height: 140px;
+    }
+    .odd_num_content, .even_num_content{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .ops{
+        font-size: 16px;
+        gap: 20px;
+    }
+}

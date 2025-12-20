@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <!--import css-->
+    <link rel="stylesheet" type="text/css" href="../css/projects.css">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=Barrio&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&family=Sriracha&display=swap" rel="stylesheet">
+    <!--icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+    <body>
+        <div class="frame">
+            <nav class="navigator">
+                <h3 class="nav_menu_heading"><a class="nav_menu" href="../index.html">HYSK-cmd</a></h3>
+                <ul>
+                    <li><a class="nav_menu" href="../html/about.html">👦🏻 About</a></li>
+                    <li><a class="nav_menu" href="../html/projects.html">🛠 Projects</a></li>
+                    <li><a class="nav_menu" href="../html/resume.html">📄 Resume</a></li>
+                    <li><a class="nav_menu" href="../html/contact.html">✉️ Contact</a></li>
+                </ul>
+            </nav>
+            <div class="main">
+                <nav class="subnav"> 
+                    <a href="#projects" class="project_btn">Projects 🛠</a> 
+                    <a href="#research" class="research_btn">Research 🔬</a>
+                    <a href="#experience" class="experience_btn">Experience 📈</a>
+                </nav>
+                <span id="projects"></span>
+                <h2 class="heading">Projects</h2>
+                <div class="projects" id="id_projects">
+                    <div class="zotbotics">
+                        <div class="zotbotics_heading">
+                            <h3 class="title">UCI - Zotbotics</h3>
+                            <span class="date">Sep. 2025 - Present</span>
+                        </div>
+                        <p class="content">
+                            Software Subteam <br> <br>
+                            For this project, my team and I are developing a TARS robot inspired by movie <span class="interstellar">'Interstellar'</span>.
+                            We are divided into three main sub-teams-Mechanical, Electrical, and Software-and I am part of the Software sub-team.
+                            During the first quarter, I mainly focused on integrating an AI ChatBot and prototyping a light-weight mini dashboard to visualize system status and telemetry.
+                            I used three API keys for STT, text response, and TTS to fully integrate the AI ChatBot pipeline.
+                            <br> <br>
+                            In the next two quarters, our software team will be focusing on integrating motor control, real-time telemetry, and autonomous behavior,
+                            while collaborating closely with the electrical and mechanical teams to ensure seamless system integration.
+                            <br> <br>
+                            Below is the hierarchical flow diagram of the system and theoretical architecture design of zero-shot vision-language model that will be experimented on TARS. 
+                            <div class="src"> 
+                                <img src="../image/hierarchical_diagram.png" alt="zero-shot" class="zeroshot"/>
+                                <img src="../image/zeroshot_diagram.png" alt="hierarchical" class="hierarchical"/>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="drone">
+                        <div class="drone_heading">
+                            <h3 class="title">Drone</h3>
+                            <span class="date">Sep. 2025 - Dec. 2025</span>
+                        </div>
+                        <p class="content">
+                            <br>
+                            As a part of a quarter-long project (EECS 195: Drone), I primarily focused on hardware assembly and soldering. 
+                            <br>
+                            Below is a timeline of key milestone tasks I completed:
+                        </p>   
+                        <ul class="list">
+                            <li>Soldered all 0.1" headers on the flight controller for reliable electrical connections</li>
+                            <li>Soldered battery leads, ensuring secure joints and proper polarity</li>
+                            <li>Soldered ESCs signal wires to all four motors, ensuring proper motor rotation direction (CW/CCW)</li>
+                            <li>Built a drone frame and mounted those aforementioned components along with a radio receiver on it</li>
+                            <li>Mounted GPS module on top and tested it on map in Mission Planner</li>
+                            <li>Mounted a camera with HUD on the front and connected it to FPV monitor</li>
+                            <li>Implemented ESP32-based WiFi telemetry using Dronebridge for ground communication</li>
+                            <li>Tested a maiden flight following a full pre-flight safety checklist</li>
+                            <li>Configured waypoint missions and geofence with Mission Planner on ArduPilot</li>
+                            <li>Executed a simple autonomous waypoint flight</li>
+                            <br>
+                        </ul> 
+                        <p class="content">
+                            <div class="src"> 
+                                <img src="../image/drone.png" alt="drone_pic" class="drone_pic"/>
+                                <video class="drone_vid" controls muted playsinline>
+                                    <source src="../video/maiden_vid.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </p>
+                        
+                    </div>
+                    <div class="calculator">
+                        <div class="calculator_heading">
+                            <h3 class="title">Calculator &emsp;
+                                <a href="https://github.com/HYSK-cmd" target="_blank" class="social_item github">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </h3>
+                            <span class="date">Nov. 2025</span>
+                        </div>
+                        <div class="sep">
+                            <p class="cal_content">
+                                I created this Javafx GUI calculator supporting both basic arithmetic and advanced mathematical operations like exponentiation, logarithmic functions, and factorial constraints.
+                                <br>
+                                I applied object-oriented principles to separate UI, logic, and testing layers, as well as customized the interface using CSS for a better visual.
+                            </p>
+                            <img src="../image/calculator.png" alt="calculator" class="calc">
+                        </div>
+                    </div>
+                    <div class="log_parser">
+                        <div class="log_parser_heading">
+                            <h3 class="title">Log Parser &emsp;
+                                <a href="https://github.com/HYSK-cmd/Log-Parser" target="_blank" class="social_item github">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </h3>
+                            <span class="date">May. 2025</span>
+                        </div>
+                        <p class="content">
+                            <br>
+                            I made a simple command-line tool in C to analyze and filter out log files. It is designed to help more easily inspect and interpret application logs.
+                            I created a function that parses a common timestamp-level message format, offers features like filtering log entries by level (INFO, WARNING, ERROR), and sorts entries by time. 
+                            It produces a summary count of each log level and I plan to extend its funtionalities by including additional output formats or log structures.
+                            By transforming raw text logs into structured and filtered output, it facilitates faster debugging and clearer understanding of runtime behavior.
+                        </p>
+                    </div>
+                    <div class="Hacker">
+                        <div class="hacker_heading">
+                            <h3 class="title">Ethical Hacker Website &emsp;
+                                <a href="https://sites.google.com/view/ethical-hacker-website/home" target="_blank">
+                                    <i class="fa-solid fa-globe"></i>
+                                </a>
+                            </h3>
+                            <span class="date">May. 2021 - Jun. 2021</span>
+                        </div>
+                        <p class="content">
+                            Website Developer <br> <br>
+                            I gained hands-on experience in Linux operations, basic networking, cryptography, and steganography through self-directed learning on TryHackMe platform.
+                            <br>
+                            In the spirit of promoting an ethical hacker culture, I created and designed a beginner-friendly Website using Google Sites to provide users with
+                            helpful and informative insights by simplifying complex cybersecurity topics into accessible and actionable contents.
+                        </p>
+                    </div>
+                    <div class="mailpilot">
+                        <div class="mailpilot_heading">
+                            <h3 class="title">MailPilot</h3>
+                            <span class="date">Oct. 2025 - Present</span>
+                        </div>
+                        <p class="content">
+                            Will be updated.
+                        </p>
+                    </div>
+                </div>    
+                <span id="research"></span>
+                <h2 class="heading">Research</h2>               
+                <div class="research" id="id_research">
+                    <div class="AICPS">
+                        <div class="AICPS_heading">
+                            <h3 class="title">Autonomous & Intelligent Cyber-Physical System Lab &emsp;
+                                <a href="https://aicps.eng.uci.edu/" target="_blank">
+                                    <i class="fa-solid fa-globe"></i>
+                                </a>
+                            </h3>
+                            <span class="date">Sep. 2025 - Present</span>
+                        </div>
+                        <p class="content">
+                            Undergraduate Research Assistant 
+                            <br> <br>
+                            I am currently involved in Professor Mohmmad Al Faraque's Research Lab.
+                            During my first quarter, I was tasked with exploring capabilities of the OpenUAV Vision-Language Action(VLA) model and conducting training and performance evaluations.
+                            To analyze datasets, I have built several Python scripts on top of this platform, including formatting results for each scene,
+                            creating a video out of sequential frames using OpenCV, and visualizing 3D plot trajectories for a comparison between model-predicted and ground truth trajectories.
+                            <br> <br>
+                            In addition, I am currently developing a zero-shot LLM-based software controller deployed on a physical drone (DJI Tello). This work aims to evaluate 
+                            whether the proposed approach can operate reliably in real-world, practical environments beyond simulation, and to better understand the challenges of 
+                            transferring VLA models to physical robotic systems.
+                            Below is an example of 3d plots and video ⬇️
+                            <div class="src"> 
+                                <img src="../image/3d_plot.jpeg" alt="3d_plot" class="plot"/>
+                                <video class="vid" controls muted playsinline>
+                                    <source src="../video/video.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </p>
+                    </div>
+                </div>  
+                <span id="experience"></span>
+                <h2 class="heading">Experience</h2>                
+                <div class="experience" id="id_experience">
+                    <div class="IEEE">
+                        <div class="ops_heading">
+                            <h3 class="title">IEEE Open Project Source &emsp;
+                                <a href="https://github.com/HYSK-cmd" target="_blank" class="social_item github">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </h3>
+                            <span class="date">Sep. 2025 - Present</span>
+                        </div>
+                        <p class="content">
+                            <br>
+                            I am engaged in IEEE OPS Program, where I build eight hands-on projects starting from beginner to advanced levels and a custom ESP32-based rover capstone.
+                            Here is the list of projects I have done so far. (More to be updated up until June 2026❗️)
+                            <div class="ops">
+                                <div class="odd ops1">
+                                    <video class="ops_vid" controls muted playsinline>
+                                        <source src="../video/ops1.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="odd_num_content">
+                                        My first OPS project was to build a simple LED circuit using 9V battery. 
+                                        I first constructed the circuit on a breadboard, then moved on to soldering it onto a perfboard.
+                                        A simple Ohm's Law calculation was required to determine the appropriate resistor value.
+                                    </p>
+                                </div>
+                                <div class="even ops2">
+                                    <video class="ops_vid" controls playsinline>
+                                        <source src="../video/ops2.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="even_num_content">
+                                        In this project, I built a three-key electronic piano using a 555 Timer IC.
+                                        I configured the circuit in astable mode to generate oscillating signals, which were then fed to a passive piezo buzzer, along with a capacitor
+                                        to filter out low frequencies to produce clean sound. Different resistor values were used to output different pitches for each corresponding push button.
+                                        Once tested successfully on a breadboard, I soldered it onto a custom-designed PCB.
+                                    </p>
+                                </div>
+                                <div class="odd ops3">
+                                    <video class="ops_vid" controls muted playsinline>
+                                        <source src="../video/ops3.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="odd_num_content">
+                                        For this project, I programmed an ESP32-C3Fx4 to control a dimmable light using three potentiometers. 
+                                        I developed Arduino code that reads potentiometer input and uses PWM signals to dynamically control 
+                                        the multi-color output of a RGB LED.
+                                        
+                                    </p>
+                                </div>
+                                <div class="even ops4">
+                                    <video class="ops_vid" controls muted playsinline>
+                                        <source src="../video/ops4.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="even_num_content">
+                                        Continuing with the ESP32, I implemented an embedded control system in which servo motion is 
+                                        adjusted based on distance measurements from an ultrasonic sensor. The servo angle switches between 0° and 90°
+                                        to open/close the lid of the trashcan. (Sorry for my ugly-looking trashcan 😅)
+                                    </p>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="LA">
+                        <div class="la_heading">
+                            <h3 class="title">Undergraduate Learning Assistant</h3>
+                            <span class="date">Jan. 2026 - Present</span>
+                        </div>
+                        <p class="content">
+                            Will be updated.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

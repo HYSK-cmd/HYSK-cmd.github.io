@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <!--Import CSS-->
+    <link rel="stylesheet" type="text/css" href="../css/contact.css">
+    <!--FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=Orbitron:wght@400..900&family=Sriracha&display=swap" rel="stylesheet">
+    <!--ICON-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!--EMAILJS-->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "JmQ8jRq9ts0pPTAY_",
+            });
+        })();
+    </script>
+</head>
+    <body>
+        <div class="frame">
+            <nav class="navigator">
+                <h3><a class="nav_menu" href="../index.html">HYSK-cmd</a></h3>
+                <ul>
+                    <li><a class="nav_menu" href="../html/about.html">👦🏻 About</a></li>
+                    <li><a class="nav_menu" href="../html/projects.html">🛠 Projects</a></li>
+                    <li><a class="nav_menu" href="../html/resume.html">📄 Resume</a></li>
+                    <li><a class="nav_menu" href="../html/contact.html">✉️ Contact</a></li>
+                </ul>
+            </nav>
+            <div class="main">
+                <form class="contact" id="contact_form">
+                    <p>Email: hoonyang00@gmail.com</p>
+                    <div class="box">
+                        <input class="user_email_box" type="text" id="user_email" name="name" placeholder="Your Email" required>
+                        <input class="subject_box" type="text" id="subject" name="name" placeholder="Subject" required>
+                        <textarea class="comment_box" id="message" name="name" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="button">
+                        <button id="status" class="btn send" type="button" onclick="sendMail()">Send</button>
+                        <button class="btn reset" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <script src="../script.js"></script>
+        <div class="running_dog_class"> 
+            <img src="../image/dog.gif" class="walking_dog"/>
+        <div class="emoji" id="msg" onclick="sendMail()">✉️</div>
+    </body>
+</html>
