@@ -127,7 +127,7 @@ a:hover{
     color: black;
 }
 .profile{
-    width: 350px;
+    width: 430px;
     height: 420px;
 
     border: 4px solid rgba(255, 255, 255, 0.2);
@@ -140,7 +140,7 @@ a:hover{
     background-repeat: no-repeat;
     flex-shrink: 0;
 }
-.dog_image{
+.my_image{
     width: 100%;
     height: 100%;
     object-fit: fill;
@@ -151,7 +151,7 @@ a:hover{
     font-family: "Sriracha", cursive;
     font-size: 52px;
     margin: 0;
-    margin-left: 100px;
+    margin-left: 136px;
     letter-spacing: 4px;
     margin-top: -40px;
 }
@@ -161,7 +161,7 @@ a:hover{
     display: flex;
     justify-content: flex-start;
     gap: 1.5rem;
-    margin-left: 137px;
+    margin-left: 180px;
 }
 .social_item{
     display: flex;
@@ -222,7 +222,7 @@ a:hover{
         line-height: 30px;
     }
     .profile {
-        width: 300px;
+        width: 370px;
         height: 360px;
         margin-left: 40px;
     }
@@ -286,7 +286,7 @@ a:hover{
         line-height: 35px;
     }
     .profile{
-        width: 220px;
+        width: 270px;
         height: 260px;
         margin-left: 0;
         margin-bottom: 1rem;
@@ -358,7 +358,7 @@ a:hover{
         line-height: 30px;
     }
     .profile{
-        width: 180px;
+        width: 230px;
         height: 220px;
         margin-left: 30px;
     }
