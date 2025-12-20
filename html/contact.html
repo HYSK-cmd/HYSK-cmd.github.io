@@ -36,7 +36,7 @@
                 </ul>
             </nav>
             <div class="main">
-                <form class="contact" id="contact_form">
+                <form class="contact" id="contact_form" onsubmit="sendMail(event)">
                     <p>Email: hoonyang00@gmail.com</p>
                     <div class="box">
                         <input class="user_email_box" type="text" id="user_email" name="name" placeholder="Your Email" required>
@@ -44,7 +44,7 @@
                         <textarea class="comment_box" id="message" name="name" placeholder="Message" required></textarea>
                     </div>
                     <div class="button">
-                        <button id="status" class="btn send" type="button" onclick="sendMail()">Send</button>
+                        <button id="status" class="btn send" type="submit">Send</button>
                         <button class="btn reset" type="reset">Reset</button>
                     </div>
                 </form>

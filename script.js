@@ -1,4 +1,5 @@
-function sendMail(){
+function sendMail(event){
+    event.preventDefault();
     let params = {
         user_email : document.getElementById("user_email").value,
         subject : document.getElementById("subject").value,
