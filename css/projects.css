@@ -135,7 +135,7 @@ a:hover{
 
 .zotbotics_heading, .drone_heading, .calculator_heading, 
 .log_parser_heading, .hacker_heading,.mailpilot_heading, 
-.AICPS_heading, .ops_heading, .la_heading
+.AICPS_heading, .ops_heading, .la_heading, .mytodo_heading
 {
     display: flex;
     flex-direction: row;
@@ -148,7 +148,7 @@ a:hover{
 }
 .zotbotics, .drone, .mailpilot,
 .calculator, .log_parser, .AICPS, 
-.IEEE, .Hacker, .LA{
+.IEEE, .Hacker, .LA, .mytodo{
     width: 100%;
     height: 300px;
     border: 4px solid var(--primary-color);
@@ -212,6 +212,30 @@ a:hover{
     border: 4px solid var(--primary-color);
     border-radius: 40px;
     margin:0;
+}
+/*-MYTODO-*/
+.mytodo_content{
+    height: auto;
+    padding-left: 30px;
+    padding-right: 40px;
+    margin-top: -20px;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 30px;
+    max-width: 58ch;
+}
+.todo{
+    margin-top: -20px;
+    margin-right: 40px;
+    margin-bottom: 50px;
+    border: 4px solid var(--primary-color);
+    border-radius: 40px;
+    width: 400px;
+    height: 400px;
 }
 /*-DRONE-*/
 .list{
@@ -454,7 +478,7 @@ a:hover{
         text-align: left;
         margin-left: -60px;
     }
-    .cal_content{
+    .cal_content, .mytodo_content{
         max-width: 100%;
         padding-left: 15px;
         padding-right: 15px;
@@ -590,7 +614,7 @@ a:hover{
         align-items: center;
         gap: 15px;
     }
-    .cal_content{
+    .cal_content, .mytodo_content{
         max-width: 100%;
         padding-left: 20px;
         padding-right: 20px;
