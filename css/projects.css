@@ -1,191 +1,134 @@
-:root {
-    --primary-color: #eddace;
-    --secondary-color: rgba(171, 130, 130, 0.2);
-}
-html{
+html {
     scroll-behavior: smooth;
 }
-body{
-    background-color: var(--primary-color);
-}
-.frame{
-    margin: 100px 450px;
-    display: flex;
-    height: auto;
 
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-
-    background-color: white;
-    border: 20px solid white;
-    border-style: double;
-    border-radius: 100px;
-    background-clip: padding-box;
-}
 /*----------NAVIGATOR----------*/
-.navigator{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.nav_menu_heading{
-    font-size: 44px;
-    font-family: "BBH Bogle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 3px;
-    padding: 0 70px;
-}
-.navigator ul{
-    margin: 0;
-    margin-left: auto;
-    font-family: "Orbitron", sans-serif;
-    padding: 0 70px;
-}
-.navigator li{
-    display: inline;
-    align-self: center;
-    margin-left: 40px;
-    font-size: 20px;
-}
-a{
-    display: inline-block;
-    text-decoration: none;
-    color:black;
-    transition: 0.3s;
-}
-a:hover{
-    transform: scaleX(1.1);
-    color: #6b6b6b;
-}
-.subnav{
+.subnav {
     display: flex;
     gap: 18px;
     align-items: center;
-    justify-content: flex-start;
-    margin: 0 0 -30px -30px;
-    padding-left: 30px;
-    font-family: "Orbitron", sans-serif;
+    justify-content: center;
     font-size: 24px;
 }
-.subnav a{
+
+.subnav a {
+    font-family: var(--nav__font);
     padding: 8px 14px;
-    border: 2px solid var(--primary-color);
-    border-radius: 999px;
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--box__shadow);
 }
-.subnav a:hover{
-    transform: none;
-    background: rgba(171,130,130,0.2);
-}
-.subnav:has(.project_btn:hover) .project_btn{
+
+.subnav:has(.project_btn:hover) .project_btn {
     transform-origin: left center;
     transform: scaleX(1.05);
 }
-.subnav:has(.project_btn:hover) .research_btn{
+
+.subnav:has(.project_btn:hover) .research_btn {
     transform-origin: right center;
     transform: scaleX(0.95);
 }
-.subnav:has(.research_btn:hover) .project_btn{
+
+.subnav:has(.research_btn:hover) .project_btn {
     transform-origin: left center;
     transform: scaleX(0.95);
 }
-.subnav:has(.research_btn:hover) .research_btn{
+
+.subnav:has(.research_btn:hover) .research_btn {
     transform-origin: left right center;
     transform: scaleX(1.05); 
 }
-.subnav:has(.research_btn:hover) .experience_btn{
+
+.subnav:has(.research_btn:hover) .experience_btn {
     transform-origin: right center;
     transform: scaleX(0.95);
 }
-.subnav:has(.experience_btn:hover) .research_btn{
+
+.subnav:has(.experience_btn:hover) .research_btn {
     transform-origin: left center;
     transform: scaleX(0.95);
 }
-.subnav:has(.experience_btn:hover) .experience_btn{
+
+.subnav:has(.experience_btn:hover) .experience_btn {
     transform-origin: right center;
     transform: scaleX(1.05);
 }
+
 /*----------MAIN----------*/
-.main{
-    margin: 5px 235px; 
+.main {
+    margin: 5px 180px; 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 0px;
 }
+
 /*-----SECTION-----*/
-.projects, .research, .experience{
-    font-family: 'Courier New', Courier, monospace;
+.projects, .research, .experience {
+    font-family: var(--text__font);
     font-size: 24px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 40px;
 }
+
 /*-----HEADING-----*/
-.heading{
-    font-family: "Sriracha", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 50px;
-    margin-bottom: 0;
+.heading {
+    font-family: var(--design__font);
+    font-size: 60px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .zotbotics_heading, .drone_heading, .calculator_heading, 
-.log_parser_heading, .hacker_heading,.mailpilot_heading, 
-.AICPS_heading, .ops_heading, .la_heading, .mytodo_heading
-{
+.log_parser_heading, .hacker_heading, .mailpilot_heading, 
+.AICPS_heading, .ops_heading, .la_heading, .mytodo_heading {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: -30px;
-    padding-top: 30px; 
     padding-left: 30px;
     padding-right: 30px;
 }
+
 .zotbotics, .drone, .mailpilot,
 .calculator, .log_parser, .AICPS, 
-.IEEE, .Hacker, .LA, .mytodo{
+.IEEE, .Hacker, .LA, .mytodo {
     width: 100%;
-    height: 300px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 30px;
-    box-shadow: 0 8px 8px var(--secondary-color);
-    
+    box-shadow: var(--box__shadow);
     height: auto;
 }
+
 /*-----TITLE/DATE-----*/
-.title{
-    font-family: sans-serif;
+.title {
+    font-family: var(--text__font);
     font-size: 28px;
 }
-.date{
-    font-family: sans-serif;
+
+.date {
+    font-family: var(--text__font);
     padding-left: 40px;
     font-size: 16px;
-    font-weight:400;
     opacity: 0.7;
-    white-space: nowrap;
     font-style: italic;
 }
+
 /*-----CONTENT-----*/
-.content{
+.content {
     height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
     padding-left: 30px;
     padding-right: 40px;
-    margin-top: -20px;
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+    font-family: inherit;
     font-size: 20px;
     font-weight: 200;
     line-height: 30px;
 }
-.src{
+
+.src {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -194,174 +137,172 @@ a:hover{
     padding-right: 30px;
     gap: 8px;
 }
+
 /*-----PROJECTS-----*/
 /*-ZOTBOTICS-*/
-.content.interstellar{
+.content.interstellar {
     font-style: italic;
 }
-.hierarchical{
+
+.hierarchical {
     width: 35%;
     height: 390px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
-    margin:0;
+    margin: 0;
 }
-.zeroshot{
+.zeroshot {
     width: 65%;
     height: 390px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
-    margin:0;
+    margin: 0;
 }
+
 /*-MYTODO-*/
-.mytodo_content{
-    height: auto;
-    padding-left: 30px;
-    padding-right: 40px;
-    margin-top: -20px;
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+.mytodo_content {
+    margin-top: 0;
+    padding: 0 40px;
+    font-family: var(--text__font);
     font-size: 20px;
-    font-weight: 200;
-    line-height: 30px;
-    max-width: 58ch;
+    line-height: 35px;
 }
-.todo{
+
+.todo {
     margin-top: -20px;
     margin-right: 40px;
     margin-bottom: 50px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     width: 400px;
     height: 400px;
 }
+
 /*-DRONE-*/
-.list{
+.list {
     display: flex;
     flex-direction: column;
+    justify-content: left;
     gap: 10px;
     margin-left: 50px;
-    text-align: left;
     list-style: disc;
 }
-.list li{
+
+.list li {
     text-align: left;
     max-width: 67ch;
+    font-family: var(--text__font);
 }
-.drone_pic{
+
+.drone_pic {
     width: 50%;
     height: 380px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     margin:0;
 }
-.drone_vid{
+
+.drone_vid {
     width: 50%;
     height: 380px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     margin:0;
     object-fit: cover;
 }
+
 /*-CALCULATOR-*/
-.sep{
+.sep {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
-.cal_content{
-    height: auto;
-    padding-left: 30px;
-    padding-right: 40px;
-    margin-top: -20px;
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+.cal_content {
+    margin-top: 0;
+    padding: 0 40px;
+    font-family: var(--text__font);
     font-size: 20px;
-    font-weight: 200;
-    line-height: 30px;
-    max-width: 58ch;
+    line-height: 35px;
 }
-.calc{
+.calc {
     margin-top: -20px;
     margin-right: 40px;
     margin-bottom: 50px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
-    width: 250px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
+
 /*-----RESEARCH-----*/
-.plot{
+.plot {
     width: 70%;
     height: 280px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     margin:0;
 }
-.vid{
+.vid {
     width: 30%;
     height: 280px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     margin:0;
     object-fit: contain;
 }
 /*-----EXPERIENCE-----*/
 /*-OPS-*/
-.ops{
+.ops {
     display: flex;
     flex-direction: column;
     gap: 30px;
     font-size: 23px;
+    font-family: var(--text__font);
 }
-.ops_vid{
+
+.ops_vid {
     width: 30%;
     height: 250px;
-    border: 4px solid var(--primary-color);
+    border: var(--border);
     border-radius: 40px;
     margin:0;
     object-fit: cover;
     flex-shrink: 0;
 }
-.odd{
+
+.odd {
     display: flex;
     flex-direction: row;
     padding-left: 50px;
     align-items: center;
 }
-.even{
+
+.even {
     display: flex;
     flex-direction: row-reverse;
     padding-right: 50px;
     align-items: center;
 }
-.odd_num_content{
-    padding-left: 0;
-    margin-left: 40px;
-    margin-right: 20px;
-    max-width: 45ch;
-}
-.even_num_content{
-    padding-right: 0;
-    margin-left: 40px;
-    margin-right: 20px;
-}
-/*-----BUTTON-----*/
-.btn{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 24px;
-    background-color: transparent;
-    outline: none;
 
-    width: 100px;
-    height: 30px;
+.odd_num_content {
+    max-width: 45ch;
+    margin: 0 auto;
+    padding: 0 10px 0 10px;
+    font-family: var(--text__font);
 }
+
+.even_num_content {
+    max-width: 45ch;
+    margin: 0 auto;
+    padding: 0 10px 0 10px;
+    font-family: var(--text__font);
+}
+
+
+
+
 
 /*----------SCREEN DISPLAY----------*/
 /* MAC (13 ~ 15inches) */

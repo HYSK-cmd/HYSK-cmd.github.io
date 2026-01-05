@@ -10,8 +10,10 @@ function sendMail(event){
     /* Email Services ID, Template ID, Parameters*/
     emailjs.send("service_bi067ki", "template_pgnmbfl", params).then(() => {
         alert("Email Sent ✅");
-        msg.textContent = "Thank you ❤️";
+        msg.textContent = "Email received";
         form.reset();
-        setTimeout(() => {msg.textContent = "✉️";}, 10000);
+        setTimeout(() => {
+            msg.textContent = "Let's talk";
+        }, 10000);
     });
 }

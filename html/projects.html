@@ -5,30 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <!--import css-->
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../css/projects.css">
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=Barrio&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400..900&family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=Orbitron:wght@400..900&family=Sriracha&display=swap&family=Russo+One&display=swap" rel="stylesheet">
     <!--icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
     <body>
         <div class="frame">
             <nav class="navigator">
-                <h3 class="nav_menu_heading"><a class="nav_menu" href="../index.html">HYSK-cmd</a></h3>
-                <ul>
-                    <li><a class="nav_menu" href="../html/about.html">👦🏻 About</a></li>
-                    <li><a class="nav_menu" href="../html/projects.html">🛠 Projects</a></li>
-                    <li><a class="nav_menu" href="../html/resume.html">📄 Resume</a></li>
-                    <li><a class="nav_menu" href="../html/contact.html">✉️ Contact</a></li>
+                <ul class="nav__ul">
+                    <li class="nav__li"><a class="nav_menu" href="../index.html">Home</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="about.html">About</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="projects.html">Projects</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="resume.html">Resume</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="main">
                 <nav class="subnav"> 
-                    <a href="#projects" class="project_btn">Projects 🛠</a> 
-                    <a href="#research" class="research_btn">Research 🔬</a>
-                    <a href="#experience" class="experience_btn">Experience 📈</a>
+                    <a href="#projects" class="project_btn">Projects</a> 
+                    <a href="#research" class="research_btn">Research</a>
+                    <a href="#experience" class="experience_btn">Experience</a>
                 </nav>
                 <span id="projects"></span>
                 <h2 class="heading">Projects</h2>
@@ -49,6 +50,7 @@
                             while collaborating closely with the electrical and mechanical teams to ensure seamless system integration.
                             <br> <br>
                             Below is the hierarchical flow diagram of the system and theoretical architecture design of zero-shot vision-language model that will be experimented on TARS. 
+                            <br> <br>
                             <div class="src"> 
                                 <img src="../image/hierarchical.png" alt="hierarchical" class="hierarchical"/>
                                 <img src="../image/zeroshot_diagram.png" alt="zeroshot" class="zeroshot"/>
@@ -57,24 +59,21 @@
                     </div>
                     <div class="mytodo">
                         <div class="mytodo_heading">
-                            <h3 class="title">MyToDo &emsp;
-                                <a href="https://github.com/HYSK-cmd/MyToDo" target="_blank" class="social_item github">
+                            <h3 class="title">MyToDo
+                                <a href="https://github.com/HYSK-cmd/MyToDo" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                             </h3>
                             <span class="date">Dec. 2025 - Present</span>
                         </div>
-                        <p class="content">
-                            Website Developer <br> <br>
-                        </p>
                         <div class="sep">
                             <p class="mytodo_content">
-                            This is my first full-stack web development project. I implemented a Flask-based to-do list web application backed by MongoDB.
-                            I designed and implemented full CRUD functionality for task management using server-side rendering with Jinja2.
-                            Each task can be marked as complete or incomplete which will be saved in the datebase.
-                            I used MongoDB to persist task data, enabling efficient creation, updates, and deletion of tasks.
-                            This project helped me strengthen my understanding of backend routing, templating, and database integration.
-                            I'm planning to add Flask-based app user authentication and user-specific task management for future improvements.
+                                This is my first full-stack web development project. I implemented a Flask-based to-do list web application backed by MongoDB.
+                                I designed and implemented full CRUD functionality for task management using server-side rendering with Jinja2.
+                                Each task can be marked as complete or incomplete which will be saved in the datebase.
+                                I used MongoDB to persist task data, enabling efficient creation, updates, and deletion of tasks.
+                                This project helped me strengthen my understanding of backend routing, templating, and database integration.
+                                I'm planning to add Flask-based app user authentication and user-specific task management for future improvements.
                             </p>
                             <img src="../image/design.png" alt="todo" class="todo"/>
                         </div>
@@ -116,8 +115,8 @@
                     </div>
                     <div class="calculator">
                         <div class="calculator_heading">
-                            <h3 class="title">Calculator &emsp;
-                                <a href="https://github.com/HYSK-cmd/JavaFX-Calculator" target="_blank" class="social_item github">
+                            <h3 class="title">Calculator
+                                <a href="https://github.com/HYSK-cmd/JavaFX-Calculator" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                             </h3>
@@ -134,24 +133,24 @@
                     </div>
                     <div class="log_parser">
                         <div class="log_parser_heading">
-                            <h3 class="title">Log Parser &emsp;
-                                <a href="https://github.com/HYSK-cmd/Log-Parser" target="_blank" class="social_item github">
+                            <h3 class="title">Log Parser
+                                <a href="https://github.com/HYSK-cmd/Log-Parser" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                             </h3>
                             <span class="date">May. 2025</span>
                         </div>
                         <p class="content">
-                            <br>
                             I made a simple command-line tool in C to analyze and filter out log files. It is designed to help more easily inspect and interpret application logs.
                             I created a function that parses a common timestamp-level message format, offers features like filtering log entries by level (INFO, WARNING, ERROR), and sorts entries by time. 
                             It produces a summary count of each log level and I plan to extend its funtionalities by including additional output formats or log structures.
                             By transforming raw text logs into structured and filtered output, it facilitates faster debugging and clearer understanding of runtime behavior.
+                            <br> <br>
                         </p>
                     </div>
                     <div class="Hacker">
                         <div class="hacker_heading">
-                            <h3 class="title">Ethical Hacker Website &emsp;
+                            <h3 class="title">Ethical Hacker Website
                                 <a href="https://sites.google.com/view/ethical-hacker-website/home" target="_blank">
                                     <i class="fa-solid fa-globe"></i>
                                 </a>
@@ -159,11 +158,11 @@
                             <span class="date">May. 2021 - Jun. 2021</span>
                         </div>
                         <p class="content">
-                            Website Developer <br> <br>
                             I gained hands-on experience in Linux operations, basic networking, cryptography, and steganography through self-directed learning on TryHackMe platform.
                             <br>
                             In the spirit of promoting an ethical hacker culture, I created and designed a beginner-friendly Website using Google Sites to provide users with
                             helpful and informative insights by simplifying complex cybersecurity topics into accessible and actionable contents.
+                            <br> <br>
                         </p>
                     </div>
                     <div class="mailpilot">
@@ -173,6 +172,7 @@
                         </div>
                         <p class="content">
                             Will be updated.
+                            <br> <br>
                         </p>
                     </div>
                 </div>    
@@ -181,7 +181,7 @@
                 <div class="research" id="id_research">
                     <div class="AICPS">
                         <div class="AICPS_heading">
-                            <h3 class="title">Autonomous & Intelligent Cyber-Physical System Lab &emsp;
+                            <h3 class="title">Autonomous & Intelligent Cyber-Physical System Lab
                                 <a href="https://aicps.eng.uci.edu/" target="_blank">
                                     <i class="fa-solid fa-globe"></i>
                                 </a>
@@ -199,7 +199,8 @@
                             In addition, I am currently developing a zero-shot LLM-based software controller deployed on a physical drone (DJI Tello). This work aims to evaluate 
                             whether the proposed approach can operate reliably in real-world, practical environments beyond simulation, and to better understand the challenges of 
                             transferring VLA models to physical robotic systems.
-                            Below is an example of 3d plots and video ⬇️
+                            Below is an example of 3d plots and video.
+                            <br> <br>
                             <div class="src"> 
                                 <img src="../image/3d_plot.jpeg" alt="3d_plot" class="plot"/>
                                 <video class="vid" controls muted playsinline>
@@ -215,8 +216,8 @@
                 <div class="experience" id="id_experience">
                     <div class="IEEE">
                         <div class="ops_heading">
-                            <h3 class="title">IEEE Open Project Source &emsp;
-                                <a href="https://github.com/HYSK-cmd/IEEE-OPS" target="_blank" class="social_item github">
+                            <h3 class="title">IEEE Open Project Source
+                                <a href="https://github.com/HYSK-cmd/IEEE-OPS" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                             </h3>
@@ -225,7 +226,8 @@
                         <p class="content">
                             <br>
                             I am engaged in IEEE OPS Program, where I build eight hands-on projects starting from beginner to advanced levels and a custom ESP32-based rover capstone.
-                            Here is the list of projects I have done so far. (More to be updated up until June 2026❗️)
+                            Here is the list of projects I have done so far. (More to be updated up until June 2026)
+                            <br> <br>
                             <div class="ops">
                                 <div class="odd ops1">
                                     <video class="ops_vid" controls muted playsinline>
@@ -246,8 +248,7 @@
                                     <p class="even_num_content">
                                         In this project, I built a three-key electronic piano using a 555 Timer IC.
                                         I configured the circuit in astable mode to generate oscillating signals, which were then fed to a passive piezo buzzer, along with a capacitor
-                                        to filter out low frequencies to produce clean sound. Different resistor values were used to output different pitches for each corresponding push button.
-                                        Once tested successfully on a breadboard, I soldered it onto a custom-designed PCB.
+                                        to filter out low frequencies to produce clean sound. Once tested successfully on a breadboard, I soldered it onto a custom-designed PCB.
                                     </p>
                                 </div>
                                 <div class="odd ops3">
@@ -270,7 +271,7 @@
                                     <p class="even_num_content">
                                         Continuing with the ESP32, I implemented an embedded control system in which servo motion is 
                                         adjusted based on distance measurements from an ultrasonic sensor. The servo angle switches between 0° and 90°
-                                        to open/close the lid of the trashcan. (Sorry for my ugly-looking trashcan 😅)
+                                        to open/close the lid of the trashcan.
                                     </p>
                                 </div>
                             </div>
@@ -283,6 +284,7 @@
                         </div>
                         <p class="content">
                             Will be updated.
+                            <br> <br>
                         </p>
                     </div>
                 </div>

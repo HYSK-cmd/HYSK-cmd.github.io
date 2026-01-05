@@ -1,83 +1,21 @@
-:root{
-    --primary-color: #eddace;
-    --secondary-color: rgba(171, 130, 130, 0.2);
-}
-body{
-    background-color: var(--primary-color);
-}
-.frame{
-    margin: 100px 450px;
-    display: flex;
-    height: 80vh;
-
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-
-    background-color: white;
-    border: 20px solid white;
-    border-style: double;
-    border-radius: 100px;
-    background-clip: padding-box;
-}
-
-/*----------NAVIGATOR----------*/
-.navigator{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-h3{
-    font-size: 44px;
-    font-family: "BBH Bogle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 3px;
-    padding: 0 70px;
-}
-ul{
-    margin: 0;
-    margin-left: auto;
-    font-family: "Orbitron", sans-serif;
-    padding: 0 70px;
-}
-li{
-    display: inline;
-    align-self: center;
-    margin-left: 40px;
-    font-size: 20px;
-}
-a{
-    display: inline-block;
-    text-decoration: none;
-    color:black;
-    transition: 0.3s;
-}
-a:hover{
-    transform: scaleX(1.1);
-    color: #6b6b6b;
-}
 /*----------MAIN----------*/
-.main{
-    width:100%;
-    height:100%;
+.main {
     display: flex;
     flex-direction: column;
+    margin-bottom: 40px;
 }
-.resume_class{
+.resume_class {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
 }
-.resume{
+.resume {
     width: 60%;
-    height: 850px;
-    border: 4px solid var(--primary-color);
+    min-height: 80vh;
+    border: var(--border);
     border-radius: 40px;
-    box-shadow: 0 8px 8px var(--secondary-color);
+    box-shadow: var(--box__shadow);
 }
+
 /*----------SCREEN DISPLAY----------*/
 /* MAC (13 ~ 15inches) */
 @media screen and (max-width: 1440px){

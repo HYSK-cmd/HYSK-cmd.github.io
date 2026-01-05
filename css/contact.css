@@ -1,190 +1,96 @@
-:root {
-    --primary-color: #eddace;
-    --secondary-color: rgba(171, 130, 130, 0.2);
-}
-body{
-    background-color: var(--primary-color);
-}
-.frame{
-    margin: 100px 450px;
-    display: flex;
-    height: 80vh;
-
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-
-    background-color: white;
-    background-image: url(../image/grass.png);
-    background-repeat: no-repeat;
-    background-position:bottom;
-    background-size: 100% 470px;
-
-    border: 20px solid white;
-    border-style: double;
-    border-radius: 100px;
-    background-clip:padding-box;
-}
-/*----------NAVIGATOR----------*/
-.navigator{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-h3{
-    font-size: 44px;
-    font-family: "BBH Bogle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 3px;
-    padding: 0 70px;
-}
-ul{
-    margin: 0;
-    margin-left: auto;
-    font-family: "Orbitron", sans-serif;
-    padding: 0 70px;
-}
-li{
-    display: inline;
-    align-self: center;
-    margin-left: 40px;
-    font-size: 20px;
-}
-a{
-    display: inline-block;
-    text-decoration: none;
-    color:black;
-    transition: 0.3s;
-}
-a:hover{
-    transform: scaleX(1.1);
-    color: #6b6b6b;
-}
 /*----------MAIN----------*/
-.main{
-    margin: 5px 100px; 
+.main {
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
-.contact{
+
+.contact {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-right: 100px;
+    margin: 0 auto;
+    justify-content: center;
     align-items: center;
-    gap: 50px;
 }
-p{
-    font-family: "Sriracha", cursive;
+
+.my__email {
+    font-family: var(--design__font), var(--text__font);
     font-size: 52px;
-    margin: 0;
-    margin-top: -50px;
-    margin-bottom: -40px;
+    margin: 10px auto;
 }
+
 /*-----BOX-----*/
-.box{
+.box {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 700px;
+    margin: 10px auto;
 }
-.user_email_box, .subject_box{
+
+.box__input {
+    font-family: var(--text__font);
     height: 50px;
-
-    border: 4px solid var(--primary-color);
-    border-radius: 999px;
-    box-shadow: 0 8px 8px var(--secondary-color);
-
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--box__shadow);
     padding: 0 26px;
     font-size: 20px;
 }
-.comment_box{
-    padding: 20px 24px;
-    font-size: 20px;
-    width: 700px;
-    height: 300px;
 
-    border: 4px solid var(--primary-color);
-    border-radius: 28px;
-    box-shadow: 0 8px 8px var(--secondary-color);
+.comment__box {
+    padding: 18px 24px;
+    height: 280px;
     resize: none;
 }
-.user_email_box, .subject_box, .comment_box{
-    display: block;
-    box-sizing: border-box;
-}
+
 .user_email_box:focus-visible, 
 .subject_box:focus-visible, 
-.comment_box:focus-visible{
+.comment_box:focus-visible {
   outline: none;
 }
+
 /*-----BUTTON-----*/
-.button{
-    margin-top: -20px;
+.button {
+    margin: 20px auto;
     display: flex;
-    flex: row;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+    gap: 25px;
 }
-.btn{
+
+.btn {
+    font-family: var(--design__font);
     width: 200px;
-    height: 60px;
-    border: 4px solid var(--primary-color);
-    box-shadow: 0 8px 8px var(--secondary-color);
-    border-radius: 999px;
-    flex: 0 0 200px;
+    height: 50px;
+    border: 3px solid var(--background);
+    box-shadow: 0 1px 4px var(--background);
+    border-radius: 10px;
     font-size: 24px;
-    background-color: white;
+    background-color: var(--frame__background);
     transition: 0.3s;
+    cursor: pointer;
 }
-.button:has(.send:hover) .send{
+
+.button:has(.send:hover) .send {
     transform-origin: left center;
-    transform: scaleX(1.1);
+    transform: scaleX(1.05);
 }
-.button:has(.send:hover) .reset{
+
+.button:has(.send:hover) .reset {
     transform-origin: right center;
     transform: scaleX(0.95);
 }
-.button:has(.reset:hover) .reset{
+
+.button:has(.reset:hover) .reset {
     transform-origin: right center;
-    transform: scaleX(1.1);
+    transform: scaleX(1.05);
 }
-.button:has(.reset:hover) .send{
+
+.button:has(.reset:hover) .send {
     transform-origin: left center;
     transform: scaleX(0.95)
 }
-/*----------BODY DESIGN----------*/
-.running_dog_class{
-    position: absolute;
-    bottom: 5px;
-    left: -120px;
-    animation: run 6s linear infinite;
-}
-@keyframes run{
-    from { transform: translateX(0); }
-    to   { transform: translateX(calc(100vw)); }
-}
-.walking_dog{
-    width: 300px;
-    transform: translateY(-52px);
-    display: block;
-}
-.emoji{
-    font-family: sans-serif;
-    font-size: 14px;
-    position: absolute;
 
-    left: 170px;
-    bottom: 200px;
-
-    padding: 5px 14px;
-    background: white;
-    border: 2px solid rgba(0,0,0,0.12);
-    border-radius: 14px;
+.bubble {
+    width: 140px;
 }
 /*----------SCREEN DISPLAY----------*/
 /* MAC (13 ~ 15inches) */

@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <!--Import CSS-->
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../css/contact.css">
     <!--FONT-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=Orbitron:wght@400..900&family=Sriracha&display=swap" rel="stylesheet">
-    <!--ICON-->
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=Orbitron:wght@400..900&family=Sriracha&display=swap&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!--EMAILJS-->
     <script type="text/javascript"
@@ -27,21 +27,21 @@
     <body>
         <div class="frame">
             <nav class="navigator">
-                <h3><a class="nav_menu" href="../index.html">HYSK-cmd</a></h3>
-                <ul>
-                    <li><a class="nav_menu" href="../html/about.html">👦🏻 About</a></li>
-                    <li><a class="nav_menu" href="../html/projects.html">🛠 Projects</a></li>
-                    <li><a class="nav_menu" href="../html/resume.html">📄 Resume</a></li>
-                    <li><a class="nav_menu" href="../html/contact.html">✉️ Contact</a></li>
+                <ul class="nav__ul">
+                    <li class="nav__li"><a class="nav_menu" href="../index.html">Home</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="about.html">About</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="projects.html">Projects</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="resume.html">Resume</a></li>
+                    <li class="nav__li"><a class="nav_menu" href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="main">
                 <form class="contact" id="contact_form" onsubmit="sendMail(event)">
-                    <p>Email: hoonyang00@gmail.com</p>
+                    <p class="my__email">Email: hoonyang00@gmail.com</p>
                     <div class="box">
-                        <input class="user_email_box" type="text" id="user_email" name="name" placeholder="Your Email" required>
-                        <input class="subject_box" type="text" id="subject" name="name" placeholder="Subject" required>
-                        <textarea class="comment_box" id="message" name="name" placeholder="Message" required></textarea>
+                        <input class="box__input" type="text" id="user_email" name="name" placeholder="Your Email" required>
+                        <input class="box__input" type="text" id="subject" name="name" placeholder="Subject" required>
+                        <textarea class="box__input comment__box" id="message" name="name" placeholder="Message" required></textarea>
                     </div>
                     <div class="button">
                         <button id="status" class="btn send" type="submit">Send</button>
@@ -50,8 +50,12 @@
                 </form>
             </div>
             <script src="../script.js"></script>
-        <div class="running_dog_class"> 
-            <img src="../image/dog.gif" class="walking_dog"/>
-        <div class="emoji" id="msg" onclick="sendMail()">✉️</div>
+            <div class="astronaut__wrap"> 
+                <video autoplay loop muted playsinline class="astronaut">
+                    <source src="../image/moonwalk.webm" type="video/webm">
+                </video>
+                <div class="bubble" id="msg" onclick="sendMail()">Let's talk</div>
+            </div>
+        </div>
     </body>
 </html>
