@@ -1,7 +1,4 @@
 .DS_Store
-node_modules/
 *.log
-.env
 .vscode/ 
-./resume/resume_HYS.pdf
-assets/private/
+./resume/resume.pdf

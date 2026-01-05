@@ -2,6 +2,7 @@
 .main {
     display: flex;
     flex-direction: row;
+    margin: 5px 90px;
 }
 
 .contact {
@@ -93,195 +94,97 @@
     width: 140px;
 }
 /*----------SCREEN DISPLAY----------*/
-/* MAC (13 ~ 15inches) */
-@media screen and (max-width: 1440px){
-    .frame{
-        margin: 80px 200px;
-        height: 110vh;
+/* 22 inch Monitor - 1920x1080 */
+@media screen and (max-width: 1920px) and (min-width: 1680px) {
+    .frame {
+        margin: 75px 340px;
+        min-height: 82vh;
     }
-    h3{
-        font-size: 38px;
-        padding: 0 50px;
+    .navigator .nav__ul {
+        gap: 53px;
     }
-    ul{
-        padding: 0 50px;
+    .navigator .nav__li {
+        font-size: 23px;
     }
-    li{
-        margin-left: 30px;
-        font-size: 18px;
+    .main {
+        margin: 4px 68px;
     }
-    .main{
-        margin: 5px 80px;
-        justify-content: center;
+    .contact {
+        margin: 0 auto;
     }
-    .contact{
-        padding-right: 0;
-        align-items: center;
+    .my__email {
+        font-size: 39px;
     }
-    p{
-        font-size: 40px;
-        text-align: center;
+    .box {
+        width: 525px;
     }
-    .box{
-        width: 500px;
-        align-items: center;
+    .box__input {
+        height: 37px;
+        font-size: 15px;
+        padding: 0 19px;
     }
-    .user_email_box, .subject_box{
-        width: 100%;
-        font-size: 18px;
+    .comment__box {
+        padding: 13px 18px;
+        height: 210px;
     }
-    .comment_box{
-        width: 500px;
-        height: 200px;
-        font-size: 18px;
-    }
-}
-
-/* Mobile Phone - Portrait */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-    .frame{
-        margin: 40px 20px;
-        border-radius: 40px;
-        height: 135vh;
-        background-size: 100% 250px;
-    }
-    .navigator{
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-    h3{
-        font-size: 24px;
-        padding: 20px;
-    }
-    ul{
-        padding: 0 20px 20px 20px;
-        margin-left: 0;
-    }
-    li{
-        display: block;
-        margin-left: 0;
-        margin-bottom: 10px;
-        font-size: 16px;
-        text-align: center;
-    }
-    .main{
-        margin: 5px 20px;
-        flex-direction: column;
-        align-items: center;
-    }
-    .contact{
-        padding-right: 0;
-        gap: 30px;
-    }
-    p{
-        font-size: 18px;
-        margin-top: -30px;
-        margin-bottom: -20px;
-    }
-    .box{
-        width: 100%;
-        max-width: 400px;
-        align-items: center;
-    }
-    .user_email_box, .subject_box{
-        width: 250px;
-        height: 45px;
-        font-size: 16px;
-        padding: 0 20px;
-    }
-    .comment_box{
-        width: 100%;
-        width: 250px;
-        height: 200px;
-        font-size: 16px;
-        padding: 15px 20px;
-    }
-    .button{
-        margin-top: -10px;
-        gap: 10px;
-    }
-    .btn{
-        height: 45px;
-        font-size: 10px;
-        flex: 0 0 115px;
-    }
-    .walking_dog{
+    .btn {
         width: 150px;
-        transform: translateY(-35px);
+        height: 37px;
+        font-size: 18px;
     }
-    .emoji{
-        left: 100px;
-        bottom: 150px;
-        font-size: 12px;
+    .button {
+        gap: 19px;
+    }
+    .bubble {
+        width: 105px;
     }
 }
 
-/* Mobile Phone - Landscape */
-@media screen and (max-height: 768px) and (orientation: landscape) {
-    .frame{
-        margin: 20px 80px;
-        border-radius: 40px;
-        height: 200vh;
-        background-size: 100% 200px;
+/* MacBook Pro - 1440x900 */
+@media screen and (max-width: 1679px) and (min-width: 1441px) {
+    .frame {
+        margin: 40px 100px;
+        min-height: 70vh;
     }
-    .navigator{
-        flex-direction: row;
+    .navigator .nav__ul {
+        gap: 40px;
     }
-    h3{
-        font-size: 20px;
-        padding: 0 30px;
+    .navigator .nav__li {
+        font-size: 17px;
     }
-    ul{
-        padding: 0 30px;
+    .main {
+        margin: 3px 50px;
     }
-    li{
-        display: inline;
-        margin-left: 15px;
-        margin-bottom: 0;
-        font-size: 14px;
+    .contact {
+        margin: 0 auto;
     }
-    .main{
-        margin: 5px 60px;
-        margin-left: 100px;
-        align-items: center;
+    .my__email {
+        font-size: 29px;
     }
-    .contact{
-        padding-right: 50px;
-        gap: 30px;
+    .box {
+        width: 394px;
     }
-    p{
-        font-size: 20px;
-        margin-top: -30px;
-        margin-bottom: -20px;
+    .box__input {
+        height: 28px;
+        font-size: 11px;
+        padding: 0 15px;
     }
-    .box{
-        width: 500px;
-        align-items: center;
+    .comment__box {
+        padding: 10px 13px;
+        height: 157px;
     }
-    .user_email_box, .subject_box{
-        width: 300px;
-        height: 40px;
-        font-size: 16px;
+    .btn {
+        width: 112px;
+        height: 28px;
+        font-size: 13px;
+        border-width: 2px;
     }
-    .comment_box{
-        width: 300px;
-        height: 200px;
-        font-size: 16px;
+    .button {
+        gap: 14px;
+        margin: 11px auto;
     }
-    .btn{
-        width: 160px;
-        height: 50px;
-        font-size: 20px;
-        flex: 0 0 160px;
-    }
-    .walking_dog{
-        width: 180px;
-        transform: translateY(-40px);
-    }
-    .emoji{
-        left: 120px;
-        bottom: 120px;
-        font-size: 12px;
+    .bubble {
+        width: 78px;
+        font-size: 6px;
     }
 }

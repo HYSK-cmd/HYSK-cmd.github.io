@@ -2,7 +2,8 @@
 .main {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin: 5px 90px;
+    margin-bottom: 50px;
 }
 .resume_class {
     display: flex;
@@ -17,77 +18,45 @@
 }
 
 /*----------SCREEN DISPLAY----------*/
-/* MAC (13 ~ 15inches) */
-@media screen and (max-width: 1440px){
-    .frame{
-        margin: 80px 200px;
-        height: 130vh;
+/* 22 inch Monitor - 1920x1080 */
+@media screen and (max-width: 1920px) and (min-width: 1680px) {
+    .frame {
+        margin: 75px 340px;
+        min-height: 82vh;
     }
-    h3{
-        font-size: 38px;
-        padding: 0 50px;
+    .navigator .nav__ul {
+        gap: 53px;
     }
-    ul{
-        padding: 0 50px;
+    .navigator .nav__li {
+        font-size: 23px;
     }
-    li{
-        margin-left: 30px;
-        font-size: 18px;
+    .main {
+        margin-bottom: 38px;
     }
-}
-
-/* Mobile Phone - Portrait */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-    .frame{
-        margin: 40px 20px;
-        border-radius: 40px;
-        height: 140vh;
-    }
-    h3{
-        font-size: 24px;
-        padding: 0 20px;
-    }
-    ul{
-        padding: 0 20px;
-    }
-    li{
-        display: block;
-        margin-left: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
-    .resume{
-        width: 90%;
-        height: 800px;
+    .resume {
+        width: 60%;
+        min-height: 75vh;
     }
 }
 
-/* Mobile Phone - Landscape */
-@media screen and (max-height: 768px) and (orientation: landscape) {
-    .frame{
-        margin: 20px 80px;
-        border-radius: 40px;
-        height: auto;
-        min-height: 140vh;
+/* MacBook Pro - 1440x900 */
+@media screen and (max-width: 1679px) and (min-width: 1441px) {
+    .frame {
+        margin: 40px 100px;
+        min-height: 70vh;
     }
-    .navigator{
-        flex-direction: row;
+    .navigator .nav__ul {
+        gap: 40px;
     }
-    h3{
-        font-size: 20px;
-        padding: 0 30px;
+    .navigator .nav__li {
+        font-size: 17px;
     }
-    ul{
-        padding: 0 30px;
+    .main {
+        margin: 3px 50px;
+        margin-bottom: 28px;
     }
-    li{
-        display: inline;
-        margin-left: 15px;
-        margin-bottom: 0;
-        font-size: 14px;
-    }
-    .resume{
-        width: 70%;
-        height: 100vh;
+    .resume {
+        width: 62%;
+        min-height: 60vh;
     }
 }

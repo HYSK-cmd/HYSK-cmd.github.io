@@ -305,306 +305,180 @@ html {
 
 
 /*----------SCREEN DISPLAY----------*/
-/* MAC (13 ~ 15inches) */
-@media screen and (max-width: 1440px) {
-    .frame{
-        margin: 80px 200px;
+/* 22 inch Monitor - 1920x1080 */
+@media screen and (max-width: 1920px) and (min-width: 1680px) {
+    .frame {
+        margin: 75px 340px;
     }
-    .nav_menu_heading{
-        font-size: 38px;
-        padding: 0 50px;
+    .navigator .nav__ul {
+        gap: 53px;
     }
-    .navigator ul{
-        padding: 0 50px;
+    .navigator .nav__li {
+        font-size: 23px;
     }
-    .navigator li{
-        margin-left: 30px;
+    .subnav {
+        gap: 14px;
         font-size: 18px;
     }
-    .main{
-        margin: 5px 150px;
+    .subnav a {
+        padding: 6px 11px;
     }
-    .subnav{
-        font-size: 20px;
+    .main {
+        margin: 4px 135px;
     }
-}
-
-/* Mobile Phone - Portrait */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-    .frame{
-        margin: 40px 20px;
-        border-radius: 40px;
-        height: auto;
-        min-height: 100vh;
+    .heading {
+        font-size: 45px;
+        margin-bottom: 22px;
     }
-    .navigator{
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-    .nav_menu_heading{
-        font-size: 28px;
-        padding: 20px;
-    }
-    .navigator ul{
-        padding: 0 20px 20px 20px;
-        margin-left: 0;
-    }
-    .navigator li{
-        display: block;
-        margin-left: 0;
-        margin-bottom: 10px;
-        font-size: 16px;
-        text-align: center;
-    }
-    .subnav{
-        flex-direction: column;
-        gap: 10px;
-        margin: 0 0 20px 0;
-        padding-left: 0;
-        font-size: 16px;
-    }
-    .subnav a{
-        padding: 6px 12px;
-    }
-    .main{
-        margin: 5px 20px;
-    }
-    .heading{
-        font-size: 36px;
-    }
-    .projects, .research, .experience{
-        font-size: 16px;
+    .projects, .research, .experience {
+        font-size: 18px;
         gap: 30px;
     }
-    .zotbotics_heading, .drone_heading, .calculator_heading, 
-    .log_parser_heading, .hacker_heading, .mailpilot_heading, 
-    .AICPS_heading, .ops_heading, .la_heading{
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-        gap: 10px;
+    .zotbotics_heading, .drone_heading, .calculator_heading,
+    .log_parser_heading, .hacker_heading, .mailpilot_heading,
+    .AICPS_heading, .ops_heading, .la_heading, .mytodo_heading {
+        padding-left: 22px;
+        padding-right: 22px;
     }
-    .zotbotics, .drone, .mailpilot,
-    .calculator, .log_parser, .AICPS, 
-    .IEEE, .Hacker, .LA{
-        height: auto;
-        min-height: 200px;
+    .title {
+        font-size: 21px;
     }
-    .title{
-        font-size: 22px;
+    .date {
+        padding-left: 30px;
+        font-size: 12px;
     }
-    .date{
-        padding-left: 0;
-        font-size: 14px;
+    .content {
+        padding-left: 22px;
+        padding-right: 30px;
+        font-size: 15px;
+        line-height: 22px;
     }
-    .content{
-        width: 100%;
-        padding-left: 15px;
-        padding-right: 15px;
-        height: auto;
-        box-sizing: border-box;
+    .hierarchical {
+        height: 292px;
     }
-    .img, .vid{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 200px;
+    .zeroshot {
+        height: 292px;
     }
-    .sep{
-        flex-direction: column;
-        align-items: center;
+    .todo, .calc {
+        width: 300px;
+        height: 300px;
+        margin-right: 30px;
     }
-    .list li{
-        text-align: left;
-        margin-left: -60px;
+    .drone_pic, .drone_vid {
+        height: 285px;
     }
-    .cal_content, .mytodo_content{
-        max-width: 100%;
-        padding-left: 15px;
-        padding-right: 15px;
+    .plot {
+        height: 210px;
     }
-    .calc{
-        width: 200px;
-        height: 240px;
-        margin: 20px auto;
+    .vid {
+        height: 210px;
     }
-    .src {
-        flex-direction: column;
-        gap: 15px;
-        padding-left: 15px;
-        padding-right: 15px;
+    .ops {
+        font-size: 17px;
+        gap: 22px;
     }
-    .hierarchical, .zeroshot{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 200px;
-    }
-    .plot{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 200px;
-    }
-    .drone_pic, .drone_vid{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 200px;
-    }
-    .odd, .even{
-        flex-direction: column;
-        padding-left: 20px;
-        padding-right: 20px;
-        gap: 15px;
-    }
-    .ops_vid{
-        width: 90%;
-        height: auto;
-        max-height: 180px;
-    }
-    .odd_num_content, .even_num_content {
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 100%;
-    }
-    .ops{
-        font-size: 16px;
-        gap: 20px;
+    .ops_vid {
+        height: 187px;
     }
 }
 
-/* Mobile Phone - Landscape */
-@media screen and (max-height: 768px) and (orientation: landscape) {
-    .frame{
-        margin: 20px 80px;
-        border: 8px solid white;
-        border-radius: 40px;
-        height: auto;
-        min-height: 90vh;
+/* MacBook Pro - 1440x900 */
+@media screen and (max-width: 1679px) and (min-width: 1441px) {
+    .frame {
+        margin: 40px 100px;
     }
-    .navigator{
-        flex-direction: row;
+    .navigator .nav__ul {
+        gap: 40px;
     }
-    .nav_menu_heading{
-        font-size: 20px;
-        padding: 0 30px;
+    .navigator .nav__li {
+        font-size: 17px;
     }
-    .navigator ul{
-        padding: 0 30px;
-    }
-    .navigator li{
-        display: inline;
-        margin-left: 15px;
-        margin-bottom: 0;
-        font-size: 14px;
-    }
-    .subnav{
-        font-size: 14px;
-        gap: 12px;
-        margin: 0 0 10px 0;
-        padding-left: 20px;
-    }
-    .subnav a{
-        padding: 5px 10px;
-    }
-    .main{
-        margin: 5px 60px;
-    }
-    .heading{
-        font-size: 32px;
-    }
-    .projects, .research, .experience{
-        font-size: 16px;
-        gap: 25px;
-    }
-    .zotbotics_heading, .drone_heading, .calculator_heading, 
-    .log_parser_heading, .hacker_heading, .mailpilot_heading, 
-    .AICPS_heading, .ops_heading, .la_heading{
-        padding: 15px 20px;
-    }
-    .zotbotics, .drone, .mailpilot,
-    .calculator, .log_parser, .AICPS, 
-    .IEEE, .Hacker, .LA{
-        height: auto;
-        min-height: 180px;
-    }
-    .title{
-        font-size: 20px;
-    }
-    .date{
-        padding-left: 20px;
+    .subnav {
+        gap: 10px;
         font-size: 13px;
     }
-    .content{
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-        height: auto;
-        box-sizing: border-box;
+    .subnav a {
+        padding: 5px 8px;
     }
-    .img, .vid{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 160px;
+    .main {
+        margin: 3px 57px;
     }
-    .sep{
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .heading {
+        font-size: 34px;
+        margin-bottom: 16px;
     }
-    .cal_content, .mytodo_content{
-        max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
+    .projects, .research, .experience {
+        font-size: 13px;
+        gap: 22px;
     }
-    .calc{
-        width: 180px;
-        height: 220px;
-        margin: 15px auto;
+    .zotbotics_heading, .drone_heading, .calculator_heading,
+    .log_parser_heading, .hacker_heading, .mailpilot_heading,
+    .AICPS_heading, .ops_heading, .la_heading, .mytodo_heading {
+        padding-left: 17px;
+        padding-right: 17px;
     }
-    .src{
-        flex-direction: column;
-        gap: 15px;
-        padding-left: 20px;
-        padding-right: 20px;
+    .title {
+        font-size: 16px;
     }
-    .hierarchical, .zeroshot{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 160px;
+    .date {
+        padding-left: 22px;
+        font-size: 9px;
+    }
+    .content {
+        padding-left: 17px;
+        padding-right: 22px;
+        font-size: 11px;
+        line-height: 17px;
+    }
+    .src {
+        padding-left: 17px;
+        padding-right: 17px;
+        gap: 5px;
+    }
+    .hierarchical {
+        height: 219px;
+    }
+    .zeroshot {
+        height: 219px;
+    }
+    .todo, .calc {
+        width: 225px;
+        height: 225px;
+        margin-right: 22px;
+        margin-top: -11px;
+        margin-bottom: 28px;
+    }
+    .mytodo_content, .cal_content {
+        padding: 0 22px;
+        font-size: 11px;
+        line-height: 19px;
+    }
+    .drone_pic, .drone_vid {
+        height: 213px;
     }
     .plot {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 160px;
+        height: 157px;
     }
-    .drone_pic, .drone_vid{
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        max-height: 160px;
+    .vid {
+        height: 157px;
     }
-    .odd, .even{
-        padding-left: 30px;
-        padding-right: 30px;
-        gap: 20px;
+    .list {
+        gap: 5px;
+        margin-left: 28px;
     }
-    .ops_vid{
-        width: 35%;
-        height: auto;
-        max-height: 140px;
+    .ops {
+        font-size: 13px;
+        gap: 17px;
     }
-    .odd_num_content, .even_num_content{
-        margin-left: 20px;
-        margin-right: 20px;
+    .ops_vid {
+        height: 140px;
     }
-    .ops{
-        font-size: 16px;
-        gap: 20px;
+    .odd, .even {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+    .odd_num_content, .even_num_content {
+        max-width: 30ch;
+        font-size: 13px;
     }
 }
