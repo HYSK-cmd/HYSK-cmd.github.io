@@ -48,8 +48,8 @@ body{
     font-family: var(--design__font), var(--text__font);
     font-size: 20px;
     position: absolute;
-    left: 120px;
-    bottom: 130px;
+    left: 80px;
+    bottom: 145px;
     padding: 5px 10px;
     text-align: center;
     width: 170px;
@@ -178,7 +178,7 @@ a:hover{
 @media screen and (max-width: 1920px) and (min-width: 1680px) {
     .frame {
         margin: 75px 340px;
-        min-height: 82vh;
+        min-height: 75vh;
     }
     .navigator {
         margin: 30px 0;
@@ -191,8 +191,9 @@ a:hover{
     }
     .intro {
         font-size: 35px;
-        padding: 0 53px;
+        padding: 0 30px;
         line-height: 38px;
+        margin: 0 10px;
     }
     .hi__msg {
         font-size: 48px;
@@ -221,18 +222,18 @@ a:hover{
     }
     .bubble {
         font-size: 15px;
-        left: 90px;
-        bottom: 98px;
+        left: 120px;
+        bottom: 130px;
         width: 128px;
     }
     @keyframes run {
         from { transform: translateX(0); }
-        to { transform: translateX(calc(113vh)); }
+        to { transform: translateX(calc(120vh)); }
     }
 }
 
 /* MacBook Pro 13-15 inch - 1440x900 */
-@media screen and (max-width: 1679px) and (min-width: 1441px) {
+@media screen and (max-width: 1679px) and (min-width: 1200px) {
     .frame {
         margin: 40px 100px;
         min-height: 75vh;
@@ -283,13 +284,13 @@ a:hover{
     }
     .bubble {
         font-size: 11px;
-        left: 68px;
-        bottom: 74px;
+        left: 120px;
+        bottom: 130px;
         width: 97px;
         padding: 3px 6px;
     }
     @keyframes run {
         from { transform: translateX(0); }
-        to { transform: translateX(calc(85vh)); }
+        to { transform: translateX(calc(140vh)); }
     }
 }

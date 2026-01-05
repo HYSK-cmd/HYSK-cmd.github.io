@@ -383,7 +383,7 @@ html {
 }
 
 /* MacBook Pro - 1440x900 */
-@media screen and (max-width: 1679px) and (min-width: 1441px) {
+@media screen and (max-width: 1679px) and (min-width: 1200px) {
     .frame {
         margin: 40px 100px;
     }

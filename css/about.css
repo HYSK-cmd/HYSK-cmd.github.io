@@ -108,7 +108,7 @@
     .frame {
         margin: 75px 340px;
         height: auto;
-        min-height: 85vh;
+        min-height: 78vh;
     }
     .navigator .nav__ul {
         gap: 53px;
@@ -168,7 +168,7 @@
 }
 
 /* MacBook Pro - 1440x900 */
-@media screen and (max-width: 1679px) and (min-width: 1441px) {
+@media screen and (max-width: 1679px) and (min-width: 1200px) {
     .frame {
         margin: 40px 100px;
         height: auto;
