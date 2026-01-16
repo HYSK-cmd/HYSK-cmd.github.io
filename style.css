@@ -236,7 +236,7 @@ a:hover{
 @media screen and (max-width: 1679px) and (min-width: 1200px) {
     .frame {
         margin: 40px 100px;
-        min-height: 75vh;
+        min-height: 100vh;
     }
     .navigator {
         margin: 24px 0;

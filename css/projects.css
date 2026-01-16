@@ -93,7 +93,7 @@ html {
 
 .zotbotics, .drone, .mailpilot,
 .calculator, .log_parser, .AICPS, 
-.IEEE, .Hacker, .LA, .mytodo {
+.IEEE, .Hacker, .mytodo {
     width: 100%;
     border: var(--border);
     border-radius: 30px;
