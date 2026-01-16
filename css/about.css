@@ -172,7 +172,7 @@
     .frame {
         margin: 40px 100px;
         height: auto;
-        min-height: 100vh;
+        min-height: 85vh;
     }
     .navigator .nav__ul {
         gap: 40px;

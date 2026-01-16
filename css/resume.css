@@ -22,7 +22,7 @@
 @media screen and (max-width: 1920px) and (min-width: 1680px) {
     .frame {
         margin: 75px 340px;
-        min-height: 75vh;
+        min-height: 90vh;
     }
     .navigator .nav__ul {
         gap: 53px;

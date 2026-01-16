@@ -144,7 +144,7 @@
 @media screen and (max-width: 1679px) and (min-width: 1200px) {
     .frame {
         margin: 40px 100px;
-        min-height: 100vh;
+        min-height: 85vh;
     }
     .navigator .nav__ul {
         gap: 40px;
