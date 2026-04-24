@@ -98,7 +98,8 @@ a:hover { color: #6b6b6b; }
 .home {
     display: flex;
     flex-direction: column;
-    padding: 30px 0 40px;
+    justify-content: center;
+    padding: 30px 0;
 }
 
 .sub_main {
@@ -385,7 +386,7 @@ a:hover { color: #6b6b6b; }
     .section__block { padding: 38px 75px; }
     .section__heading { font-size: 28px; margin-bottom: 22px; }
 
-    .home { min-height: 60vh; padding: 26px 0 55px; }
+    .home { padding: 26px 0; }
     .my_image { width: 210px; height: 210px; margin: 12px 50px; }
     .name { font-size: 26px; }
     .profile__meta { font-size: 11px; }
@@ -393,7 +394,7 @@ a:hover { color: #6b6b6b; }
     .hi__msg { font-size: 30px; }
     .intro__msg { line-height: 34px; }
     .social_item { width: 32px; height: 32px; }
-    .social_item i { font-size: 1.55rem; }
+    .social_item i { font-size: 0.95rem; }
 
     .skills__section { gap: 12px; }
     .skills__group { padding: 15px 14px; }
@@ -421,7 +422,7 @@ a:hover { color: #6b6b6b; }
     .section__block { padding: 26px 48px; }
     .section__heading { font-size: 22px; margin-bottom: 16px; }
 
-    .home { min-height: 68vh; padding: 20px 0 48px; }
+    .home { padding: 20px 0; }
     .my_image { width: 158px; height: 158px; margin: 10px 38px; }
     .name { font-size: 20px; letter-spacing: 2px; }
     .profile__meta { font-size: 9px; margin: 1px 0 6px; }
@@ -429,7 +430,7 @@ a:hover { color: #6b6b6b; }
     .hi__msg { font-size: 23px; }
     .intro__msg { line-height: 27px; }
     .social_item { width: 22px; height: 22px; }
-    .social_item i { font-size: 1.1rem; }
+    .social_item i { font-size: 0.65rem; }
 
     .skills__section { gap: 9px; }
     .skills__group { padding: 12px 11px; }
@@ -474,7 +475,7 @@ a:hover { color: #6b6b6b; }
     .hi__msg { font-size: 19px; }
     .intro__msg { line-height: 23px; }
     .social_item { width: 20px; height: 20px; }
-    .social_item i { font-size: 0.9rem; }
+    .social_item i { font-size: 0.6rem; }
 
     .skills__section { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .skills__group { padding: 14px 12px; }
