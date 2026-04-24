@@ -3,64 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!--Import CSS-->
+    <title>Hoon Yang</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!--FONT-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=DynaPuff:wght@400..700&family=Hachi+Maru+Pop&family=Orbitron:wght@400..900&family=Sriracha&display=swap&family=Russo+One&display=swap" rel="stylesheet">
-    <!--ICON-->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
-    <div class="frame">
-        <nav class="navigator">
-            <ul class="nav__ul">
-                <li class="nav__li"><a class="nav_menu" href="index.html">Home</a></li>
-                <li class="nav__li"><a class="nav_menu" href="html/about.html">About</a></li>
-                <li class="nav__li"><a class="nav_menu" href="html/projects.html">Projects</a></li>
-                <li class="nav__li"><a class="nav_menu" href="html/resume.html">Resume</a></li>
-                <li class="nav__li"><a class="nav_menu" href="html/contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="home">
-            <div class="sub_main">
-                <div class="profile">
-                    <div class="my_image">
-                        <img src="../image/professional_pic.jpg" alt="my_pic" class="me"/>
-                    </div>
-                    <p class="name">Hoon Yang</p>
-                    <div class="social_media">
-                        <a href="mailto:hoonyang00@gmail.com" class="social_item mail">
-                            <img src="image/mail_icon.jpeg" alt="Email" class="mail_icon"/>
-                        </a>
-                        <a href="https://github.com/HYSK-cmd" target="_blank" class="social_item github">
-                            <i class="fa-brands fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/seungheon-yang-0b5753343/" target="_blank" class="social_item linkedin">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                    </div>
+<div class="frame">
+
+    <!-- NAV -->
+    <nav class="navigator">
+        <ul class="nav__ul">
+            <li class="nav__li"><a class="nav_menu" href="#home">About</a></li>
+            <li class="nav__li"><a class="nav_menu" href="#skills">Skills</a></li>
+            <li class="nav__li"><a class="nav_menu" href="#projects">Projects</a></li>
+            <li class="nav__li"><a class="nav_menu" href="#research">Research</a></li>
+        </ul>
+        <a class="nav__resume" href="resume/resume.pdf" target="_blank">Resume</a>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home" class="home">
+        <div class="sub_main">
+            <div class="profile">
+                <div class="my_image">
+                    <img src="image/selfie.jpg" alt="Hoon Yang" class="me" style="object-position: 50% 0%;"/>
                 </div>
-                <div class="intro">
-                    <span class="hi__msg">HELLO THERE</span>
-                    <p class="intro__msg">
-                        &lt;Undergraduate @ UC Irvine/&gt;<br>
-                        &lt;Computer Engineering Student/&gt;<br>
-                        &lt;Turning ideas into real projects/&gt;<br>
-                        &lt;Walk around and explore/&gt;
-                    </p>    
+                <p class="name">Hoon Yang</p>
+                <div class="social_media">
+                    <a href="mailto:hoonyang00@gmail.com" class="social_item mail" title="Email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/HYSK-cmd" target="_blank" class="social_item github" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/seungheon-yang-0b5753343/" target="_blank" class="social_item linkedin" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="intro">
+                <span class="hi__msg">HELLO THERE</span>
+                <p class="intro__msg">
+                    &lt;Undergraduate @ UC Irvine/&gt;<br>
+                    &lt;Computer Engineering Student/&gt;<br>
+                    &lt;Turning ideas into real projects/&gt;<br>
+                    &lt;Walk around and explore/&gt;
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section__divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section__block">
+        <h2 class="section__heading">Skills</h2>
+        <div class="skills__section">
+            <div class="skills__group">
+                <h4 class="skills__cat">Programming Languages</h4>
+                <div class="skills__pills">
+                    <span class="pill">Python</span>
+                    <span class="pill">C / C++</span>
+                    <span class="pill">Java</span>
+                    <span class="pill">HTML / CSS</span>
+                    <span class="pill">SQL</span>
+                    <span class="pill">Arduino C</span>
+                </div>
+            </div>
+            <div class="skills__group">
+                <h4 class="skills__cat">ML / CV &amp; Robotics</h4>
+                <div class="skills__pills">
+                    <span class="pill">PyTorch</span>
+                    <span class="pill">OpenCV</span>
+                    <span class="pill">Ultralytics</span>
+                    <span class="pill">Reinforcement Learning</span>
+                    <span class="pill">Computer Vision</span>
+                    <span class="pill">Autonomous Navigation</span>
+                </div>
+            </div>
+            <div class="skills__group">
+                <h4 class="skills__cat">Tools &amp; Libraries</h4>
+                <div class="skills__pills">
+                    <span class="pill">Linux</span>
+                    <span class="pill">Git</span>
+                    <span class="pill">Flask</span>
+                    <span class="pill">FastAPI</span>
+                    <span class="pill">Jinja2</span>
+                    <span class="pill">PyMongo</span>
+                </div>
+            </div>
+            <div class="skills__group">
+                <h4 class="skills__cat">Embedded &amp; Hardware</h4>
+                <div class="skills__pills">
+                    <span class="pill">Embedded Systems</span>
+                    <span class="pill">Soldering</span>
+                    <span class="pill">Circuit Analysis</span>
+                    <span class="pill">Verilog</span>
+                    <span class="pill">KiCad</span>
+                    <span class="pill">LTspice</span>
                 </div>
             </div>
         </div>
-        <div class="astronaut__wrap"> 
-            <video autoplay loop muted playsinline class="astronaut">
-                <source src="image/moonwalk.webm" type="video/webm">
-            </video>
-            <div class="bubble">Let’s explore together →</div>
-        </div>
-    </div>
-</body>
+    </section>
 
-</html> 
+    <div class="section__divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section__block">
+        <h2 class="section__heading">Projects</h2>
+        <div class="proj__grid">
+
+            <!-- Speed Violation Tracker -->
+            <div class="proj__card">
+                <div class="proj__img__wrap">
+                    <img src="image/demo.gif" alt="Speed Violation Tracker demo" class="proj__img"/>
+                </div>
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">Speed Violation Tracker
+                            <a href="https://github.com/HYSK-cmd" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        </h3>
+                        <span class="proj__date">Mar 2026 – Present</span>
+                    </div>
+                    <p class="proj__desc">End-to-end CV pipeline for real-time vehicle detection, tracking, and speed violation capture using YOLO and OpenCV with a Flask web app and SSE-based live log streaming.</p>
+                    <div class="proj__tags">
+                        <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Ultralytics</span><span class="tag">Flask</span><span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Autonomous Spider Bot -->
+            <div class="proj__card">
+                <div class="proj__img__wrap proj__placeholder grad__purple">
+                    <i class="fa-solid fa-robot proj__icon"></i>
+                </div>
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">Autonomous Spider Bot
+                            <a href="https://github.com/HYSK-cmd/Autonomous-Spider-Bot" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        </h3>
+                        <span class="proj__date">Jan 2026 – Present</span>
+                    </div>
+                    <p class="proj__desc">Multi-legged robotic platform on NVIDIA Jetson Nano using PPO reinforcement learning for autonomous navigation, validated in PyBullet simulation with secure remote control via Tailscale.</p>
+                    <div class="proj__tags">
+                        <span class="tag">PyTorch</span><span class="tag">PyBullet</span><span class="tag">Python</span><span class="tag">Linux</span><span class="tag">Jetson Nano</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZotTARS -->
+            <div class="proj__card">
+                <div class="proj__img__wrap">
+                    <img src="image/tars.jpg" alt="ZotTARS" class="proj__img" style="object-fit: contain; object-position: 50% 50%; background: #f2f1ef;"/>
+                </div>
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">ZotTARS
+                            <a href="https://github.com/HYSK-cmd" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        </h3>
+                        <span class="proj__date">Sep 2025 – Present</span>
+                    </div>
+                    <p class="proj__desc">Software subteam on a TARS-inspired robot. Deployed a FastAPI STT–LLM–TTS pipeline and YOLO-based vision for grounded LLM control with PS5/GUI/Arduino integration.</p>
+                    <div class="proj__tags">
+                        <span class="tag">FastAPI</span><span class="tag">Ultralytics</span><span class="tag">Raspberry Pi</span><span class="tag">Python</span><span class="tag">Arduino</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MyToDo -->
+            <div class="proj__card">
+                <div class="proj__img__wrap">
+                    <img src="image/design.png" alt="MyToDo" class="proj__img" style="object-position: 50% 0%;"/>
+                </div>
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">MyToDo
+                            <a href="https://github.com/HYSK-cmd/MyToDo" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        </h3>
+                        <span class="proj__date">Dec 2025 – Jan 2026</span>
+                    </div>
+                    <p class="proj__desc">Full-stack task management web app with CRUD operations using Flask and MongoDB, featuring server-rendered pages via Jinja2.</p>
+                    <div class="proj__tags">
+                        <span class="tag">Flask</span><span class="tag">MongoDB</span><span class="tag">Jinja2</span><span class="tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drone -->
+            <div class="proj__card">
+                <div class="proj__img__wrap">
+                    <img src="image/drone.png" alt="Drone" class="proj__img" style="object-position: 50% 30%;"/>
+                </div>
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">Drone Project</h3>
+                        <span class="proj__date">Sep 2025 – Dec 2025</span>
+                    </div>
+                    <p class="proj__desc">Assembled UAV hardware from scratch — flight controller, ESCs, motors, GPS — with full soldering and validation. Configured ArduPilot and ESP32 telemetry for autonomous waypoint missions.</p>
+                    <div class="proj__tags">
+                        <span class="tag">ArduPilot</span><span class="tag">ESP32</span><span class="tag">Embedded</span><span class="tag">Soldering</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section__divider"></div>
+
+    <!-- RESEARCH -->
+    <section id="research" class="section__block">
+        <h2 class="section__heading">Research</h2>
+        <div class="proj__grid">
+            <div class="proj__card research__card">
+                <div class="proj__body">
+                    <div class="proj__header">
+                        <h3 class="proj__title">AICPS Lab — UC Irvine
+                            <a href="https://aicps.eng.uci.edu/" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                        </h3>
+                        <span class="proj__date">Sep 2025 – Present</span>
+                    </div>
+                    <p class="proj__role">Undergraduate Research Assistant</p>
+                    <p class="proj__desc">Under Prof. Mohammad Al Faruque. Built the AeroLANCE VLN evaluation pipeline in OpenUAV, operationalized the architecture on a physical UAV, and performed monocular 3D reconstruction using MonST3R. Paper submitted to IROS 2026 (under review).</p>
+                    <div class="proj__tags">
+                        <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">OpenUAV</span><span class="tag">MonST3R</span><span class="tag">Blender</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</body>
+</html>
