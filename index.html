@@ -1,300 +1,1514 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoon Yang</title>
-    <title>Hoon Yang</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Russo+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hoon Yang — Computer Engineering at UC Irvine. Agent orchestration, multimodal retrieval, autonomous navigation.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%B0%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Hoon Yang">
+<meta property="og:description" content="Computer Engineering at UC Irvine. Agent orchestration, multimodal retrieval, autonomous navigation.">
+<meta property="og:type" content="website">
+<title>Hoon Yang</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+  :root {
+    --void:    #070a0f;
+    --surface: #101721;
+    --line:    #1c2733;
+    --text:    #e6ecf5;
+    --dim:     #5d6b7d;
+    --ch-a:    #8ab4f8;
+    --ch-b:    #f0b849;
 
+    --display: "Chakra Petch", "Trebuchet MS", sans-serif;
+    --body:    "IBM Plex Sans", system-ui, sans-serif;
+    --data:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { padding-inline: 20px; max-width: 1180px; margin-inline: auto; }
+
+  /* ── stage ─────────────────────────────── */
+  .stage { position: relative; border-bottom: 1px solid var(--line); }
+
+  #scene {
+    display: block;
+    width: 100%;
+    height: clamp(540px, 80vh, 720px);
+  }
+
+  .chrome {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    padding: 22px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .chrome > * { pointer-events: auto; }
+
+  /* ── identity card: portrait left, copy right, network beyond ── */
+  /* .hero sets display, which would otherwise beat the UA [hidden] rule */
+  .hero[hidden] { display: none; }
+  .hero {
+    grid-row: 2;
+    justify-self: center;
+    align-self: start;
+    max-width: min(760px, 96vw);
+    padding: 6px 10px 0;
+    text-align: center;
+  }
+  .hero__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 3.4vw, 46px);
+  }
+  .hero__links {
+    margin: 14px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 7px 16px;
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--dim);
+  }
+  .hero__links a {
+    color: var(--dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color .18s, border-color .18s;
+  }
+  .hero__links a:hover { color: var(--text); border-bottom-color: var(--text); }
+  .hero__links i { font-style: normal; opacity: .45; }
+
+  .hero__id { flex: 0 0 auto; }
+  .hero__photo {
+    display: block;
+    width: clamp(112px, 15vw, 156px);
+    height: clamp(112px, 15vw, 156px);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 12%;
+    filter: grayscale(1) contrast(1.06);
+    border: 1px solid var(--line);
+  }
+  .hero__name {
+    margin: 14px 0 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(19px, 2.8vw, 25px);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .hero__meta {
+    margin: 9px 0 0;
+    font-family: var(--data);
+    font-size: clamp(9.5px, 1.7vw, 10.5px);
+    line-height: 1.75;
+    letter-spacing: 0.03em;
+    color: var(--dim);
+  }
+
+  .hero__say { min-width: 0; text-align: left; }
+  .hero__think {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(17px, 3vw, 27px);
+    letter-spacing: 0.07em;
+    color: var(--text);
+    white-space: nowrap;
+    min-height: 1.2em;
+  }
+  .hero__think b { color: var(--ch-b); font-weight: inherit; }
+  .caret {
+    display: inline-block;
+    width: 0.56em;
+    border-bottom: 2px solid var(--ch-b);
+    margin-bottom: 0.08em;
+    animation: blink 1.05s steps(1) infinite;
+  }
+  @keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+
+  .hero__lines {
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--data);
+    font-size: clamp(10px, 1.8vw, 12.5px);
+    line-height: 2.05;
+    color: #8b99ab;
+    white-space: nowrap;
+  }
+
+  /* ── selected-project panel ─────────────── */
+  .detail {
+    grid-row: 1;
+    justify-self: start;
+    align-self: start;
+    max-width: min(420px, 92vw);
+    animation: rise .34s cubic-bezier(.2,.7,.3,1) both;
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .detail__meta {
+    margin: 0 0 6px;
+    font-family: var(--data);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ch-b);
+  }
+  .detail__ttl {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(22px, 4.2vw, 34px);
+    font-weight: 700;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .detail__blurb {
+    margin: 10px 0 0;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #aab6c6;
+  }
+  .stack {
+    margin: 16px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack span {
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    color: #9fb0c4;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 3px 8px;
+    background: rgba(16,23,33,.7);
+  }
+
+  .doclinks {
+    margin: 16px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+  .doclink {
+    display: inline-block;
+    font-family: var(--data);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ch-b);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240,184,73,.35);
+    padding-bottom: 2px;
+    transition: border-color .18s;
+  }
+  .doclink:hover { border-bottom-color: var(--ch-b); }
+
+  .close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    appearance: none;
+    background: rgba(16,23,33,.78);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--dim);
+    font-family: var(--data);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: color .18s, border-color .18s;
+  }
+  .close:hover { color: var(--text); border-color: var(--text); }
+
+  /* ── my work: an auto-advancing carousel ─────────────── */
+  .index { padding-block: 54px 66px; }
+
+  .eyebrow {
+    font-family: var(--data);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+    margin: 0 0 28px;
+  }
+
+  .carousel { overflow: hidden; }
+  .track { display: flex; gap: 18px; will-change: transform; }
+
+  .card {
+    flex: 0 0 var(--cw, 300px);
+    display: block;
+    text-align: left;
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: transform .25s;
+  }
+  .card:hover, .card:focus-visible { transform: translateY(-5px); }
+  .card:focus-visible { outline: none; }
+
+  .card .glyph {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #050810;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    transition: border-color .2s;
+  }
+  .card:hover .glyph, .card:focus-visible .glyph { border-color: var(--ch-a); }
+  .card[aria-current="true"] .glyph { border-color: var(--ch-b); }
+
+  .card__yr {
+    display: block;
+    margin-top: 14px;
+    font-family: var(--data);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--dim);
+  }
+  .card__ttl {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.25;
+    transition: color .2s;
+  }
+  .card:hover .card__ttl, .card:focus-visible .card__ttl { color: var(--ch-a); }
+  .card[aria-current="true"] .card__ttl { color: var(--ch-b); }
+  .card__meta {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--data);
+    font-size: 10px;
+    color: var(--dim);
+  }
+
+  .cnav { display: flex; justify-content: center; gap: 8px; margin-top: 30px; }
+  .cnav button {
+    appearance: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--dim);
+    font-family: var(--data);
+    font-size: 12px;
+    line-height: 1;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: color .18s, border-color .18s;
+  }
+  .cnav button:hover, .cnav button:focus-visible { color: var(--text); border-color: var(--text); }
+
+  @media (max-width: 680px) {
+    .chrome { padding: 15px; }
+    .hero { padding: 4px 6px 0; }
+    .hero__card { flex-direction: column; gap: 18px; }
+    .hero__say { text-align: center; }
+    .hero__think { white-space: normal; }
+    .hero__lines { line-height: 1.95; white-space: normal; }
+    .hero__links { margin-top: 20px; gap: 6px 13px; font-size: 10.5px; }
+    .index { padding-block: 40px 52px; }
+    /* the scene sits behind the copy at this width, so give the copy a ground */
+    .detail {
+      max-width: none;
+      background: linear-gradient(to top, rgba(7,10,15,.96) 72%, rgba(7,10,15,0));
+      padding: 16px 14px 4px;
+      margin: 0 -14px -4px;
+    }
+    .stack span { font-size: 9.5px; padding: 2px 6px; }
+    .close { top: 15px; right: 15px; }
+  }
+</style>
 </head>
 <body>
-<div class="frame">
-    <!-- NAV -->
-    <nav class="navigator">
-        <ul class="nav__ul">
-            <li class="nav__li"><a class="nav_menu" href="#home">About</a></li>
-            <li class="nav__li"><a class="nav_menu" href="#skills">Skills</a></li>
-            <li class="nav__li"><a class="nav_menu" href="#projects">Projects</a></li>
-            <li class="nav__li"><a class="nav_menu" href="#research">Research</a></li>
-        </ul>
-        <a class="nav__resume" href="resume/resume.pdf" target="_blank">Resume</a>
-    </nav>
+<main>
+  <section class="stage">
+    <canvas id="scene" aria-label="3D scene"></canvas>
 
-    <!-- HOME -->
-    <section id="home" class="home">
-        <div class="sub_main">
-            <div class="profile">
-                <div class="my_image">
-                    <img src="image/selfie.jpg" alt="Hoon Yang" class="me" style="object-position: 50% 0%;"/>
-                </div>
-                <p class="name">Hoon Yang</p>
-                <p class="profile__meta">Computer Engineering Major @ UC Irvine<br>GPA: 3.73 | IEEE HKN Inductee</p>
-                <div class="social_media">
-                    <a href="mailto:hoonyang00@gmail.com" class="social_item mail" title="Email">
-                        <i class="fa-regular fa-envelope"></i>
-                    </a>
-                    <a href="https://github.com/HYSK-cmd" target="_blank" class="social_item github" title="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/seungheon-yang-0b5753343/" target="_blank" class="social_item linkedin" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="intro">
-                <span class="hi__msg">THINK. BUILD. ITERATE.</span>
-                <p class="intro__msg">
-                    &lt;Searching the endless digital landscape/&gt;<br>
-                    &lt;Always learning, always improving/&gt;<br>
-                    &lt;Turning ideas into real projects/&gt;<br>
-                    &lt;Walk around and explore/&gt;
-                </p>
-            </div>
+    <div class="chrome">
+      <div class="detail" id="detail" hidden>
+        <p class="detail__meta" id="d-meta"></p>
+        <h2 class="detail__ttl" id="d-ttl"></h2>
+        <p class="detail__blurb" id="d-blurb"></p>
+        <div class="stack" id="d-stack"></div>
+        <div class="doclinks" id="d-links"></div>
+      </div>
+
+      <div class="hero" id="hero">
+        <div class="hero__card">
+        <div class="hero__id">
+          <img class="hero__photo" src="selfie.jpg" width="440" height="440"
+               alt="Hoon Yang" decoding="async">
+          <p class="hero__name">Hoon Yang</p>
+          <p class="hero__meta">
+            Computer Engineering Major @ UC Irvine<br>
+            GPA: 3.73 &nbsp;|&nbsp; IEEE-HKN Inductee<br>
+            UC Irvine &nbsp;·&nbsp; Computer Engineering
+          </p>
+
+          <p class="hero__links">
+            <a href="hoon-yang-resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+            <a href="https://www.linkedin.com/in/seungheon-yang-0b5753343/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/HYSK-cmd" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:hoonyang00@gmail.com">Email</a>
+          </p>
         </div>
-    </section>
 
-    <div class="section__divider"></div>
-    <!-- SKILLS -->
-    <section id="skills" class="section__block">
-        <h2 class="section__heading">Skills</h2>
-        <div class="skills__section">
-            <div class="skills__group">
-                <h4 class="skills__cat">Programming Languages</h4>
-                <div class="skills__pills">
-                    <span class="pill">SQL</span>
-                    <span class="pill">Java</span>
-                    <span class="pill">Python</span>
-                    <span class="pill">C / C++</span>
-                    <span class="pill">Arduino C</span>
-                    <span class="pill">HTML / CSS</span>
-                </div>
-            </div>
-            <div class="skills__group">
-                <h4 class="skills__cat">ML / CV &amp; Robotics</h4>
-                <div class="skills__pills">
-                    <span class="pill">ROS2</span>
-                    <span class="pill">OpenCV</span>
-                    <span class="pill">PyTorch</span>
-                    <span class="pill">Ultralytics</span>
-                    <span class="pill">Computer Vision</span>
-                    <span class="pill">Autonomous Navigation</span>
-                    <span class="pill">Reinforcement Learning</span>
-                </div>
-            </div>
-            <div class="skills__group">
-                <h4 class="skills__cat">Tools &amp; Libraries</h4>
-                <div class="skills__pills">
-                    <span class="pill">Git</span>
-                    <span class="pill">Flask</span>
-                    <span class="pill">Linux</span>
-                    <span class="pill">Jinja2</span>
-                    <span class="pill">FastAPI</span>
-                    <span class="pill">PyMongo</span>
-                </div>
-            </div>
+        <div class="hero__say">
+          <p class="hero__think"><span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+          <ul class="hero__lines">
+            <li>&lt;Searching the endless digital landscape/&gt;</li>
+            <li>&lt;Always learning, always improving/&gt;</li>
+            <li>&lt;Turning ideas into real projects/&gt;</li>
+            <li>&lt;Walk around and explore/&gt;</li>
+          </ul>
         </div>
-    </section>
-
-    <div class="section__divider"></div>
-    <!-- PROJECTS -->
-    <section id="projects" class="section__block">
-        <h2 class="section__heading">Projects</h2>
-        <div class="proj__grid">
-            <!-- Speed Violation Tracker -->
-            <a class="proj__card" href="https://github.com/HYSK-cmd" target="_blank" rel="noopener noreferrer">
-                <div class="proj__img__wrap">
-                    <img src="image/demo.gif" alt="Speed Violation Tracker demo" class="proj__img"/>
-                </div>
-                <div class="proj__body">
-                    <div class="proj__header">
-                        <h3 class="proj__title">Speed Violation Tracker</h3>
-                        <span class="proj__date">Mar 2026 - Present</span>
-                    </div>
-                    <p class="proj__desc">End-to-end CV pipeline for real-time vehicle detection, tracking, and speed violation capture using YOLO and OpenCV with a Flask web app and SSE-based live log streaming.</p>
-                    <div class="proj__tags">
-                        <span class="tag">Flask</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">Ultralytics</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Autonomous Spider Bot -->
-            <a class="proj__card" href="https://github.com/HYSK-cmd/Autonomous-Spider-Bot" target="_blank" rel="noopener noreferrer">
-                <div class="proj__img__wrap proj__placeholder grad__green">
-                    <img src="image/spiderbot.png" alt="spiderbot" class="proj__img spiderbot__img"/>
-                </div>
-                <div class="proj__body">
-                    <div class="proj__header">
-                        <h3 class="proj__title">Autonomous Spider Bot</h3>
-                        <span class="proj__date">Jan 2026 - Jun 2026</span>
-                    </div>
-                    <p class="proj__desc">Multi-legged autonomous robot that uses LiDAR, IMU sensors, and PPO reinforcement learning to perceive its surroundings and navigate independently.</p>
-                    <div class="proj__tags">
-                        <span class="tag">Linux</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">PyBullet</span><span class="tag">Jetson Nano</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- ZotTARS -->
-            <a class="proj__card" href="https://github.com/HYSK-cmd" target="_blank" rel="noopener noreferrer">
-                <div class="proj__img__wrap proj__placeholder grad__blue">
-                    <i class="fa-solid fa-robot proj__icon"></i>
-                </div>
-                <div class="proj__body">
-                    <div class="proj__header">
-                        <h3 class="proj__title">ZotTARS</h3>
-                        <span class="proj__date">Sep 2025 - Present</span>
-                    </div>
-                    <p class="proj__role">Software subteam</p>
-                    <p class="proj__desc">Modular robotic assistant built with FastAPI and ROS-style services, integrating real-time voice AI, YOLO-based object detection, and unified PS5, GUI, and Arduino controls.</p>
-                    <div class="proj__tags">
-                        <span class="tag">Python</span><span class="tag">Arduino</span><span class="tag">FastAPI</span><span class="tag">Ultralytics</span><span class="tag">Raspberry Pi</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- MyToDo -->
-            <a class="proj__card" href="https://github.com/HYSK-cmd/MyToDo" target="_blank" rel="noopener noreferrer">
-                <div class="proj__img__wrap">
-                    <img src="image/design.png" alt="MyToDo" class="proj__img" style="object-position: 50% 0%;"/>
-                </div>
-                <div class="proj__body">
-                    <div class="proj__header">
-                        <h3 class="proj__title">MyToDo</h3>
-                        <span class="proj__date">Dec 2025 - Jan 2026</span>
-                    </div>
-                    <p class="proj__desc">Full-stack task management web app with CRUD operations using Flask and MongoDB, featuring server-rendered pages via Jinja2.</p>
-                    <div class="proj__tags">
-                        <span class="tag">Flask</span><span class="tag">Jinja2</span><span class="tag">Python</span><span class="tag">MongoDB</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Drone -->
-            <div class="proj__card">
-                <div class="proj__img__wrap">
-                    <img src="image/drone.png" alt="Drone" class="proj__img" style="object-position: 50% 30%;"/>
-                </div>
-                <div class="proj__body">
-                    <div class="proj__header">
-                        <h3 class="proj__title">Drone Project</h3>
-                        <span class="proj__date">Sep 2025 - Dec 2025</span>
-                    </div>
-                    <p class="proj__desc">
-                        Assembled UAV hardware - flight controller, ESCs, motors, GPS - with full soldering and validation. Configured ArduPilot and ESP32 telemetry for autonomous waypoint missions.
-                    </p>
-                    <div class="proj__tags">
-                        <span class="tag">ESP32</span><span class="tag">Embedded</span><span class="tag">ArduPilot</span><span class="tag">Soldering</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
+      </div>
+
+      <button class="close" id="close" hidden aria-label="Back to the network">Close</button>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="index">
+      <h2 class="eyebrow">My Work</h2>
+      <div class="carousel" id="carousel">
+        <div class="track" id="track"></div>
+      </div>
+      <div class="cnav">
+        <button type="button" id="prev" aria-label="Previous project">&larr;</button>
+        <button type="button" id="next" aria-label="Next project">&rarr;</button>
+      </div>
     </section>
-
-    <div class="section__divider"></div>
-    <!-- RESEARCH -->
-    <section id="research" class="section__block">
-        <h2 class="section__heading">Research</h2>
-        <div class="timeline">
-            <div class="timeline__intro">
-                <div>
-                    <h3 class="timeline__lab">AICPS Lab, UC Irvine</h3>
-                    <p class="timeline__role">Undergraduate Research Assistant</p>
-                </div>
-                <a class="timeline__link" href="https://aicps.eng.uci.edu/" target="_blank" rel="noopener noreferrer" aria-label="Visit AICPS Lab website">
-                    <i class="fa-solid fa-globe"></i>
-                </a>
-            </div>
-
-            <article class="timeline__item timeline__item--left">
-                <span class="timeline__dot"></span>
-                <div class="timeline__content">
-                    <span class="timeline__date">Sep 2025 - Nov 2025</span>
-                    <h3 class="timeline__title">OpenUAV VLA Evaluation</h3>
-                    <p class="timeline__desc">
-                        In my first quarter, I focused on probing the capabilities of the OpenUAV VLA model and building the evaluation infrastructure needed to understand its behavior. 
-                        I conducted training and performance evaluations, while developing Python-based tools for dataset analysis, scene-level result formatting, multi-angle first-person drone video generation, 
-                        and 3D trajectory visualization to compare predicted flight paths against ground-truth trajectories.
-                    </p>
-                </div>
-            </article>
-
-            <article class="timeline__item timeline__item--right timeline__item--aerolance">
-                <span class="timeline__dot"></span>
-                <div class="timeline__content">
-                    <span class="timeline__date">Dec 2026 - Mar 2026</span>
-                    <h3 class="timeline__title">AeroLANCE Physical UAV Integration</h3>
-                    <p class="timeline__desc">
-                        During my second quarter, I helped bring AeroLANCE from design to real-world deployment on a physical UAV platform. 
-                        I contributed to system integration, operationalized the navigation pipeline onboard the drone, and conducted structured task-based evaluations across diverse navigation scenarios to assess its real-world performance. 
-                        I also reimplemented the TypeFly baseline within the same codebase to enable controlled comparative studies. 
-                        Beyond navigation experiments, I explored monocular 3D reconstruction from physical UAV image sequences using MonST3R, producing Blender visualizations to better interpret real-world flight data.
-                    </p>
-                </div>
-            </article>
-
-            <article class="timeline__item timeline__item--left">
-                <span class="timeline__dot"></span>
-                <div class="timeline__content">
-                    <span class="timeline__date">Apr 2026 - May 2026</span>
-                    <h3 class="timeline__title">AeroLANCE Open-Source Evaluation Platform</h3>
-                    <p class="timeline__desc">
-                        During my last quarter, I built an open-source website consolidating AeroLANCE simulation and real-world
-                        experiment results, with comparative analyses against other VLA models.
-                    </p>
-                </div>
-            </article>
-
-            <article class="timeline__item timeline__item--right">
-                <span class="timeline__dot"></span>
-                <div class="timeline__content">
-                    <span class="timeline__date">Jun 2026 - Present</span>
-                    <h3 class="timeline__title">CRAFT-Hand Autonomous Manipulation</h3>
-                    <p class="timeline__desc">
-                        I am building a CRAFT-Hand-based 3D-printed dexterous robotic hand, currently progressing through mechanical assembly and system bring-up. 
-                        I plan to integrate VLA-guided perception and control to enable autonomous object manipulation.
-                    </p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-</div>
+  </div>
+</main>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const el = document.querySelector('.hi__msg');
-        const text = el.textContent.trim();
+(() => {
+  "use strict";
 
-        function startTyping() {
-            el.textContent = '';
-            el.classList.remove('typed');
-            el.classList.add('typing');
-            let i = 0;
-            function type() {
-                el.textContent = text.slice(0, i);
-                i++;
-                if (i <= text.length) {
-                    setTimeout(type, 85);
-                } else {
-                    el.classList.remove('typing');
-                    el.classList.add('typed');
-                    setTimeout(startTyping, 3000);
-                }
-            }
-            type();
-        }
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const C = { text:"#e6ecf5", dim:"#5d6b7d", line:"#1c2733", a:"#8ab4f8", b:"#f0b849", void:"#070a0f" };
 
-        startTyping();
+  let seed = 20260916;
+  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+
+  /* ── shared 3D ───────────────────────────── */
+  function project(p, cam, W, H, zoom, spread = 0.46) {
+    const cy = Math.cos(cam.yaw),   sy = Math.sin(cam.yaw);
+    const cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+    let x = p[0] * cy - p[2] * sy;
+    let z = p[0] * sy + p[2] * cy;
+    let y = p[1] * cp - z * sp;
+    z = p[1] * sp + z * cp;
+    const depth = z + 3.6;
+    const k = zoom / depth;
+    // A cam may carry its own framing — the stage uses it to enlarge a scene
+    // and push it clear of the text panel. Glyph cams leave these unset.
+    const s = Math.min(W, H) * (cam.spread ?? spread);
+    return {
+      x: W / 2 + (cam.offX ?? 0) * W + x * k * s,
+      y: H / 2 + (cam.offY ?? 0) * H - y * k * s,
+      k, depth,
+    };
+  }
+
+  function fitCanvas(cv) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    cv.width = Math.max(1, Math.round(r.width * dpr));
+    cv.height = Math.max(1, Math.round(r.height * dpr));
+    const ctx = cv.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { ctx, W: r.width, H: r.height };
+  }
+
+  const rgba = (hex, a) => {
+    const h = hex.slice(1);
+    return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;
+  };
+
+  /* ══ HERO: forward pass through a layered network ══ */
+  // Radii narrow toward the output so the stack reads as a funnel — the
+  // classic shape of a forward pass. Discs stay well inside their z-spacing
+  // (3.7 / 5 ≈ 0.74 apart) so neighbours never merge into one slab.
+  // 1-3-5-7-5-3-1 — an encoder/decoder waist, evenly spaced so the stack
+  // reads as a diagram. Every hop gets its own colour, so you can see which
+  // step of the pass the activation front is on.
+  const WIDTHS = [1, 3, 5, 7, 5, 3, 1];
+  const ROW = 0.22;                     // constant vertical spacing
+  const HOP = ["#5ad1c4", "#8ab4f8", "#a48cf0", "#e878b4", "#f0954a", "#f0c94a"];
+  const nodeCol = li => HOP[Math.min(li, HOP.length - 1)];
+
+  const net = WIDTHS.map((n, li) => {
+    const z = 2.34 - (li / (WIDTHS.length - 1)) * 4.68;
+    const nodes = [];
+    for (let i = 0; i < n; i++) {
+      nodes.push({ p: [0, (i - (n - 1) / 2) * ROW, z], bias: rnd() });
+    }
+    return { n, z, nodes };
+  });
+
+  // every node to every node in the next layer
+  const edges = [];
+  for (let li = 0; li < net.length - 1; li++) {
+    net[li].nodes.forEach(a => {
+      net[li + 1].nodes.forEach(b => {
+        edges.push({ li, a, b, w: 0.30 + rnd() * 0.70 });
+      });
     });
+  }
+
+  // ~ +81deg: side-on, and in this direction the input column lands on the
+  // left, so the activation front sweeps left to right.
+  const HERO_YAW = 1.42;
+  const HERO_PITCH = 0.20;
+  const HERO_SPREAD = 0.58;          // glyphs keep the 0.46 default
+  // One fixed vantage point per scene. Nothing orbits: the motion in every
+  // scene is the process itself, not the camera moving around it.
+  const cam = { yaw: HERO_YAW, pitch: HERO_PITCH };
+
+  // The identity card owns the top of the stage, so the network is framed
+  // into the space below it.
+  function frameHero() {
+    const narrow = window.innerWidth < 760;
+    cam.spread = narrow ? 0.26 : 0.31;
+    cam.offX   = 0;
+    cam.offY   = narrow ? 0.28 : 0.22;
+  }
+  let wave = 0.15;
+
+  const cv = document.getElementById("scene");
+  let hero = fitCanvas(cv);
+
+  // activation level per layer, driven by the wave front
+  function layerAct(li) {
+    const lz = net[li].z;
+    const wz = 2.34 - wave * 4.68;
+    const d = Math.abs(lz - wz);
+    return Math.max(0, 1 - d / 0.50);
+  }
+
+  function drawHeroNetwork() {
+    const { ctx, W, H } = hero;
+    ctx.fillStyle = C.void;
+    ctx.fillRect(0, 0, W, H);
+
+    // edges carry the colour of the hop they belong to
+    for (const e of edges) {
+      const pa = project(e.a.p, cam, W, H, 2.55, HERO_SPREAD);
+      const pb = project(e.b.p, cam, W, H, 2.55, HERO_SPREAD);
+      const act = Math.max(layerAct(e.li), layerAct(e.li + 1));
+      const col = HOP[e.li];
+      ctx.beginPath();
+      ctx.moveTo(pa.x, pa.y);
+      ctx.lineTo(pb.x, pb.y);
+      ctx.strokeStyle = rgba(col, 0.10 + act * e.w * 0.52);
+      ctx.lineWidth = 0.5 + act * e.w * 1.1;
+      ctx.stroke();
+    }
+
+    // nodes, painted back to front
+    const all = [];
+    net.forEach((L, li) => L.nodes.forEach(nd => all.push({ nd, li })));
+    all.map(o => ({ ...o, pr: project(o.nd.p, cam, W, H, 2.55, HERO_SPREAD) }))
+       .sort((m, n) => n.pr.depth - m.pr.depth)
+       .forEach(({ nd, li, pr }) => {
+         const col = nodeCol(li);
+         const act = layerAct(li) * (0.55 + nd.bias * 0.45);
+         const r = (2.3 + act * 3.2) * pr.k;
+         if (act > 0.08) {
+           ctx.beginPath();
+           ctx.arc(pr.x, pr.y, r * 3.2, 0, 6.2832);
+           ctx.fillStyle = rgba(col, act * 0.13);
+           ctx.fill();
+         }
+         ctx.beginPath();
+         ctx.arc(pr.x, pr.y, Math.max(0.9, r), 0, 6.2832);
+         ctx.fillStyle = rgba(col, 0.34 + act * 0.66);
+         ctx.fill();
+       });
+  }
+
+  /* ══ WORK GLYPHS — one small 3D scene per project ══ */
+
+  /* 1 · Agentic Readiness Screener
+     A loop: the agent asks the human a question, the answer closes a gap, and
+     once the gaps are closed a report is emitted. Off to the side, two feeds
+     keep supplying the agent — a knowledge graph and a schema collector. */
+  function glyphAgents(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.5);
+    const AGENT  = [0, 0.02, 0];
+    const HUMAN  = [0.02, 0.78, -0.10];
+    const REPORT = [0.82, -0.30, 0.14];
+    const SCHEMA = [-0.80, -0.44, -0.22];
+    const KG = [[-0.74, 0.44, 0.30], [-0.94, 0.20, 0.06], [-0.56, 0.22, 0.42]];
+
+    const cycle = (t * 0.30) % 1;          // one ask/answer/report round
+    const round = Math.floor((t * 0.30) % 3);
+
+    const edge = (a, b, col, w) => {
+      const p = pr(a), q = pr(b);
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+      ctx.strokeStyle = col; ctx.lineWidth = w; ctx.stroke();
+    };
+    const token = (a, b, u, col) => {
+      const p = pr(a), q = pr(b);
+      ctx.beginPath();
+      ctx.arc(p.x + (q.x - p.x) * u, p.y + (q.y - p.y) * u, 2.2, 0, 6.2832);
+      ctx.fillStyle = col; ctx.fill();
+    };
+
+    // side feeds
+    KG.forEach((k, i) => {
+      edge(k, AGENT, rgba(C.a, 0.18), 0.8);
+      KG.forEach((k2, j) => { if (j > i) edge(k, k2, rgba(C.a, 0.22), 0.7); });
+    });
+    edge(SCHEMA, AGENT, rgba(C.a, 0.18), 0.8);
+    edge(AGENT, HUMAN, rgba(C.a, 0.28), 1);
+    edge(AGENT, REPORT, rgba(C.a, 0.22), 0.9);
+
+    // the ask / answer exchange
+    if (cycle < 0.28)       token(AGENT, HUMAN, cycle / 0.28, C.a);
+    else if (cycle < 0.56)  token(HUMAN, AGENT, (cycle - 0.28) / 0.28, C.b);
+    else if (cycle < 0.74) {
+      const u = (cycle - 0.56) / 0.18;
+      token(KG[1], AGENT, u, rgba(C.a, 0.9));
+      token(SCHEMA, AGENT, u, rgba(C.a, 0.9));
+    }
+
+    // knowledge-graph cluster
+    KG.forEach(k => {
+      const q = pr(k);
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2.0 * q.k, 0, 6.2832);
+      ctx.fillStyle = rgba(C.a, 0.75); ctx.fill();
+    });
+
+    // schema collector — a stack of table rows
+    const sq = pr(SCHEMA);
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.rect(sq.x - 5, sq.y - 4 + i * 3.4, 10, 2.2);
+      ctx.fillStyle = rgba(C.a, 0.55 - i * 0.12); ctx.fill();
+    }
+
+    // human
+    const hq = pr(HUMAN);
+    ctx.beginPath(); ctx.arc(hq.x, hq.y - 3.4, 2.4, 0, 6.2832);
+    ctx.fillStyle = C.text; ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(hq.x - 3.6, hq.y + 3.6);
+    ctx.quadraticCurveTo(hq.x, hq.y - 1.4, hq.x + 3.6, hq.y + 3.6);
+    ctx.strokeStyle = C.text; ctx.lineWidth = 1.4; ctx.stroke();
+
+    // agent
+    const aq = pr(AGENT);
+    const pulse = 1 + Math.sin(t * 3.4) * 0.12;
+    ctx.beginPath(); ctx.arc(aq.x, aq.y, 5.4 * aq.k * pulse, 0, 6.2832);
+    ctx.fillStyle = C.b; ctx.fill();
+    ctx.globalAlpha = 0.20;
+    ctx.beginPath(); ctx.arc(aq.x, aq.y, 11 * aq.k * pulse, 0, 6.2832);
+    ctx.strokeStyle = C.b; ctx.lineWidth = 1; ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // report, with a gap meter that empties as rounds complete
+    const rq = pr(REPORT);
+    ctx.beginPath();
+    ctx.rect(rq.x - 7, rq.y - 9, 14, 18);
+    ctx.fillStyle = rgba(C.b, cycle > 0.74 ? 0.20 : 0.08);
+    ctx.fill();
+    ctx.strokeStyle = cycle > 0.74 ? C.b : rgba(C.a, 0.45);
+    ctx.lineWidth = 1; ctx.stroke();
+    for (let i = 0; i < 3; i++) {
+      const closed = i < round;
+      ctx.beginPath();
+      ctx.rect(rq.x - 4.5, rq.y - 5.5 + i * 4.2, closed ? 9 : 4.5, 1.8);
+      ctx.fillStyle = closed ? rgba(C.b, 0.85) : rgba(C.a, 0.35);
+      ctx.fill();
+    }
+  }
+
+  /* 2 · Knowledge-Sharing Hub
+     A large archive: a curved wall of video panels standing on a platform,
+     with new recordings flying in and joining the grid. */
+  function glyphHub(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.35);
+    const COLS = 7, ROWS = 4;
+    const pw = 0.135, ph = 0.105;
+
+    // platform slab
+    const slab = [[-1.15,-0.70,-0.55],[1.15,-0.70,-0.55],[1.15,-0.70,0.55],[-1.15,-0.70,0.55]].map(pr);
+    ctx.beginPath();
+    slab.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(C.a, 0.05); ctx.fill();
+    ctx.strokeStyle = rgba(C.a, 0.28); ctx.lineWidth = 0.9; ctx.stroke();
+
+    const slotPos = (gx, gy) => {
+      const u = gx / (COLS - 1) - 0.5;
+      return [u * 2.0, -0.44 + gy * 0.30, -0.62 * u * u + 0.22];
+    };
+
+    const panel = (c, lit, alpha) => {
+      const q = [[-pw, ph], [pw, ph], [pw, -ph], [-pw, -ph]]
+        .map(([dx, dy]) => pr([c[0] + dx, c[1] + dy, c[2]]));
+      ctx.beginPath();
+      q.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+      ctx.closePath();
+      ctx.fillStyle = lit ? rgba(C.b, 0.26 * alpha) : rgba(C.a, 0.09 * alpha);
+      ctx.fill();
+      ctx.strokeStyle = lit ? rgba(C.b, 0.95 * alpha) : rgba(C.a, 0.40 * alpha);
+      ctx.lineWidth = lit ? 1.1 : 0.7;
+      ctx.stroke();
+    };
+
+    // the wall, far columns first so nearer panels overlap correctly
+    const order = [];
+    for (let gy = 0; gy < ROWS; gy++)
+      for (let gx = 0; gx < COLS; gx++) order.push([gx, gy]);
+    order.sort((m, n) => pr(slotPos(n[0], n[1])).depth - pr(slotPos(m[0], m[1])).depth);
+
+    const openSlot = [3, ROWS - 1];
+    const fly = (t * 0.42) % 1;
+
+    order.forEach(([gx, gy]) => {
+      if (gx === openSlot[0] && gy === openSlot[1] && fly < 0.85) return;
+      const lit = (gx * 3 + gy * 5) % 11 === 0;
+      panel(slotPos(gx, gy), lit, 1);
+    });
+
+    // a new recording arriving at the open slot
+    const dest = slotPos(openSlot[0], openSlot[1]);
+    const from = [dest[0] * 0.2, dest[1] - 0.5, dest[2] + 1.5];
+    const u = Math.min(1, fly / 0.85);
+    const ease = 1 - Math.pow(1 - u, 3);
+    panel([
+      from[0] + (dest[0] - from[0]) * ease,
+      from[1] + (dest[1] - from[1]) * ease,
+      from[2] + (dest[2] - from[2]) * ease,
+    ], true, 0.55 + ease * 0.45);
+  }
+
+  // 3 · predicted vs ground-truth flight path
+  function glyphTrajectory(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.4);
+    const A = [], B = [];
+    for (let i = 0; i <= 70; i++) {
+      const u = i / 70, ang = u * Math.PI * 2.0, r = 0.72 - u * 0.22;
+      const x = Math.cos(ang) * r, z = Math.sin(ang) * r, y = -0.5 + u * 1.0;
+      A.push([x, y, z]);
+      const d = u * u * 0.26;
+      B.push([x + d * Math.cos(ang * 1.8), y + d * 0.35, z + d * Math.sin(ang * 1.5)]);
+    }
+    const line = (arr, col, lw) => {
+      ctx.beginPath();
+      arr.forEach((p, i) => { const q = pr(p); i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y); });
+      ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.stroke();
+    };
+    line(A, C.b, 1.5);
+    line(B, rgba(C.a, 0.9), 1.1);
+    const i = Math.floor((t * 0.17 % 1) * 70);
+    [[A[i], C.b], [B[i], C.a]].forEach(([p, col]) => {
+      const q = pr(p);
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2.6, 0, 6.2832);
+      ctx.fillStyle = col; ctx.fill();
+    });
+  }
+
+  /* 3 · Speed Violation Tracker
+     A roadside camera watching traffic. Cars pass at their own speeds; when the
+     fast one crosses into the camera's cone the cone lights, the lens swings to
+     track it, and a capture bracket snaps shut around the vehicle. */
+  function glyphCamera(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.4);
+    const GY = -0.44;
+    const CAM = [0.78, 0.30, -0.66];      // camera head
+    const LANES = [-0.16, 0.16];
+
+    // road surface
+    const road = [[-1.05, GY, -0.34], [1.05, GY, -0.34], [1.05, GY, 0.40], [-1.05, GY, 0.40]].map(pr);
+    ctx.beginPath();
+    road.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(C.a, 0.05); ctx.fill();
+    ctx.strokeStyle = rgba(C.a, 0.26); ctx.lineWidth = 0.9; ctx.stroke();
+
+    // centre line dashes
+    ctx.strokeStyle = rgba(C.a, 0.30); ctx.lineWidth = 0.9;
+    for (let i = -5; i <= 5; i++) {
+      const x = i * 0.18;
+      const a = pr([x - 0.05, GY + 0.002, 0.03]), b = pr([x + 0.05, GY + 0.002, 0.03]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    // traffic: two at normal pace, one over the limit
+    const cars = [
+      { u: (t * 0.16) % 1, lane: 0, fast: false },
+      { u: (t * 0.13 + 0.55) % 1, lane: 1, fast: false },
+      { u: (t * 0.34 + 0.20) % 1, lane: 1, fast: true },
+    ];
+    const carX = c => -1.0 + c.u * 2.0;
+
+    const speeder = cars.find(c => c.fast);
+    const sx = carX(speeder);
+    const locked = sx > -0.10 && sx < 0.52;
+
+    // view cone, lit while the speeder is inside it
+    const conePts = [[-0.10, GY, -0.30], [0.52, GY, -0.30], [0.52, GY, 0.36], [-0.10, GY, 0.36]].map(pr);
+    const head = pr(CAM);
+    ctx.beginPath();
+    ctx.moveTo(head.x, head.y);
+    conePts.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = locked ? rgba(C.b, 0.13) : rgba(C.a, 0.05);
+    ctx.fill();
+    ctx.strokeStyle = locked ? rgba(C.b, 0.55) : rgba(C.a, 0.20);
+    ctx.lineWidth = 0.8; ctx.stroke();
+
+    // vehicles
+    cars.forEach(c => {
+      const x = carX(c), z = LANES[c.lane];
+      const w = 0.13, h = 0.085, d = 0.07;
+      const v = [
+        [x-w,GY,z-d],[x+w,GY,z-d],[x+w,GY+h,z-d],[x-w,GY+h,z-d],
+        [x-w,GY,z+d],[x+w,GY,z+d],[x+w,GY+h,z+d],[x-w,GY+h,z+d],
+      ].map(pr);
+      const E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+      const hot = c.fast && locked;
+      ctx.strokeStyle = hot ? C.b : rgba(C.a, 0.62);
+      ctx.lineWidth = hot ? 1.2 : 0.85;
+      E.forEach(([m, n]) => {
+        ctx.beginPath(); ctx.moveTo(v[m].x, v[m].y); ctx.lineTo(v[n].x, v[n].y); ctx.stroke();
+      });
+
+      // capture bracket around the offender
+      if (hot) {
+        const xs = v.map(p => p.x), ys = v.map(p => p.y);
+        const x0 = Math.min(...xs) - 3, x1 = Math.max(...xs) + 3;
+        const y0 = Math.min(...ys) - 3, y1 = Math.max(...ys) + 3;
+        const L = Math.min(7, (x1 - x0) * 0.4);
+        ctx.strokeStyle = C.b; ctx.lineWidth = 1.3;
+        [[x0,y0,1,1],[x1,y0,-1,1],[x1,y1,-1,-1],[x0,y1,1,-1]].forEach(([bx,by,dx,dy]) => {
+          ctx.beginPath();
+          ctx.moveTo(bx + dx * L, by); ctx.lineTo(bx, by); ctx.lineTo(bx, by + dy * L);
+          ctx.stroke();
+        });
+      }
+    });
+
+    // pole and camera housing, lens tracking the speeder
+    const base = pr([CAM[0], GY, CAM[2]]);
+    ctx.beginPath(); ctx.moveTo(base.x, base.y); ctx.lineTo(head.x, head.y);
+    ctx.strokeStyle = rgba(C.a, 0.55); ctx.lineWidth = 1.4; ctx.stroke();
+
+    const aim = pr([locked ? sx : 0.2, GY + 0.06, LANES[speeder.lane]]);
+    const ang = Math.atan2(aim.y - head.y, aim.x - head.x);
+    ctx.save();
+    ctx.translate(head.x, head.y);
+    ctx.rotate(ang);
+    ctx.beginPath(); ctx.rect(-4, -3.4, 12, 6.8);
+    ctx.fillStyle = locked ? rgba(C.b, 0.35) : rgba(C.a, 0.18);
+    ctx.fill();
+    ctx.strokeStyle = locked ? C.b : rgba(C.a, 0.8);
+    ctx.lineWidth = 1.1; ctx.stroke();
+    ctx.beginPath(); ctx.arc(8, 0, 1.8, 0, 6.2832);
+    ctx.fillStyle = locked ? C.b : rgba(C.a, 0.7); ctx.fill();
+    ctx.restore();
+
+    // shutter flash the moment the lock begins
+    if (locked && sx < 0.02) {
+      ctx.globalAlpha = 1 - (sx + 0.10) / 0.12;
+      ctx.beginPath(); ctx.arc(head.x, head.y, 14, 0, 6.2832);
+      ctx.fillStyle = rgba(C.b, 0.30); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  /* 4 · Autonomous Spider Bot
+     A quadruped on a blueprint floor, running the loop a policy actually runs:
+     observe (sensor sweep, body still) → decide (brief pulse) → act (walk a
+     few steps) → observe again. The pauses are the point. */
+  function glyphSpider(ctx, W, H, cam, t) {
+    const GROUND = -0.46;
+    const PERIOD = 6.2;
+    const c = t % PERIOD;
+    const phase = c < 2.3 ? "observe" : c < 3.0 ? "decide" : "act";
+    const actU = phase === "act" ? (c - 3.0) / (PERIOD - 3.0) : 0;
+
+    // body creeps forward only while acting, then resets for the next episode
+    const advance = -0.34 + actU * 0.68;
+    const pr = p => project(p, cam, W, H, 2.45);
+
+    // blueprint floor
+    ctx.lineWidth = 0.7;
+    for (let i = -4; i <= 4; i++) {
+      const u = i / 4 * 0.95;
+      const major = i === 0;
+      ctx.strokeStyle = rgba(C.a, major ? 0.30 : 0.12);
+      let a = pr([u, GROUND, -0.95]), b = pr([u, GROUND, 0.95]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      a = pr([-0.95, GROUND, u]); b = pr([0.95, GROUND, u]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    // sensor sweep while observing
+    if (phase === "observe") {
+      const sweep = (c / 2.3) * Math.PI * 2;
+      const origin = [advance, -0.10, 0];
+      const o = pr(origin);
+      for (let k = 0; k < 16; k++) {
+        const a = sweep - k * 0.05;
+        const hit = [advance + Math.cos(a) * 0.80, GROUND + 0.01, Math.sin(a) * 0.80];
+        const q = pr(hit);
+        ctx.beginPath(); ctx.moveTo(o.x, o.y); ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = rgba(C.b, 0.17 * (1 - k / 16)); ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+
+    const bob = phase === "act" ? Math.sin(t * 5.6) * 0.018 : 0;
+    const bodyY = -0.10 + bob;
+
+    // four legs, diagonal pairs alternating — the quadruped trot
+    const HIPS = [[-0.17, -0.15], [0.17, -0.15], [0.17, 0.15], [-0.17, 0.15]];
+    HIPS.forEach(([hx, hz], i) => {
+      const diag = (i === 0 || i === 2) ? 0 : Math.PI;
+      const step = phase === "act" ? Math.sin(t * 5.6 + diag) : 0;
+      const lift = Math.max(0, step) * 0.13;
+      const hip  = [advance + hx, bodyY, hz];
+      const knee = [advance + hx * 1.7, bodyY - 0.17 + lift * 0.6, hz * 1.9];
+      const foot = [advance + hx * 2.0 + step * 0.06, GROUND + lift, hz * 2.3];
+      const seg = [hip, knee, foot].map(pr);
+      ctx.beginPath();
+      seg.forEach((p, k) => k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+      ctx.strokeStyle = rgba(C.a, 0.9); ctx.lineWidth = 1.1; ctx.stroke();
+      const f = seg[2];
+      ctx.beginPath(); ctx.arc(f.x, f.y, lift > 0.005 ? 2.1 : 1.7, 0, 6.2832);
+      ctx.fillStyle = lift > 0.005 ? C.b : rgba(C.a, 0.85); ctx.fill();
+    });
+
+    // body
+    const body = [[-0.20,bodyY,-0.16],[0.20,bodyY,-0.16],[0.20,bodyY,0.16],[-0.20,bodyY,0.16]]
+      .map(p => pr([advance + p[0], p[1], p[2]]));
+    ctx.beginPath();
+    body.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(C.b, 0.22); ctx.fill();
+    ctx.strokeStyle = C.b; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // deciding: a short pulse above the body
+    if (phase === "decide") {
+      const u = (c - 2.3) / 0.7;
+      const h = pr([advance, bodyY + 0.26, 0]);
+      ctx.globalAlpha = Math.sin(u * Math.PI);
+      ctx.beginPath(); ctx.arc(h.x, h.y, 3 + u * 7, 0, 6.2832);
+      ctx.strokeStyle = C.b; ctx.lineWidth = 1.1; ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  /* 6 · ZotTARS
+     The loop the assistant actually runs: it spots an object, drives over to
+     it, closes the gripper, and lifts. Vision → approach → grasp → lift, then
+     it sets the object back down and looks for the next one. */
+  function glyphTars(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.5);
+    const GY = -0.40;
+    const OBJ_X = 0.52, OBJ_Z = 0.02, OS = 0.115;  // object half-size
+    const HOME = -0.58, STOP = OBJ_X - 0.32;       // where the base parks
+
+    const PERIOD = 8.0;
+    const ph = (t % PERIOD) / PERIOD;
+    const seg = (a, b) => Math.min(1, Math.max(0, (ph - a) / (b - a)));
+    const ease = u => u * u * (3 - 2 * u);
+
+    const look    = seg(0.00, 0.26);
+    const approach= ease(seg(0.26, 0.50));
+    const grasp   = seg(0.46, 0.60);
+    const lift    = ease(seg(0.60, 0.76));
+    const place   = ease(seg(0.80, 1.00));
+
+    const bx = HOME + (STOP - HOME) * approach - (STOP - HOME) * place;
+    const held = grasp >= 1 ? 1 : 0;
+    const objY = GY + (held ? (lift - place) * 0.34 : 0);
+    const objX = held ? bx + 0.26 : OBJ_X;
+
+    // floor
+    const flr = [[-0.84,GY,-0.40],[0.84,GY,-0.40],[0.84,GY,0.40],[-0.84,GY,0.40]].map(pr);
+    ctx.beginPath();
+    flr.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(C.a, 0.04); ctx.fill();
+    ctx.strokeStyle = rgba(C.a, 0.16); ctx.lineWidth = 0.7; ctx.stroke();
+    for (let i = -3; i <= 3; i++) {
+      const a = pr([i * 0.26, GY, -0.40]), b = pr([i * 0.26, GY, 0.40]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = rgba(C.a, 0.07); ctx.lineWidth = 0.6; ctx.stroke();
+    }
+
+    const box = (cx, cy, cz, hx, hy, hz, col, lw, fill) => {
+      const v = [
+        [cx-hx,cy-hy,cz-hz],[cx+hx,cy-hy,cz-hz],[cx+hx,cy+hy,cz-hz],[cx-hx,cy+hy,cz-hz],
+        [cx-hx,cy-hy,cz+hz],[cx+hx,cy-hy,cz+hz],[cx+hx,cy+hy,cz+hz],[cx-hx,cy+hy,cz+hz],
+      ].map(pr);
+      if (fill) {
+        ctx.beginPath();
+        [4,5,6,7].forEach((k, j) => j ? ctx.lineTo(v[k].x, v[k].y) : ctx.moveTo(v[k].x, v[k].y));
+        ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
+      }
+      const E = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+      ctx.strokeStyle = col; ctx.lineWidth = lw;
+      E.forEach(([m, n]) => {
+        ctx.beginPath(); ctx.moveTo(v[m].x, v[m].y); ctx.lineTo(v[n].x, v[n].y); ctx.stroke();
+      });
+      return v;
+    };
+
+    // the target, outlined while it is being looked at or carried
+    const seen = look > 0.05;
+    box(objX, objY + OS, OBJ_Z, OS, OS, OS,
+        seen ? C.b : rgba(C.a, 0.55), seen ? 1.3 : 0.9,
+        seen ? rgba(C.b, 0.14) : rgba(C.a, 0.06));
+
+    // chassis + head
+    const HEAD = [bx, GY + 0.50, 0];
+    box(bx, GY + 0.17, 0, 0.20, 0.17, 0.17, rgba(C.a, 0.62), 1.1, rgba(C.a, 0.07));
+    box(HEAD[0], HEAD[1], 0, 0.11, 0.095, 0.11, rgba(C.text, 0.72), 1.1, rgba(C.a, 0.10));
+    const lens = pr([bx + 0.115, GY + 0.51, 0]);
+    ctx.beginPath(); ctx.arc(lens.x, lens.y, 3.0, 0, 6.2832);
+    ctx.fillStyle = seen ? C.b : rgba(C.a, 0.7); ctx.fill();
+
+    // the look: scan rays sweeping from the lens onto the object
+    if (look > 0 && look < 1) {
+      const o = pr([objX, objY + OS, OBJ_Z]);
+      for (let k = 0; k < 4; k++) {
+        const u = (look * 2 + k * 0.25) % 1;
+        ctx.beginPath();
+        ctx.moveTo(lens.x, lens.y);
+        ctx.lineTo(lens.x + (o.x - lens.x) * u, lens.y + (o.y - lens.y) * u);
+        ctx.strokeStyle = rgba(C.b, 0.30 * (1 - u)); ctx.lineWidth = 0.9; ctx.stroke();
+      }
+    }
+
+    // arm: shoulder → elbow → wrist, extending as the base closes in
+    const reach = Math.max(approach, held ? 1 : 0) - place;
+    const SH = [bx + 0.13, GY + 0.34, 0];
+    const WR = [bx + 0.32 * Math.max(0.40, reach), objY + OS, OBJ_Z * reach];
+    const EL = [(SH[0] + WR[0]) / 2, Math.max(SH[1], WR[1]) + 0.16, (SH[2] + WR[2]) / 2];
+    [[SH, EL], [EL, WR]].forEach(([a, b]) => {
+      const p = pr(a), q = pr(b);
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+      ctx.strokeStyle = rgba(C.text, 0.78); ctx.lineWidth = 2.0; ctx.stroke();
+    });
+    [SH, EL].forEach(j => {
+      const p = pr(j);
+      ctx.beginPath(); ctx.arc(p.x, p.y, 2.6, 0, 6.2832);
+      ctx.fillStyle = rgba(C.a, 0.8); ctx.fill();
+    });
+
+    // gripper: two fingers that close over the object
+    const open = OS + 0.10 * (1 - Math.max(grasp, held ? 1 : 0));
+    [-1, 1].forEach(sgn => {
+      const a = pr([WR[0] - 0.05, WR[1] + 0.085, WR[2] + sgn * open]);
+      const b = pr([WR[0] + 0.07, WR[1] - 0.070, WR[2] + sgn * open]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = grasp > 0 ? C.b : rgba(C.text, 0.75);
+      ctx.lineWidth = 2.2; ctx.stroke();
+    });
+    const w = pr(WR);
+    ctx.beginPath(); ctx.arc(w.x, w.y, 2.8, 0, 6.2832);
+    ctx.fillStyle = grasp > 0 ? C.b : rgba(C.a, 0.8); ctx.fill();
+  }
+
+  /* 7 · MyToDo
+     A stack of task cards floating over a store. A check sweeps down the list;
+     each card it marks writes a record down into the database below. */
+  function glyphTodo(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.5);
+    const N = 5, CW = 0.52, CH = 0.11, GAP = 0.175;
+    const DB = [0.0, -0.66, 0.0];
+    const head = (t * 0.30) % 1.25;
+
+    const card = (i) => {
+      const y = 0.52 - i * GAP;
+      const done = head > (i + 1) / N * 1.05;
+      const just = Math.abs(head - (i + 1) / N * 1.05) < 0.05;
+      const v = [[-CW,y,-CH],[CW,y,-CH],[CW,y,CH],[-CW,y,CH]].map(pr);
+      ctx.beginPath();
+      v.forEach((p, j) => j ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+      ctx.closePath();
+      ctx.fillStyle = done ? rgba(C.b, 0.10) : rgba(C.a, 0.06);
+      ctx.fill();
+      ctx.strokeStyle = just ? C.b : done ? rgba(C.b, 0.5) : rgba(C.a, 0.42);
+      ctx.lineWidth = just ? 1.4 : 0.9;
+      ctx.stroke();
+
+      // checkbox at the left edge
+      const bx = pr([-CW + 0.09, y, 0]);
+      ctx.beginPath(); ctx.rect(bx.x - 3.2, bx.y - 3.2, 6.4, 6.4);
+      ctx.strokeStyle = done ? C.b : rgba(C.a, 0.5);
+      ctx.lineWidth = 1; ctx.stroke();
+      if (done) {
+        ctx.beginPath();
+        ctx.moveTo(bx.x - 2, bx.y); ctx.lineTo(bx.x - 0.4, bx.y + 2); ctx.lineTo(bx.x + 2.4, bx.y - 2.2);
+        ctx.strokeStyle = C.b; ctx.lineWidth = 1.3; ctx.stroke();
+      }
+      // a ruled title line so the card reads as a task, not a plate
+      const t0 = pr([-CW + 0.19, y, 0]), t1 = pr([CW - 0.12 - (i % 3) * 0.1, y, 0]);
+      ctx.beginPath(); ctx.moveTo(t0.x, t0.y); ctx.lineTo(t1.x, t1.y);
+      ctx.strokeStyle = done ? rgba(C.dim, 0.8) : rgba(C.text, 0.32);
+      ctx.lineWidth = 1.6; ctx.stroke();
+
+      // the write that lands in the store
+      if (just) {
+        const a = pr([0, y, 0]), b = pr(DB);
+        const w = (head * 8) % 1;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = rgba(C.b, 0.28); ctx.lineWidth = 0.8; ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(a.x + (b.x - a.x) * w, a.y + (b.y - a.y) * w, 2.2, 0, 6.2832);
+        ctx.fillStyle = C.b; ctx.fill();
+      }
+    };
+    for (let i = N - 1; i >= 0; i--) card(i);
+
+    // the store: a short cylinder drawn as two ellipse rings
+    const ring = (yy, alpha, lw) => {
+      ctx.beginPath();
+      for (let k = 0; k <= 36; k++) {
+        const a = (k / 36) * 6.2832;
+        const q = pr([Math.cos(a) * 0.30, yy, Math.sin(a) * 0.30]);
+        k ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y);
+      }
+      ctx.strokeStyle = rgba(C.a, alpha); ctx.lineWidth = lw; ctx.stroke();
+    };
+    ring(DB[1] + 0.10, 0.6, 1.0);
+    ring(DB[1] - 0.06, 0.35, 0.9);
+    [[-0.30, 0], [0.30, 0]].forEach(([x, z]) => {
+      const a = pr([x, DB[1] + 0.10, z]), b = pr([x, DB[1] - 0.06, z]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = rgba(C.a, 0.45); ctx.lineWidth = 0.9; ctx.stroke();
+    });
+  }
+
+  /* 8 · Drone Project
+     A quadcopter running a waypoint mission: four rotors turning, a dashed
+     route through the marks below, and telemetry dropping to the ground link. */
+  function glyphDrone(ctx, W, H, cam, t) {
+    const pr = p => project(p, cam, W, H, 2.5);
+    const GY = -0.62;
+    const WPS = [[-0.78, 0.18, -0.34], [-0.18, 0.34, 0.30], [0.42, 0.14, -0.22], [0.86, 0.30, 0.28]];
+    const GS = [-0.88, GY, 0.40];
+
+    // ground plane
+    const flr = [[-1.0,GY,-0.55],[1.0,GY,-0.55],[1.0,GY,0.55],[-1.0,GY,0.55]].map(pr);
+    ctx.beginPath();
+    flr.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(C.a, 0.04); ctx.fill();
+    ctx.strokeStyle = rgba(C.a, 0.15); ctx.lineWidth = 0.7; ctx.stroke();
+
+    // route: a catmull-ish sample through the waypoints
+    const at = (u) => {
+      const f = u * (WPS.length - 1);
+      const i = Math.min(WPS.length - 2, Math.floor(f));
+      const k = f - i, A = WPS[i], B = WPS[i + 1];
+      const e = k * k * (3 - 2 * k);                     // ease so turns look flown
+      return [A[0] + (B[0]-A[0])*e, A[1] + (B[1]-A[1])*e + Math.sin(k*Math.PI)*0.06, A[2] + (B[2]-A[2])*e];
+    };
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    for (let k = 0; k <= 80; k++) {
+      const q = pr(at(k / 80));
+      k ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y);
+    }
+    ctx.strokeStyle = rgba(C.a, 0.42); ctx.lineWidth = 1.0; ctx.stroke();
+    ctx.setLineDash([]);
+
+    // waypoint marks, with a drop line to the ground
+    const u = (t * 0.10) % 1;
+    const legNow = Math.min(WPS.length - 2, Math.floor(u * (WPS.length - 1)));
+    WPS.forEach((p, i) => {
+      const a = pr(p), g = pr([p[0], GY, p[2]]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(g.x, g.y);
+      ctx.strokeStyle = rgba(C.a, 0.16); ctx.lineWidth = 0.7; ctx.stroke();
+      const passed = i <= legNow;
+      ctx.beginPath(); ctx.arc(a.x, a.y, 2.6, 0, 6.2832);
+      ctx.fillStyle = passed ? C.b : rgba(C.a, 0.45); ctx.fill();
+    });
+
+    // the aircraft
+    const P = at(u);
+    const nx = at(Math.min(1, u + 0.01));
+    const hdg = Math.atan2(nx[2] - P[2], nx[0] - P[0]);
+    const ARM = 0.17;
+    const arms = [0.8, 2.34, 3.94, 5.48].map(a => {
+      const ang = a + hdg;
+      return [P[0] + Math.cos(ang) * ARM, P[1], P[2] + Math.sin(ang) * ARM];
+    });
+    const hub = pr(P);
+    arms.forEach(m => {
+      const q = pr(m);
+      ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(q.x, q.y);
+      ctx.strokeStyle = rgba(C.text, 0.72); ctx.lineWidth = 1.3; ctx.stroke();
+      // rotor disc
+      ctx.beginPath();
+      for (let k = 0; k <= 22; k++) {
+        const a = (k / 22) * 6.2832;
+        const s = pr([m[0] + Math.cos(a) * 0.085, m[1] + 0.012, m[2] + Math.sin(a) * 0.085]);
+        k ? ctx.lineTo(s.x, s.y) : ctx.moveTo(s.x, s.y);
+      }
+      ctx.strokeStyle = rgba(C.a, 0.55); ctx.lineWidth = 0.8; ctx.stroke();
+      // blade, spinning fast enough to blur into the disc
+      const bl = t * 34;
+      const b1 = pr([m[0] + Math.cos(bl) * 0.085, m[1] + 0.012, m[2] + Math.sin(bl) * 0.085]);
+      const b2 = pr([m[0] - Math.cos(bl) * 0.085, m[1] + 0.012, m[2] - Math.sin(bl) * 0.085]);
+      ctx.beginPath(); ctx.moveTo(b1.x, b1.y); ctx.lineTo(b2.x, b2.y);
+      ctx.strokeStyle = rgba(C.b, 0.8); ctx.lineWidth = 1.1; ctx.stroke();
+    });
+    ctx.beginPath(); ctx.arc(hub.x, hub.y, 3.0, 0, 6.2832);
+    ctx.fillStyle = C.b; ctx.fill();
+
+    // ground station and the telemetry packet coming down
+    const gs = pr(GS), mast = pr([GS[0], GS[1] + 0.22, GS[2]]);
+    ctx.beginPath(); ctx.moveTo(gs.x, gs.y); ctx.lineTo(mast.x, mast.y);
+    ctx.strokeStyle = rgba(C.a, 0.55); ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(mast.x, mast.y, 2.2, 0, 6.2832);
+    ctx.fillStyle = rgba(C.a, 0.8); ctx.fill();
+    const pk = (t * 0.7) % 1;
+    ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(mast.x, mast.y);
+    ctx.strokeStyle = rgba(C.a, 0.14); ctx.lineWidth = 0.7; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(hub.x + (mast.x - hub.x) * pk, hub.y + (mast.y - hub.y) * pk, 1.9, 0, 6.2832);
+    ctx.fillStyle = rgba(C.b, 0.9); ctx.fill();
+  }
+
+  /* ── work data ── */
+  /* ── work data ──
+     Each entry carries the one camera it is read from. Nothing orbits. */
+  const WORK = [
+    {
+      yr: "2026", ttl: "Agentic Readiness Screener", meta: "AWS ProServe · individual",
+      draw: glyphAgents, yaw: 0.62, pitch: 0.22,
+      blurb: "Maps a customer's requirements and database schema to a feasibility verdict, then closes the gaps by asking the questions a consultant would ask. A deterministic engine issues the verdict; the agent only drives the loop.",
+      stack: ["Python", "Strands Agents", "Amazon Bedrock", "ECS Fargate", "Neptune", "OpenSearch", "FastAPI"],
+    },
+    {
+      yr: "2026", ttl: "Knowledge-Sharing Hub", meta: "AWS ProServe · team",
+      draw: glyphHub, yaw: 0.55, pitch: 0.26,
+      blurb: "A platform that turns every recorded session into something searchable: transcript, slides, a highlight timeline, and a chatbot that answers from that session alone.",
+      stack: ["Python", "Strands Agents", "Bedrock AgentCore", "Cohere Embed v4", "OpenSearch", "React"],
+    },
+    {
+      yr: "2025 – 26", ttl: "AeroLANCE UAV Navigation", meta: "AICPS Lab · research",
+      draw: glyphTrajectory, yaw: 0.70, pitch: 0.30,
+      blurb: "Brought a vision-language navigation architecture from simulation onto a physical drone, and built the evaluation harness that compares where it flew against where it should have.",
+      stack: ["Python", "PyTorch", "OpenUAV", "TypeFly", "MonST3R", "Blender"],
+      links: [
+        { href: "aerolance-research.pdf", label: "Research PDF" },
+        { href: "https://github.com/sadmankiba/aerolance", label: "AeroLANCE project" },
+      ],
+    },
+    {
+      yr: "2026", ttl: "Speed Violation Tracker", meta: "computer vision",
+      draw: glyphCamera, yaw: 0.52, pitch: 0.34,
+      blurb: "A roadside camera pipeline that detects and tracks vehicles, estimates speed from a calibrated ground plane, and captures the ones over the limit.",
+      stack: ["Python", "Ultralytics YOLO", "OpenCV", "Flask", "JavaScript", "SSE"],
+      links: [
+        { href: "https://github.com/HYSK-cmd/SpeedViolationTracker", label: "Repository" },
+      ],
+    },
+    {
+      yr: "2026", ttl: "Autonomous Spider Bot", meta: "reinforcement learning",
+      draw: glyphSpider, yaw: 0.60, pitch: -0.34,
+      blurb: "A quadruped that observes before it commits. The policy runs a deliberate loop — sense the floor, decide, take a few steps, stop and look again.",
+      stack: ["Python", "PyTorch", "PPO", "PyBullet", "LiDAR", "IMU", "Jetson"],
+      links: [
+        { href: "spider-bot.pdf", label: "Project PDF" },
+        { href: "https://github.com/HYSK-cmd/Autonomous-Spider-Bot", label: "Repository" },
+      ],
+    },
+    {
+      yr: "2025 – 26", ttl: "ZotTARS", meta: "robotics · software subteam",
+      draw: glyphTars, yaw: 0.58, pitch: 0.46,
+      blurb: "A modular robotic assistant that spots an object, drives to it, and picks it up. Vision, voice and control each run as their own service behind a shared API, so the perception model or the controller can be swapped without touching the rest.",
+      stack: ["Python", "FastAPI", "ROS-style services", "Ultralytics", "Arduino", "Raspberry Pi"],
+    },
+    {
+      yr: "2025 – 26", ttl: "MyToDo", meta: "full stack",
+      draw: glyphTodo, yaw: 0.66, pitch: 0.44,
+      blurb: "A task manager built the plain way: server-rendered pages, full CRUD, and a document store underneath. Small enough to hold the whole request path in your head.",
+      stack: ["Python", "Flask", "Jinja2", "MongoDB", "PyMongo"],
+      links: [
+        { href: "https://github.com/HYSK-cmd/MyToDo", label: "Repository" },
+      ],
+    },
+    {
+      yr: "2025", ttl: "Drone Project", meta: "hardware · embedded",
+      draw: glyphDrone, yaw: 0.62, pitch: -0.30,
+      blurb: "A UAV built from parts: flight controller, ESCs, motors and GPS soldered and bench-validated, then tuned in ArduPilot and flown through autonomous waypoint missions over an ESP32 telemetry link.",
+      stack: ["ArduPilot", "ESP32", "Embedded C", "Telemetry", "Soldering"],
+    },
+  ];
+
+  /* ── the carousel ── */
+  const trackEl    = document.getElementById("track");
+  const carouselEl = document.getElementById("carousel");
+  const glyphs = [];
+  const GAP = 18;
+  const HOLD = 3000;          // one card every three seconds
+
+  const visibleCount = () =>
+    window.innerWidth < 620 ? 1 : window.innerWidth < 980 ? 2 : 3;
+
+  function addCard(w, i) {
+    const b = document.createElement("button");
+    b.className = "card";
+    b.type = "button";
+    b.innerHTML =
+      `<canvas class="glyph" aria-hidden="true"></canvas>` +
+      `<span class="card__yr">${w.yr}</span>` +
+      `<span class="card__ttl">${w.ttl}</span>` +
+      `<span class="card__meta">${w.meta}</span>`;
+    b.addEventListener("click", () => select(i));
+    trackEl.appendChild(b);
+    glyphs.push({
+      cv: b.querySelector("canvas"),
+      draw: w.draw,
+      cam: { yaw: w.yaw ?? 0.6, pitch: w.pitch ?? 0.22 },
+      ctx: null, W: 0, H: 0, btn: b, idx: i,
+    });
+  }
+
+  WORK.forEach(addCard);
+  // three clones on the end so the wrap never snaps in view
+  WORK.slice(0, 3).forEach((w, i) => addCard(w, i));
+
+  let pos = 0, step = 0, busy = false;
+  const SLIDE = 760;          // must match the track transition
+
+  function applyX(animate) {
+    trackEl.style.transition = animate
+      ? "transform .72s cubic-bezier(.4,0,.2,1)" : "none";
+    trackEl.style.transform = `translateX(${-pos * step}px)`;
+  }
+
+  function layoutCarousel() {
+    const v = visibleCount();
+    const cw = (carouselEl.clientWidth - GAP * (v - 1)) / v;
+    trackEl.style.setProperty("--cw", cw + "px");
+    step = cw + GAP;
+    if (pos > WORK.length - 1) pos = 0;
+    applyX(false);
+  }
+
+  // Positions 0..WORK.length-1 are the real ones. Stepping past the end lands
+  // on the clones, which look identical, so we rebase back to 0 unseen.
+  function advance(d) {
+    if (busy || step === 0) return;
+    busy = true;
+
+    if (pos + d < 0) {
+      pos = WORK.length;                 // same view, other end of the track
+      applyX(false);
+      requestAnimationFrame(() => { pos += d; applyX(true); });
+    } else {
+      pos += d;
+      applyX(true);
+    }
+
+    setTimeout(() => {
+      if (pos >= WORK.length) { pos -= WORK.length; applyX(false); }
+      busy = false;
+    }, SLIDE);
+  }
+
+  let paused = false;
+  const holdOn  = () => { paused = true; };
+  const holdOff = () => { paused = false; };
+  carouselEl.addEventListener("pointerenter", holdOn);
+  carouselEl.addEventListener("pointerleave", holdOff);
+  carouselEl.addEventListener("focusin", holdOn);
+  carouselEl.addEventListener("focusout", holdOff);
+
+  document.getElementById("prev").addEventListener("click", () => advance(-1));
+  document.getElementById("next").addEventListener("click", () => advance(1));
+
+  if (!reduced) {
+    setInterval(() => {
+      if (!paused && selected === null && !document.hidden) advance(1);
+    }, HOLD);
+  }
+
+  /* ── the stage: a project takes over the big canvas ── */
+  const detailEl = document.getElementById("detail");
+  const closeEl  = document.getElementById("close");
+  const dMeta  = document.getElementById("d-meta");
+  const dTtl   = document.getElementById("d-ttl");
+  const dBlurb = document.getElementById("d-blurb");
+  const heroEl = document.getElementById("hero");
+  const dStack = document.getElementById("d-stack");
+  const dLinks = document.getElementById("d-links");
+
+  let selected = null;
+
+  function select(i) {
+    selected = i;
+    const w = WORK[i];
+
+    dMeta.textContent  = `${w.yr} · ${w.meta}`;
+    dTtl.textContent   = w.ttl;
+    dBlurb.textContent = w.blurb;
+    dStack.innerHTML = w.stack.map(k => `<span>${k}</span>`).join("");
+    dLinks.innerHTML = (w.links || [])
+      .map(l => `<a class="doclink" href="${l.href}" target="_blank" ` +
+                `rel="noopener noreferrer">${l.label} \u2192</a>`)
+      .join("");
+
+    heroEl.hidden = true;
+    detailEl.hidden = false;
+    closeEl.hidden = false;
+    // restart the entrance animation on every selection
+    detailEl.style.animation = "none";
+    void detailEl.offsetWidth;
+    detailEl.style.animation = "";
+
+    glyphs.forEach(g =>
+      g.btn.setAttribute("aria-current", String(g.idx === i)));
+
+    cam.yaw = w.yaw ?? 0.6;
+    cam.pitch = w.pitch ?? 0.22;
+    // Frame the scene into the right half, clear of the copy. On a narrow
+    // screen there is no right half, so centre it and shrink it instead.
+    const narrow = window.innerWidth < 860;
+    cam.spread = narrow ? 0.40 : 0.62;
+    cam.offX = narrow ? 0 : 0.18;
+    cam.offY = narrow ? 0.18 : 0.06;
+
+    document.querySelector(".stage")
+      .scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  }
+
+  function deselect() {
+    selected = null;
+    heroEl.hidden = false;
+    detailEl.hidden = true;
+    closeEl.hidden = true;
+    glyphs.forEach(g => g.btn.setAttribute("aria-current", "false"));
+    cam.yaw = HERO_YAW;
+    cam.pitch = HERO_PITCH;
+    frameHero();
+  }
+
+  closeEl.addEventListener("click", deselect);
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape" && selected !== null) deselect();
+  });
+
+  function sizeGlyphs() {
+    layoutCarousel();
+    glyphs.forEach(g => {
+      const r = fitCanvas(g.cv);
+      g.ctx = r.ctx; g.W = r.W; g.H = r.H;
+    });
+  }
+
+  /* ── loop ── */
+  let t = 0;
+
+  function tick() {
+    if (!reduced) {
+      t += 0.016;
+      wave = (wave + 0.0023) % 1.14;
+    }
+
+    if (selected === null) {
+      drawHeroNetwork();
+    } else {
+      const { ctx, W, H } = hero;
+      ctx.fillStyle = C.void;
+      ctx.fillRect(0, 0, W, H);
+      WORK[selected].draw(ctx, W, H, cam, t);
+    }
+
+    glyphs.forEach(g => {
+      if (!g.ctx) return;
+      g.ctx.fillStyle = "#050810";
+      g.ctx.fillRect(0, 0, g.W, g.H);
+      g.draw(g.ctx, g.W, g.H, g.cam, t);
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener("resize", () => {
+    hero = fitCanvas(cv);
+    sizeGlyphs();
+    if (selected === null) frameHero();
+  });
+
+  /* ── the tagline types itself ── */
+  const TAGLINE = "THINK. BUILD. ITERATE.";
+  const typedEl = document.getElementById("typed");
+
+  if (reduced) {
+    typedEl.textContent = TAGLINE;
+  } else {
+    let ti = 0, back = false;
+    const step = () => {
+      typedEl.textContent = TAGLINE.slice(0, ti);
+      let wait = back ? 34 : 78;
+      if (!back && ti === TAGLINE.length) { back = true; wait = 2400; }
+      else if (back && ti === 0) { back = false; wait = 520; }
+      else ti += back ? -1 : 1;
+      setTimeout(step, wait);
+    };
+    step();
+  }
+
+  frameHero();
+  sizeGlyphs();
+  tick();
+})();
 </script>
 </body>
-</html>
 </html>
