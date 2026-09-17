@@ -1,0 +1,24 @@
+/* responsive.css
+   Everything that changes under 680px. Keep phone-only rules
+   here rather than scattering media queries through the others. */
+
+@media (max-width: 680px) {
+  .chrome { padding: 15px; }
+  .hero { padding: 4px 6px 0; }
+  .hero__card { flex-direction: column; gap: 18px; }
+  .hero__photo { width: 124px; height: 124px; }
+  .hero__say { text-align: center; }
+  .hero__think { white-space: normal; }
+  .hero__lines { line-height: 1.95; white-space: normal; }
+  .hero__links { margin-top: 20px; gap: 6px 13px; font-size: 10.5px; }
+  .index { padding-block: 40px 52px; }
+  /* the scene sits behind the copy at this width, so give the copy a ground */
+  .detail {
+    max-width: none;
+    background: linear-gradient(to top, rgba(7,10,15,.96) 72%, rgba(7,10,15,0));
+    padding: 16px 14px 4px;
+    margin: 0 -14px -4px;
+  }
+  .stack span { font-size: 9.5px; padding: 2px 6px; }
+  .close { top: 15px; right: 15px; }
+}

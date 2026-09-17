@@ -1,0 +1,88 @@
+/* work.css
+   The My Work section: the heading, the carousel viewport and
+   track, the project cards, and the prev/next buttons. */
+
+/* ── my work: an auto-advancing carousel ─────────────── */
+.index { padding-block: 54px 66px; }
+
+.eyebrow {
+  font-family: var(--data);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.carousel { overflow: hidden; }
+.track { display: flex; gap: 18px; will-change: transform; }
+
+.card {
+  flex: 0 0 var(--cw, 300px);
+  display: block;
+  text-align: left;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.card:focus-visible { outline: none; }
+
+.card .glyph {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #050810;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: border-color .2s;
+}
+.card:hover .glyph, .card:focus-visible .glyph { border-color: var(--ch-a); }
+.card[aria-current="true"] .glyph { border-color: var(--ch-b); }
+
+.card__yr {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--data);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+.card__ttl {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  transition: color .2s;
+}
+.card:hover .card__ttl, .card:focus-visible .card__ttl { color: var(--ch-a); }
+.card[aria-current="true"] .card__ttl { color: var(--ch-b); }
+.card__meta {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--data);
+  font-size: 10px;
+  color: var(--dim);
+}
+
+.cnav { display: flex; justify-content: center; gap: 8px; margin-top: 30px; }
+.cnav button {
+  appearance: none;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--dim);
+  font-family: var(--data);
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color .18s, border-color .18s;
+}
+.cnav button:hover, .cnav button:focus-visible { color: var(--text); border-color: var(--text); }

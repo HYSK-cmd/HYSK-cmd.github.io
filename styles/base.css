@@ -1,0 +1,31 @@
+/* base.css
+   Design tokens, reset and the page shell.
+   Change a colour or a typeface here and the whole site follows. */
+
+:root {
+  --void:    #070a0f;
+  --surface: #101721;
+  --line:    #1c2733;
+  --text:    #e6ecf5;
+  --dim:     #5d6b7d;
+  --ch-a:    #8ab4f8;
+  --ch-b:    #f0b849;
+
+  --display: "Chakra Petch", "Trebuchet MS", sans-serif;
+  --body:    "IBM Plex Sans", system-ui, sans-serif;
+  --data:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { padding-inline: 20px; max-width: 1180px; margin-inline: auto; }

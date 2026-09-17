@@ -1,0 +1,114 @@
+/* stage.css
+   The full-bleed canvas at the top of the page and everything
+   layered over it: the identity card's slot, the panel that
+   replaces it when a project is open, and the Close button. */
+
+/* ── stage ─────────────────────────────── */
+.stage { position: relative; border-bottom: 1px solid var(--line); }
+
+#scene {
+  display: block;
+  width: 100%;
+  height: clamp(540px, 80vh, 720px);
+}
+
+.chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  padding: 22px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.chrome > * { pointer-events: auto; }
+
+/* ── selected-project panel ─────────────── */
+.detail {
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+  max-width: min(420px, 92vw);
+  animation: rise .34s cubic-bezier(.2,.7,.3,1) both;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.detail__meta {
+  margin: 0 0 6px;
+  font-family: var(--data);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ch-b);
+}
+.detail__ttl {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(22px, 4.2vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.detail__blurb {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #aab6c6;
+}
+.stack {
+  margin: 16px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.stack span {
+  font-family: var(--data);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: #9fb0c4;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 3px 8px;
+  background: rgba(16,23,33,.7);
+}
+
+.doclinks {
+  margin: 16px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.doclink {
+  display: inline-block;
+  font-family: var(--data);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ch-b);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,184,73,.35);
+  padding-bottom: 2px;
+  transition: border-color .18s;
+}
+.doclink:hover { border-bottom-color: var(--ch-b); }
+
+.close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  appearance: none;
+  background: rgba(16,23,33,.78);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--dim);
+  font-family: var(--data);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: color .18s, border-color .18s;
+}
+.close:hover { color: var(--text); border-color: var(--text); }

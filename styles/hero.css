@@ -1,0 +1,115 @@
+/* hero.css
+   The identity card — portrait, name, degree lines, the link row,
+   and the typed THINK. BUILD. ITERATE. line with its caret. */
+
+/* ── identity card: portrait left, copy right, network beyond ── */
+/* .hero sets display, which would otherwise beat the UA [hidden] rule */
+.hero[hidden] { display: none; }
+.hero {
+  grid-row: 2;
+  justify-self: center;
+  align-self: start;
+  max-width: min(760px, 96vw);
+  padding: 6px 10px 0;
+  text-align: center;
+}
+.hero__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 3.4vw, 46px);
+}
+.hero__links {
+  margin: 13px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 7px 16px;
+  font-family: var(--data);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+}
+.hero__links a {
+  color: var(--dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color .18s, border-color .18s;
+}
+.hero__links a:hover { color: var(--text); border-bottom-color: var(--text); }
+.hero__links i { font-style: normal; opacity: .45; }
+
+.hero__id { flex: 0 0 auto; }
+.hero__photo {
+  /* Fixed size, and margin-inline:auto so the circle centres on the same
+     axis as the name below it — text-align does not centre a block. */
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin-inline: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  filter: grayscale(1) contrast(1.06);
+  border: 1px solid var(--line);
+}
+.hero__name {
+  margin: 14px 0 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(19px, 2.8vw, 25px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.hero__meta {
+  margin: 9px 0 0;
+  font-family: var(--data);
+  font-size: clamp(9.5px, 1.7vw, 10.5px);
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  color: var(--dim);
+}
+.hero__meta p { margin: 0; }
+
+.hero__say { min-width: 0; text-align: left; }
+.hero__think {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(17px, 3vw, 27px);
+  letter-spacing: 0.07em;
+  color: var(--text);
+  white-space: nowrap;
+  /* The tagline types itself and it is the widest thing in this column, so
+     its growing width used to shove the portrait sideways every frame. Both
+     children share one grid cell and the hidden sizer holds the full string,
+     which pins the column's width for good. */
+  display: grid;
+}
+.hero__think > * { grid-area: 1 / 1; }
+.think__sizer { visibility: hidden; }
+.hero__think b { color: var(--ch-b); font-weight: inherit; }
+.caret {
+  display: inline-block;
+  width: 0.56em;
+  border-bottom: 2px solid var(--ch-b);
+  margin-bottom: 0.08em;
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+
+.hero__lines {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--data);
+  font-size: clamp(10px, 1.8vw, 12.5px);
+  line-height: 2.05;
+  color: #8b99ab;
+  white-space: nowrap;
+  /* every line centred on the same axis, so they taper in from both sides */
+  text-align: center;
+}
