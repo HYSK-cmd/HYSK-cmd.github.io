@@ -12,7 +12,10 @@
             screen as pitch goes negative.
      blurb  the paragraph in the open panel
      stack  the chips under the blurb
-     links  optional [{ href, label }] shown as LABEL -> under the chips */
+     links  optional [{ href, label }] shown as LABEL -> under the chips
+     hue    the card's domain accent, pulled from the hero network's own
+            hop palette (js/network.js HOP) so the card grid reads as an
+            extension of that diagram rather than a separate colour system */
 
 window.PF = window.PF || {};
 (function (PF) {
@@ -28,6 +31,7 @@ window.PF = window.PF || {};
   const WORK = [
     {
       yr: "2026", ttl: "Agentic Readiness Screener", meta: "AWS · individual",
+      hue: "#8ab4f8",
       draw: glyphAgents, yaw: 0.62, pitch: 0.22,
       blurb: "Maps a customer's requirements and database schema to a feasibility verdict, then closes the gaps by asking the questions a consultant would ask. A deterministic engine issues the verdict; the agent only drives the loop.",
       stack: [
@@ -39,6 +43,7 @@ window.PF = window.PF || {};
     },
     {
       yr: "2026", ttl: "Knowledge-Sharing Hub", meta: "AWS · team",
+      hue: "#8ab4f8",
       draw: glyphHub, yaw: 0.55, pitch: -0.22,
       blurb: "A platform that turns every recorded session into something searchable: transcript, slides, a highlight timeline, and a chatbot that answers from that session alone.",
       stack: [
@@ -50,6 +55,7 @@ window.PF = window.PF || {};
     },
     {
       yr: "2025 – 26", ttl: "AeroLANCE UAV Navigation", meta: "AICPS Lab · research",
+      hue: "#5ad1c4",
       draw: glyphTrajectory, yaw: 0.70, pitch: 0.30,
       blurb: "Brought a vision-language navigation architecture from simulation onto a physical drone, and built the evaluation harness that compares where it flew against where it should have.",
       stack: ["Python", "PyTorch", "OpenUAV", "TypeFly", "MonST3R", "Blender"],
@@ -60,6 +66,7 @@ window.PF = window.PF || {};
     },
     {
       yr: "2026", ttl: "Speed Violation Tracker", meta: "computer vision",
+      hue: "#e878b4",
       draw: glyphCamera, yaw: 0.52, pitch: -0.36,
       blurb: "A roadside camera pipeline that detects and tracks vehicles, estimates speed from a calibrated ground plane, and captures the ones over the limit.",
       stack: ["Python", "Ultralytics YOLO", "OpenCV", "Flask", "JavaScript", "SSE"],
@@ -69,6 +76,7 @@ window.PF = window.PF || {};
     },
     {
       yr: "2026", ttl: "Autonomous Spider Bot", meta: "reinforcement learning",
+      hue: "#a48cf0",
       draw: glyphSpider, yaw: 0.60, pitch: -0.34,
       blurb: "A quadruped that looks before it commits. It walks in, stops at what is in its way, rakes the obstacle with its scanner, picks a line around it, and takes that line.",
       stack: ["Python", "PyTorch", "PPO", "PyBullet", "LiDAR", "IMU", "Jetson"],
@@ -79,12 +87,14 @@ window.PF = window.PF || {};
     },
     {
       yr: "2025 – 26", ttl: "ZotTARS", meta: "robotics · software subteam",
+      hue: "#f0954a",
       draw: glyphTars, yaw: 0.58, pitch: -0.42,
       blurb: "A modular robotic assistant that spots an object, drives to it, and picks it up. Vision, voice and control each run as their own service behind a shared API, so the perception model or the controller can be swapped without touching the rest.",
       stack: ["Python", "FastAPI", "ROS-style services", "Ultralytics", "Arduino", "Raspberry Pi"],
     },
     {
       yr: "2025 – 26", ttl: "MyToDo", meta: "full stack",
+      hue: "#f0c94a",
       draw: glyphTodo, yaw: 0.66, pitch: -0.40,
       blurb: "A task manager built the plain way: server-rendered pages, full CRUD, and a document store underneath. Small enough to hold the whole request path in your head.",
       stack: ["Python", "Flask", "Jinja2", "MongoDB", "PyMongo"],
@@ -94,6 +104,7 @@ window.PF = window.PF || {};
     },
     {
       yr: "2025", ttl: "Drone Project", meta: "hardware · embedded",
+      hue: "#f0954a",
       draw: glyphDrone, yaw: 0.62, pitch: -0.30,
       blurb: "A UAV built from parts: flight controller, ESCs, motors and GPS soldered and bench-validated, then tuned in ArduPilot and flown through autonomous waypoint missions over an ESP32 telemetry link.",
       stack: ["ArduPilot", "ESP32", "Embedded C", "Telemetry", "Soldering"],

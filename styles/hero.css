@@ -25,21 +25,33 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 7px 16px;
+  gap: 8px;
   font-family: var(--data);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--dim);
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
 }
-.hero__links a {
-  color: var(--dim);
+/* CTA row: Resume is the one action most visitors act on, so it gets the
+   primary (amber) treatment; the rest stay as quiet outline pills. */
+.hero__links .btn {
+  color: var(--text);
   text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 2px;
-  transition: color .18s, border-color .18s;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 6px 12px;
+  transition: color .18s, border-color .18s, background-color .18s;
 }
-.hero__links a:hover { color: var(--text); border-bottom-color: var(--text); }
-.hero__links i { font-style: normal; opacity: .45; }
+.hero__links .btn:hover, .hero__links .btn:focus-visible {
+  border-color: var(--text);
+}
+.hero__links .btn--primary {
+  color: var(--ch-b);
+  border-color: var(--ch-b);
+  background: rgba(240, 184, 73, .12);
+}
+.hero__links .btn--primary:hover, .hero__links .btn--primary:focus-visible {
+  background: rgba(240, 184, 73, .2);
+}
 
 .hero__id { flex: 0 0 auto; }
 .hero__photo {

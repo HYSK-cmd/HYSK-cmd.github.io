@@ -32,6 +32,17 @@
 }
 .card:focus-visible { outline: none; }
 
+/* domain accent: a sliver of colour from the hero network's own hop
+   palette (js/network.js HOP), so a card's field ties back to the diagram
+   before you ever click it. */
+.card__accent {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  margin-bottom: 8px;
+  opacity: .85;
+}
 .card .glyph {
   display: block;
   width: 100%;
@@ -69,6 +80,14 @@
   font-family: var(--data);
   font-size: 10px;
   color: var(--dim);
+}
+.card__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  border-radius: 50%;
+  vertical-align: middle;
 }
 
 .cnav { display: flex; justify-content: center; gap: 8px; margin-top: 30px; }

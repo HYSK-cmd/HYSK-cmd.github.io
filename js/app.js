@@ -26,6 +26,7 @@ window.PF = window.PF || {};
   const heroEl = document.getElementById("hero");
   const dStack = document.getElementById("d-stack");
   const dLinks = document.getElementById("d-links");
+  const scrollcueEl = document.getElementById("scrollcue");
 
   function select(i) {
     PF.selected = i;
@@ -43,6 +44,7 @@ window.PF = window.PF || {};
     heroEl.hidden = true;
     detailEl.hidden = false;
     closeEl.hidden = false;
+    scrollcueEl.hidden = true;
     // restart the entrance animation on every selection
     detailEl.style.animation = "none";
     void detailEl.offsetWidth;
@@ -69,6 +71,7 @@ window.PF = window.PF || {};
     heroEl.hidden = false;
     detailEl.hidden = true;
     closeEl.hidden = true;
+    scrollcueEl.hidden = false;
     glyphs.forEach(g => g.btn.setAttribute("aria-current", "false"));
     cam.yaw = HERO_YAW;
     cam.pitch = HERO_PITCH;

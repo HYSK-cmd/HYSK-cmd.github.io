@@ -31,12 +31,14 @@ window.PF = window.PF || {};
     return { n, z, nodes };
   });
 
-  // every node to every node in the next layer
+  // every node to every node in the next layer. `bow` gives each wire a
+  // small, fixed perpendicular curve (seeded, so it never changes frame to
+  // frame) instead of a dead-straight line — reads less like a wireframe.
   const edges = [];
   for (let li = 0; li < net.length - 1; li++) {
     net[li].nodes.forEach(a => {
       net[li + 1].nodes.forEach(b => {
-        edges.push({ li, a, b, w: 0.30 + rnd() * 0.70 });
+        edges.push({ li, a, b, w: 0.30 + rnd() * 0.70, bow: (rnd() - 0.5) * 12 });
       });
     });
   }
@@ -71,20 +73,43 @@ window.PF = window.PF || {};
   function drawHeroNetwork(ctx, W, H, wave) {
     ctx.fillStyle = C.void;
     ctx.fillRect(0, 0, W, H);
+    ctx.lineCap = "round";
+
+    // project every node once per frame (edges share endpoints, so this also
+    // saves re-projecting the same node for each of its edges) and read off
+    // the depth range so far nodes/wires can fade slightly — a cheap fog
+    // that reads as real depth instead of a flat cut-out silhouette.
+    const proj = new Map();
+    let minK = Infinity, maxK = -Infinity;
+    net.forEach(L => L.nodes.forEach(nd => {
+      const pr = project(nd.p, cam, W, H, 2.55, HERO_SPREAD);
+      proj.set(nd, pr);
+      if (pr.k < minK) minK = pr.k;
+      if (pr.k > maxK) maxK = pr.k;
+    }));
+    const kSpan = Math.max(1e-4, maxK - minK);
+    const fogOf = k => 0.6 + 0.4 * ((k - minK) / kSpan);
 
     // edges carry the colour of the hop they belong to
     for (const e of edges) {
-      const pa = project(e.a.p, cam, W, H, 2.55, HERO_SPREAD);
-      const pb = project(e.b.p, cam, W, H, 2.55, HERO_SPREAD);
+      const pa = proj.get(e.a), pb = proj.get(e.b);
       // An edge belongs to the layer it LEAVES: when a layer lights up, only
       // the lines running forward out of it light with it. Its incoming lines
       // already had their turn one step earlier.
       const act = layerAct(e.li, wave);
       const col = HOP[e.li];
+      const fog = fogOf((pa.k + pb.k) / 2);
+
+      // bow the line into a shallow curve, perpendicular to its own path
+      const dx = pb.x - pa.x, dy = pb.y - pa.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const cx = (pa.x + pb.x) / 2 - (dy / len) * e.bow;
+      const cy = (pa.y + pb.y) / 2 + (dx / len) * e.bow;
+
       ctx.beginPath();
       ctx.moveTo(pa.x, pa.y);
-      ctx.lineTo(pb.x, pb.y);
-      ctx.strokeStyle = rgba(col, 0.10 + act * e.w * 0.52);
+      ctx.quadraticCurveTo(cx, cy, pb.x, pb.y);
+      ctx.strokeStyle = rgba(col, (0.10 + act * e.w * 0.52) * fog);
       ctx.lineWidth = 0.5 + act * e.w * 1.1;
       ctx.stroke();
     }
@@ -92,21 +117,27 @@ window.PF = window.PF || {};
     // nodes, painted back to front
     const all = [];
     net.forEach((L, li) => L.nodes.forEach(nd => all.push({ nd, li })));
-    all.map(o => ({ ...o, pr: project(o.nd.p, cam, W, H, 2.55, HERO_SPREAD) }))
+    all.map(o => ({ ...o, pr: proj.get(o.nd) }))
        .sort((m, n) => n.pr.depth - m.pr.depth)
        .forEach(({ nd, li, pr }) => {
          const col = nodeCol(li);
          const act = layerAct(li, wave) * (0.55 + nd.bias * 0.45);
+         const fog = fogOf(pr.k);
          const r = (2.3 + act * 3.2) * pr.k;
          if (act > 0.08) {
+           // a soft radial glow reads smoother than a flat, hard-edged halo
+           const glowR = r * 3.2;
+           const glow = ctx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, glowR);
+           glow.addColorStop(0, rgba(col, act * 0.24 * fog));
+           glow.addColorStop(1, rgba(col, 0));
            ctx.beginPath();
-           ctx.arc(pr.x, pr.y, r * 3.2, 0, 6.2832);
-           ctx.fillStyle = rgba(col, act * 0.13);
+           ctx.arc(pr.x, pr.y, glowR, 0, 6.2832);
+           ctx.fillStyle = glow;
            ctx.fill();
          }
          ctx.beginPath();
          ctx.arc(pr.x, pr.y, Math.max(0.9, r), 0, 6.2832);
-         ctx.fillStyle = rgba(col, 0.34 + act * 0.66);
+         ctx.fillStyle = rgba(col, (0.34 + act * 0.66) * fog);
          ctx.fill();
        });
   }

@@ -24,10 +24,13 @@ window.PF = window.PF || {};
     b.className = "card";
     b.type = "button";
     b.innerHTML =
+      `<span class="card__accent" style="background:${w.hue}" aria-hidden="true"></span>` +
       `<canvas class="glyph" aria-hidden="true"></canvas>` +
       `<span class="card__yr">${w.yr}</span>` +
       `<span class="card__ttl">${w.ttl}</span>` +
-      `<span class="card__meta">${w.meta}</span>`;
+      `<span class="card__meta">` +
+        `<i class="card__dot" style="background:${w.hue}" aria-hidden="true"></i>${w.meta}` +
+      `</span>`;
     b.addEventListener("click", () => PF.select(i));
     trackEl.appendChild(b);
     glyphs.push({
@@ -92,9 +95,25 @@ window.PF = window.PF || {};
   document.getElementById("prev").addEventListener("click", () => advance(-1));
   document.getElementById("next").addEventListener("click", () => advance(1));
 
-  if (!reduced) {
+  // An explicit, always-visible pause control: hover/focus-pausing (above)
+  // helps a mouse or keyboard user, but gives a touch-only visitor no way
+  // to stop the motion, which auto-advancing content needs (WCAG 2.2.2).
+  let userPaused = false;
+  const playPauseEl = document.getElementById("playpause");
+  if (reduced) {
+    // nothing to pause — there is no autoplay to begin with
+    playPauseEl.hidden = true;
+  } else {
+    playPauseEl.addEventListener("click", () => {
+      userPaused = !userPaused;
+      playPauseEl.textContent = userPaused ? "Play" : "Pause";
+      playPauseEl.setAttribute("aria-pressed", String(userPaused));
+      playPauseEl.setAttribute("aria-label",
+        userPaused ? "Resume automatic scrolling" : "Pause automatic scrolling");
+    });
+
     setInterval(() => {
-      if (!paused && PF.selected === null && !document.hidden) advance(1);
+      if (!paused && !userPaused && PF.selected === null && !document.hidden) advance(1);
     }, HOLD);
   }
 
