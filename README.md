@@ -37,6 +37,8 @@ scripts that the browser loads directly.
 | --- | --- |
 | a project's title, blurb, stack chips or links | `js/work.js` |
 | which 3D scene a project shows, or its camera angle | `js/work.js` (`draw`, `yaw`, `pitch`) |
+| how much of the frame a scene fills | `js/work.js` (`fit`) |
+| a project's colour, on its card and in its scene | `js/work.js` (`hue`) |
 | how a 3D scene is drawn | `js/scenes.js` |
 | the network shape or its colours | `js/network.js` (`WIDTHS`, `HOP`) |
 | name, degree lines, the four `<.../>` lines, the link row | `index.html` |
@@ -56,6 +58,20 @@ The 3D is hand-rolled. `project([x, y, z], cam, W, H, zoom)` in `core.js` is the
 whole engine: rotation by the camera's `yaw` and `pitch`, then a perspective
 divide. No library, nothing to install. Cameras are fixed — in every scene the
 thing that moves is the scene, not the viewpoint.
+
+Every scene is drawn twice, full-bleed on the stage and small inside a card, and
+those two frames differ by roughly two and a half times. `project()` scales the
+geometry with the canvas, but the flat details a scene paints on top — a figure,
+a lens, a checkbox — are plain CSS pixels and would not. So each scene opens with
+
+```js
+const u = unit(W, H), px = n => n * u;
+const A = cam.hue || C.a;
+```
+
+`px(n)` is how every flat constant is written, and `A` is the project's own
+colour from `work.js`, which is why a card and its scene are the same colour.
+`C.b` (amber) stays the shared "happening now" colour in all eight.
 
 ## Previewing
 

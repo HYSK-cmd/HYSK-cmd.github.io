@@ -28,6 +28,20 @@ window.PF = window.PF || {};
   const dLinks = document.getElementById("d-links");
   const scrollcueEl = document.getElementById("scrollcue");
 
+  /* Frame the open scene into the right half, clear of the copy. On a narrow
+     screen there is no right half, so centre it and shrink it instead. `fit`
+     is the project's own share of the frame — the scenes are not all the same
+     shape, so without it the small ones read as lost in the middle. */
+  function frameStage(w) {
+    const narrow = window.innerWidth < 860;
+    cam.spread = (narrow ? 0.40 : 0.62) * (w.fit ?? 1);
+    cam.offX = narrow ? 0 : 0.18;
+    // Narrow: the copy sits over the scene, so push it clear downward. Wide:
+    // offX already clears the copy sideways, and nudging down as well only
+    // ran the ground-plane scenes off the bottom edge.
+    cam.offY = narrow ? 0.18 : -0.02;
+  }
+
   function select(i) {
     PF.selected = i;
     const w = WORK[i];
@@ -55,12 +69,10 @@ window.PF = window.PF || {};
 
     cam.yaw = w.yaw ?? 0.6;
     cam.pitch = w.pitch ?? 0.22;
-    // Frame the scene into the right half, clear of the copy. On a narrow
-    // screen there is no right half, so centre it and shrink it instead.
-    const narrow = window.innerWidth < 860;
-    cam.spread = narrow ? 0.40 : 0.62;
-    cam.offX = narrow ? 0 : 0.18;
-    cam.offY = narrow ? 0.18 : 0.06;
+    // the scene is painted in the project's own colour, the same one the card
+    // carries, so opening a card does not change the colour you clicked on
+    cam.hue = w.hue;
+    frameStage(w);
 
     document.querySelector(".stage")
       .scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
@@ -75,6 +87,7 @@ window.PF = window.PF || {};
     glyphs.forEach(g => g.btn.setAttribute("aria-current", "false"));
     cam.yaw = HERO_YAW;
     cam.pitch = HERO_PITCH;
+    cam.hue = undefined;          // the network keeps its own hop palette
     frameHero();
   }
 
@@ -91,6 +104,15 @@ window.PF = window.PF || {};
     });
   }
 
+  /* camera breathing: a very subtle drift so scenes feel hand-held */
+  const breathe = (base, t, ampY, ampP) => ({
+    yaw:   base.yaw   + Math.sin(t * 0.23) * ampY + Math.sin(t * 0.37) * ampY * 0.4,
+    pitch: base.pitch + Math.cos(t * 0.19) * ampP + Math.cos(t * 0.31) * ampP * 0.3,
+    // this replaces the camera for one frame, so everything the scenes read
+    // off it has to come along — hue included, or the colour drops out
+    spread: base.spread, offX: base.offX, offY: base.offY, hue: base.hue,
+  });
+
   function tick() {
     if (!reduced) {
       t += 0.016;
@@ -103,14 +125,19 @@ window.PF = window.PF || {};
       const { ctx, W, H } = hero;
       ctx.fillStyle = C.void;
       ctx.fillRect(0, 0, W, H);
-      WORK[PF.selected].draw(ctx, W, H, cam, t);
+      const liveCam = reduced ? cam : breathe(cam, t, 0.012, 0.006);
+      WORK[PF.selected].draw(ctx, W, H, liveCam, t);
     }
 
+    // A card canvas that is scrolled out of view is still a canvas being
+    // repainted sixty times a second, and there are eleven of them. `live` is
+    // set by the observer in carousel.js.
     glyphs.forEach(g => {
-      if (!g.ctx) return;
+      if (!g.ctx || !g.live) return;
       g.ctx.fillStyle = "#050810";
       g.ctx.fillRect(0, 0, g.W, g.H);
-      g.draw(g.ctx, g.W, g.H, g.cam, t);
+      const gCam = reduced ? g.cam : breathe(g.cam, t, 0.008, 0.004);
+      g.draw(g.ctx, g.W, g.H, gCam, t);
     });
 
     requestAnimationFrame(tick);
@@ -119,7 +146,10 @@ window.PF = window.PF || {};
   window.addEventListener("resize", () => {
     hero = fitCanvas(cv);
     sizeGlyphs();
+    // the stage frames differently above and below 860px, so an open project
+    // has to be re-framed too, not just the hero
     if (PF.selected === null) frameHero();
+    else frameStage(WORK[PF.selected]);
   });
 
   /* ── the tagline types itself ── */

@@ -52,5 +52,43 @@ window.PF = window.PF || {};
     return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;
   };
 
-  Object.assign(PF, { reduced, C, rnd, project, fitCanvas, rgba });
+  /* shared easing helpers used by multiple scenes */
+  const ease = u => u * u * (3 - 2 * u);
+  const span = (c, a, b) => Math.min(1, Math.max(0, (c - a) / (b - a)));
+
+  /* Every scene is drawn twice at very different sizes: once full-bleed on the
+     stage, once inside a carousel card. project() scales scene-space geometry
+     with the canvas, but the flat details each scene draws on top — a figure, a
+     lens, a checkbox — are plain CSS pixels and would stay the same size in both
+     frames, reading as specks on the stage and as clutter on a card.
+
+     unit(W, H) is the factor those constants are written against. REF is the
+     card canvas's short side at 3-up desktop, so a card draws at 1.0 and keeps
+     exactly the size it has today; the stage grows from there. The clamp stops
+     a very small or very tall canvas from running away with it. */
+  const REF = 230;
+  const unit = (W, H) => Math.min(2.2, Math.max(0.85, Math.min(W, H) / REF));
+
+  /* One zoom for every scene. How much of the frame a particular scene fills is
+     a property of that scene, so it is set per project in work.js (`fit`), not
+     by each draw function quietly picking its own zoom. */
+  const ZOOM = 2.5;
+
+  /* depth fog: returns a function that maps a projected k value to
+     a 0.55..1 factor where 1 = nearest. Gives glyph scenes the same
+     sense of depth that the hero network already has. */
+  function fogMaker(projArr) {
+    let minK = Infinity, maxK = -Infinity;
+    for (let i = 0; i < projArr.length; i++) {
+      const k = projArr[i].k;
+      if (k < minK) minK = k;
+      if (k > maxK) maxK = k;
+    }
+    const kSpan = Math.max(1e-4, maxK - minK);
+    return k => 0.55 + 0.45 * ((k - minK) / kSpan);
+  }
+
+  Object.assign(PF, {
+    reduced, C, rnd, project, fitCanvas, rgba, ease, span, fogMaker, unit, ZOOM,
+  });
 })(window.PF);

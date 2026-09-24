@@ -39,10 +39,14 @@
   border: 1px solid var(--line);
   border-radius: 3px;
   padding: 6px 12px;
-  transition: color .18s, border-color .18s, background-color .18s;
+  transition: color .18s, border-color .18s, background-color .18s, transform .18s;
 }
 .hero__links .btn:hover, .hero__links .btn:focus-visible {
   border-color: var(--text);
+  transform: scale(1.04);
+}
+.hero__links .btn:active {
+  transform: scale(0.97) translateY(1px);
 }
 .hero__links .btn--primary {
   color: var(--ch-b);

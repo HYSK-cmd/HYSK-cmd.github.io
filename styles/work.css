@@ -19,6 +19,9 @@
 .track { display: flex; gap: 18px; will-change: transform; }
 
 .card {
+  /* carousel.js sets this per card from work.js `hue`; the fallback covers a
+     card rendering before that happens */
+  --hue: var(--ch-a);
   flex: 0 0 var(--cw, 300px);
   display: block;
   text-align: left;
@@ -29,8 +32,15 @@
   color: inherit;
   font: inherit;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .5s ease, transform .5s ease, color .2s;
 }
-.card:focus-visible { outline: none; }
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card:focus-visible { outline: 2px solid var(--hue); outline-offset: 3px; border-radius: 4px; }
 
 /* domain accent: a sliver of colour from the hero network's own hop
    palette (js/network.js HOP), so a card's field ties back to the diagram
@@ -51,8 +61,20 @@
   border: 1px solid var(--line);
   border-radius: 3px;
   transition: border-color .2s;
+  --mx: 50%;
+  --my: 50%;
 }
-.card:hover .glyph, .card:focus-visible .glyph { border-color: var(--ch-a); }
+/* One rule, not two: the spotlight and the lift used to be written as
+   separate :hover rules, and the second quietly overrode the first's border
+   and inset edge. The cursor-tracked gradient is the card's own colour, the
+   same one its scene is drawn in. */
+.card:hover .glyph, .card:focus-visible .glyph {
+  border-color: var(--hue);
+  background-image: radial-gradient(circle 120px at var(--mx) var(--my),
+                    color-mix(in srgb, var(--hue) 18%, transparent), transparent 70%);
+  background-origin: border-box;
+  box-shadow: 0 4px 20px rgba(7,14,30,0.5);
+}
 .card[aria-current="true"] .glyph { border-color: var(--ch-b); }
 
 .card__yr {
@@ -72,7 +94,7 @@
   line-height: 1.25;
   transition: color .2s;
 }
-.card:hover .card__ttl, .card:focus-visible .card__ttl { color: var(--ch-a); }
+.card:hover .card__ttl, .card:focus-visible .card__ttl { color: var(--hue); }
 .card[aria-current="true"] .card__ttl { color: var(--ch-b); }
 .card__meta {
   display: block;
@@ -102,6 +124,7 @@
   line-height: 1;
   padding: 8px 14px;
   cursor: pointer;
-  transition: color .18s, border-color .18s;
+  transition: color .18s, border-color .18s, transform .18s;
 }
-.cnav button:hover, .cnav button:focus-visible { color: var(--text); border-color: var(--text); }
+.cnav button:hover, .cnav button:focus-visible { color: var(--text); border-color: var(--text); transform: scale(1.04); }
+.cnav button:active { transform: scale(0.97) translateY(1px); }

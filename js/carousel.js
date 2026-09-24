@@ -23,6 +23,9 @@ window.PF = window.PF || {};
     const b = document.createElement("button");
     b.className = "card";
     b.type = "button";
+    // the card's hover treatment reads this, so the spotlight and the focus
+    // ring are the project's own colour rather than one blue for all eight
+    b.style.setProperty("--hue", w.hue);
     b.innerHTML =
       `<span class="card__accent" style="background:${w.hue}" aria-hidden="true"></span>` +
       `<canvas class="glyph" aria-hidden="true"></canvas>` +
@@ -36,7 +39,15 @@ window.PF = window.PF || {};
     glyphs.push({
       cv: b.querySelector("canvas"),
       draw: w.draw,
-      cam: { yaw: w.yaw ?? 0.6, pitch: w.pitch ?? 0.22 },
+      cam: {
+        yaw: w.yaw ?? 0.6,
+        pitch: w.pitch ?? 0.22,
+        spread: 0.46 * (w.fit ?? 1),     // 0.46 is the projector's own default
+        hue: w.hue,
+      },
+      // repainted only while the card is actually on screen; see the observer
+      // at the bottom of this file
+      live: true,
       ctx: null, W: 0, H: 0, btn: b, idx: i,
     });
   }
@@ -115,6 +126,48 @@ window.PF = window.PF || {};
     setInterval(() => {
       if (!paused && !userPaused && PF.selected === null && !document.hidden) advance(1);
     }, HOLD);
+  }
+
+  /* spotlight border: the glyph's radial gradient follows the cursor */
+  trackEl.addEventListener("pointermove", e => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+    const glyph = card.querySelector(".glyph");
+    if (!glyph) return;
+    const r = glyph.getBoundingClientRect();
+    glyph.style.setProperty("--mx", (e.clientX - r.left) + "px");
+    glyph.style.setProperty("--my", (e.clientY - r.top) + "px");
+  });
+
+  /* staggered entry: cards fade in one by one when the section scrolls into view */
+  if (!reduced) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const cards = trackEl.querySelectorAll(".card:not(.visible)");
+        cards.forEach((c, i) => {
+          setTimeout(() => c.classList.add("visible"), i * 80);
+        });
+        io.disconnect();
+      });
+    }, { threshold: 0.15 });
+    io.observe(carouselEl);
+  } else {
+    trackEl.querySelectorAll(".card").forEach(c => c.classList.add("visible"));
+  }
+
+  /* Eleven card canvases (eight projects plus the three wrap clones) were
+     being repainted every frame for the whole life of the page, including
+     while the carousel was scrolled well out of view. Each one only draws
+     while it is somewhere near the viewport. */
+  if ("IntersectionObserver" in window) {
+    const liveIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const g = glyphs.find(x => x.btn === e.target);
+        if (g) g.live = e.isIntersecting;
+      });
+    }, { rootMargin: "120px" });
+    glyphs.forEach(g => liveIO.observe(g.btn));
   }
 
   Object.assign(PF, { glyphs, layoutCarousel, advance });
