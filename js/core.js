@@ -88,7 +88,26 @@ window.PF = window.PF || {};
     return k => 0.55 + 0.45 * ((k - minK) / kSpan);
   }
 
+  /* Drop a scene into a vertical band of the canvas.
+
+     A scene's painted extent runs from kTop to kBot (work.js), measured in
+     units of the projector's own scale and relative to the canvas centre.
+     Those are fixed properties of the geometry, so the spread and offY that
+     centre that extent inside bandTop..bandBot can be solved rather than
+     guessed. That is what keeps a scene off the copy above it and inside the
+     canvas below it at every viewport size, which no single hand-tuned
+     number could do. maxSpread stops a small scene from ballooning when the
+     band is generous. */
+  function frameTo(w, W, H, bandTop, bandBot, maxSpread) {
+    const S = Math.min(W, H);
+    const kT = w.kTop ?? -0.5, kB = w.kBot ?? 0.5;
+    const spread = Math.min(maxSpread, (bandBot - bandTop) / (S * Math.max(0.05, kB - kT)));
+    const mid = (bandTop + bandBot) / 2;
+    return { spread, offY: (mid - H / 2 - spread * S * (kT + kB) / 2) / H };
+  }
+
   Object.assign(PF, {
     reduced, C, rnd, project, fitCanvas, rgba, ease, span, fogMaker, unit, ZOOM,
+    frameTo,
   });
 })(window.PF);

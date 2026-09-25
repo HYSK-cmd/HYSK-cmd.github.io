@@ -39,12 +39,16 @@ window.PF = window.PF || {};
     glyphs.push({
       cv: b.querySelector("canvas"),
       draw: w.draw,
+      // spread and offY are solved per canvas in sizeGlyphs(), see core.frameTo
       cam: {
         yaw: w.yaw ?? 0.6,
         pitch: w.pitch ?? 0.22,
-        spread: 0.46 * (w.fit ?? 1),     // 0.46 is the projector's own default
+        spread: 0.46,
+        offY: 0,
         hue: w.hue,
       },
+      // the scene's own best frame, see poseT in work.js
+      poseT: w.poseT ?? 0,
       // repainted only while the card is actually on screen; see the observer
       // at the bottom of this file
       live: true,

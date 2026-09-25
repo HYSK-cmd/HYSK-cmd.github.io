@@ -23,13 +23,20 @@
 .chrome > * { pointer-events: auto; }
 
 /* ── selected-project panel ─────────────── */
+/* Both the copy and the scene sit on the centre axis, so the scene runs
+   behind the copy. The panel spans the full width and carries its own
+   ground, fading out downward into the drawing, rather than floating as a
+   box with visible side seams. The text inside it is what stays narrow. */
 .detail {
   grid-row: 1;
-  justify-self: start;
+  justify-self: stretch;
   align-self: start;
-  max-width: min(420px, 92vw);
+  text-align: center;
+  /* cancel .chrome's padding so the ground reaches the canvas edges */
+  margin-inline: -22px;
+  padding: 0 22px 34px;
+  background: linear-gradient(to bottom, rgba(7,10,15,.94) 62%, rgba(7,10,15,0));
   animation: rise .34s cubic-bezier(.2,.7,.3,1) both;
-  filter: drop-shadow(0 4px 24px rgba(7,10,15,0.6));
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
@@ -44,7 +51,8 @@
   color: var(--ch-b);
 }
 .detail__ttl {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 22ch;
   font-family: var(--display);
   font-size: clamp(22px, 4.2vw, 34px);
   font-weight: 700;
@@ -52,15 +60,22 @@
   text-wrap: balance;
 }
 .detail__blurb {
-  margin: 10px 0 0;
-  font-size: 13.5px;
-  line-height: 1.65;
+  margin: 12px 0 0;
+  font-size: clamp(14px, 1.35vw, 16.5px);
+  line-height: 1.7;
+  max-width: 60ch;
+  margin-inline: auto;
   color: #aab6c6;
 }
+/* Held to roughly the blurb's own measure. Without it the panel is full
+   width, so a project with seventeen chips lays them out in one long row
+   across the whole screen instead of wrapping into a readable block. */
 .stack {
-  margin: 16px 0 0;
+  margin: 16px auto 0;
+  max-width: 620px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
 }
 .stack span {
@@ -75,9 +90,11 @@
 }
 
 .doclinks {
-  margin: 16px 0 0;
+  margin: 16px auto 0;
+  max-width: 620px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px 18px;
 }
 .doclink {

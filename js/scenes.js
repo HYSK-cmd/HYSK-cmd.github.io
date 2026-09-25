@@ -93,10 +93,10 @@ window.PF = window.PF || {};
 
     KG_EDGES.forEach(([i, j]) => {
       const f = near((pr(KG[i]).depth + pr(KG[j]).depth) / 2);
-      edge(KG[i], KG[j], rgba(A, 0.10 + f * 0.26), 0.6 + f * 0.7);
+      edge(KG[i], KG[j], rgba(A, 0.20 + f * 0.30), 0.9 + f * 0.7);
     });
     // faint spokes to the core, so the centre reads as the hub of the sphere
-    KG.forEach((k, i) => { if (i % 3 === 0) edge(GC, k, rgba(A, 0.09), 0.6); });
+    KG.forEach((k, i) => { if (i % 3 === 0) edge(GC, k, rgba(A, 0.20), 0.9); });
 
     // the only wire out of the graph: core -> agent
     edge(GC, AGENT, rgba(A, 0.26), 1.4);
@@ -134,7 +134,7 @@ window.PF = window.PF || {};
     // the core
     const cq = pr(GC);
     ctx.beginPath(); ctx.arc(cq.x, cq.y, px(11) * cq.k, 0, 6.2832);
-    ctx.fillStyle = rgba(A, 0.10); ctx.fill();
+    ctx.fillStyle = rgba(A, 0.18); ctx.fill();
     ctx.beginPath(); ctx.arc(cq.x, cq.y, px(6.0) * cq.k, 0, 6.2832);
     ctx.fillStyle = rgba(A, 0.95); ctx.fill();
 
@@ -227,7 +227,7 @@ window.PF = window.PF || {};
     ctx.beginPath();
     tray.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.07); ctx.fill();
+    ctx.fillStyle = rgba(A, 0.12); ctx.fill();
     ctx.strokeStyle = rgba(A, 0.40); ctx.lineWidth = px(0.9); ctx.stroke();
     const ab = pr([TRAY[0], TRAY[1] + 0.08, TRAY[2]]);
     const at = pr([TRAY[0], TRAY[1] + 0.30, TRAY[2]]);
@@ -285,8 +285,8 @@ window.PF = window.PF || {};
     ctx.beginPath();
     slab.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.06); ctx.fill();
-    ctx.strokeStyle = rgba(A, 0.26); ctx.lineWidth = px(0.8); ctx.stroke();
+    ctx.fillStyle = rgba(A, 0.11); ctx.fill();
+    ctx.strokeStyle = rgba(A, 0.30); ctx.lineWidth = px(0.9); ctx.stroke();
 
     /* The wall is the hub's standing state, so it is always on screen. When a
        new recording arrives the tiles collapse into it and bloom back out —
@@ -368,7 +368,9 @@ window.PF = window.PF || {};
     if (lensIdx >= 0) {
       const cell = CELLS[lensIdx];
       const m = pr(cell);
-      const R = px(26);
+      // every dimension below is a fraction of R, so the lens scales as one
+      // object instead of its glass shrinking while its play mark does not
+      const R = px(19);
       // the glass: dark disc, the tile redrawn large inside it
       ctx.save();
       ctx.beginPath(); ctx.arc(m.x, m.y, R, 0, 6.2832);
@@ -379,8 +381,8 @@ window.PF = window.PF || {};
       ctx.fillStyle = rgba(C.b, 0.20); ctx.fill();
       ctx.strokeStyle = rgba(C.b, 0.8); ctx.lineWidth = px(1.3); ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(m.x - px(6), m.y - px(8.5)); ctx.lineTo(m.x + px(9), m.y);
-      ctx.lineTo(m.x - px(6), m.y + px(8.5)); ctx.closePath();
+      ctx.moveTo(m.x - R * 0.23, m.y - R * 0.33); ctx.lineTo(m.x + R * 0.35, m.y);
+      ctx.lineTo(m.x - R * 0.23, m.y + R * 0.33); ctx.closePath();
       ctx.fillStyle = C.b; ctx.fill();
       // a scrub bar with a playhead, so the zoom shows detail the tile cannot
       const bw = R * 1.3;
@@ -389,18 +391,18 @@ window.PF = window.PF || {};
       ctx.strokeStyle = rgba(A, 0.45); ctx.lineWidth = px(1.6); ctx.stroke();
       const head = (t * 0.5) % 1;
       ctx.beginPath();
-      ctx.arc(m.x - bw / 2 + bw * head, m.y + R * 0.44, px(2.2), 0, 6.2832);
+      ctx.arc(m.x - bw / 2 + bw * head, m.y + R * 0.44, R * 0.085, 0, 6.2832);
       ctx.fillStyle = C.b; ctx.fill();
       ctx.restore();
 
       // rim and handle
       ctx.beginPath(); ctx.arc(m.x, m.y, R, 0, 6.2832);
       ctx.strokeStyle = rgba(C.text, 0.85); ctx.lineWidth = px(2.0); ctx.stroke();
-      ctx.beginPath(); ctx.arc(m.x, m.y, R - px(3), 0, 6.2832);
+      ctx.beginPath(); ctx.arc(m.x, m.y, R * 0.88, 0, 6.2832);
       ctx.strokeStyle = rgba(C.text, 0.20); ctx.lineWidth = px(1.0); ctx.stroke();
       const hx = m.x + R * 0.70, hy = m.y + R * 0.70;
       ctx.beginPath();
-      ctx.moveTo(hx, hy); ctx.lineTo(hx + px(13), hy + px(13));
+      ctx.moveTo(hx, hy); ctx.lineTo(hx + R * 0.5, hy + R * 0.5);
       ctx.strokeStyle = rgba(C.text, 0.85);
       ctx.lineWidth = px(3.4); ctx.lineCap = "round"; ctx.stroke();
       ctx.lineCap = "butt";
@@ -451,7 +453,7 @@ window.PF = window.PF || {};
     refP.forEach((q, i) => i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y));
     for (let i = flownP.length - 1; i >= 0; i--) ctx.lineTo(flownP[i].x, flownP[i].y);
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.06);
+    ctx.fillStyle = rgba(A, 0.14);
     ctx.fill();
 
     band(refP, C.b, 1.0, 1.5);
@@ -484,7 +486,7 @@ window.PF = window.PF || {};
     ctx.beginPath();
     road.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.05); ctx.fill();
+    ctx.fillStyle = rgba(A, 0.11); ctx.fill();
     ctx.strokeStyle = rgba(A, 0.26); ctx.lineWidth = px(0.9); ctx.stroke();
 
     // lane divider
@@ -518,7 +520,7 @@ window.PF = window.PF || {};
     ctx.beginPath();
     fov.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = locked ? rgba(C.b, 0.11) : rgba(A, 0.05);
+    ctx.fillStyle = locked ? rgba(C.b, 0.11) : rgba(A, 0.11);
     ctx.fill();
     ctx.strokeStyle = locked ? rgba(C.b, 0.50) : rgba(A, 0.22);
     ctx.lineWidth = px(0.9); ctx.stroke();
@@ -526,8 +528,8 @@ window.PF = window.PF || {};
     // the four rays that make it a frustum rather than a flat patch
     fov.forEach(p => {
       ctx.beginPath(); ctx.moveTo(head.x, head.y); ctx.lineTo(p.x, p.y);
-      ctx.strokeStyle = locked ? rgba(C.b, 0.26) : rgba(A, 0.13);
-      ctx.lineWidth = px(0.7); ctx.stroke();
+      ctx.strokeStyle = locked ? rgba(C.b, 0.26) : rgba(A, 0.24);
+      ctx.lineWidth = px(0.9); ctx.stroke();
     });
 
     // range rings across the footprint, and a scan line sweeping over them
@@ -542,12 +544,12 @@ window.PF = window.PF || {};
               GY + 0.003,
               near[2] + (far[2] - near[2]) * k];
     };
-    ctx.lineWidth = px(0.7);
+    ctx.lineWidth = px(0.9);
     for (let r = 1; r <= 3; r++) {
       const k = r / 4;
       const a = pr(across(0, k)), b = pr(across(1, k));
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = rgba(locked ? C.b : A, 0.12); ctx.stroke();
+      ctx.strokeStyle = rgba(locked ? C.b : A, 0.22); ctx.stroke();
     }
     const sweep = (t * 0.55) % 1;
     const sa = pr(across(sweep, 0)), sb = pr(across(sweep, 1));
@@ -587,10 +589,10 @@ window.PF = window.PF || {};
 
       // chassis, then a shorter cabin set back from the nose
       const body = box(x - L, x + L, GY + 0.015, GY + 0.055, z - Wd, z + Wd,
-                       hot ? rgba(C.b, 0.20) : rgba(A, 0.10 * f));
+                       hot ? rgba(C.b, 0.20) : rgba(A, 0.16 * f));
       box(x - L * 0.55, x + L * 0.30, GY + 0.055, GY + 0.098,
           z - Wd * 0.82, z + Wd * 0.82,
-          hot ? rgba(C.b, 0.16) : rgba(A, 0.08 * f));
+          hot ? rgba(C.b, 0.16) : rgba(A, 0.12 * f));
 
       // wheels
       [[-L * 0.62, -Wd], [L * 0.62, -Wd], [-L * 0.62, Wd], [L * 0.62, Wd]]
@@ -692,11 +694,11 @@ window.PF = window.PF || {};
     const heading = Math.atan2(ahead[1] - bz, ahead[0] - bx);
 
     /* blueprint floor */
-    ctx.lineWidth = px(0.7);
+    ctx.lineWidth = px(0.9);
     for (let i = -4; i <= 4; i++) {
       const g = i / 4 * 0.95;
       const major = i === 0;
-      ctx.strokeStyle = rgba(A, major ? 0.26 : 0.10);
+      ctx.strokeStyle = rgba(A, major ? 0.34 : 0.20);
       let a = pr([g, GROUND, -0.95]), b = pr([g, GROUND, 0.95]);
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       a = pr([-0.95, GROUND, g]); b = pr([0.95, GROUND, g]);
@@ -713,7 +715,7 @@ window.PF = window.PF || {};
     ctx.beginPath();
     [4,5,6,7].forEach((k, j) => j ? ctx.lineTo(ov[k].x, ov[k].y) : ctx.moveTo(ov[k].x, ov[k].y));
     ctx.closePath();
-    ctx.fillStyle = seen ? rgba(C.b, 0.16) : rgba(A, 0.07); ctx.fill();
+    ctx.fillStyle = seen ? rgba(C.b, 0.16) : rgba(A, 0.12); ctx.fill();
     ctx.strokeStyle = seen ? rgba(C.b, 0.85) : rgba(A, 0.5);
     ctx.lineWidth = px(seen ? 1.2 : 0.9);
     [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]]
@@ -742,7 +744,7 @@ window.PF = window.PF || {};
                       GROUND + 0.03 + (k / RAYS) * OH,
                       OBS[2] + Math.cos(a) * OBS_R * 0.4]);
         ctx.beginPath(); ctx.moveTo(o.x, o.y); ctx.lineTo(q.x, q.y);
-        ctx.strokeStyle = rgba(C.b, 0.18 * (1 - k / RAYS)); ctx.lineWidth = px(0.7);
+        ctx.strokeStyle = rgba(C.b, 0.18 * (1 - k / RAYS)); ctx.lineWidth = px(0.9);
         ctx.stroke();
         // dot where ray hits the obstacle
         ctx.beginPath(); ctx.arc(q.x, q.y, px(1.2), 0, 6.2832);
@@ -884,12 +886,12 @@ window.PF = window.PF || {};
     ctx.beginPath();
     flr.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.04); ctx.fill();
-    ctx.strokeStyle = rgba(A, 0.16); ctx.lineWidth = px(0.7); ctx.stroke();
+    ctx.fillStyle = rgba(A, 0.10); ctx.fill();
+    ctx.strokeStyle = rgba(A, 0.24); ctx.lineWidth = px(0.9); ctx.stroke();
     for (let i = -3; i <= 3; i++) {
       const a = pr([i * 0.26, GY, -0.40]), b = pr([i * 0.26, GY, 0.40]);
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = rgba(A, 0.07); ctx.lineWidth = px(0.6); ctx.stroke();
+      ctx.strokeStyle = rgba(A, 0.18); ctx.lineWidth = px(0.9); ctx.stroke();
     }
 
     const box = (cx, cy, cz, hx, hy, hz, col, lw, fill) => {
@@ -914,12 +916,12 @@ window.PF = window.PF || {};
     const seen = look > 0.05;
     box(objX, objY + OS, OBJ_Z, OS, OS, OS,
         seen ? C.b : rgba(A, 0.55), seen ? 1.3 : 0.9,
-        seen ? rgba(C.b, 0.14) : rgba(A, 0.06));
+        seen ? rgba(C.b, 0.14) : rgba(A, 0.11));
 
     // chassis + head — subtle idle sway
     const HEAD = [bx, GY + 0.50 + Math.sin(t * 0.6) * 0.005, Math.sin(t * 0.4) * 0.006];
-    box(bx, GY + 0.17, 0, 0.20, 0.17, 0.17, rgba(A, 0.62), 1.1, rgba(A, 0.07));
-    box(HEAD[0], HEAD[1], 0, 0.11, 0.095, 0.11, rgba(C.text, 0.72), 1.1, rgba(A, 0.10));
+    box(bx, GY + 0.17, 0, 0.20, 0.17, 0.17, rgba(A, 0.62), 1.1, rgba(A, 0.12));
+    box(HEAD[0], HEAD[1], 0, 0.11, 0.095, 0.11, rgba(C.text, 0.72), 1.1, rgba(A, 0.14));
     const lens = pr([bx + 0.115, GY + 0.51, 0]);
     ctx.beginPath(); ctx.arc(lens.x, lens.y, px(3.0), 0, 6.2832);
     ctx.fillStyle = seen ? C.b : rgba(A, 0.7); ctx.fill();
@@ -967,85 +969,146 @@ window.PF = window.PF || {};
   }
 
   /* 7 · MyToDo
-     A stack of task cards floating over a store. A check sweeps down the list;
-     each card it marks writes a record down into the database below. */
+     The request path, which is what the project is actually about: a click in
+     the browser goes to the server, the server reads the document store, the
+     template renders, and a finished page comes back. One lap of the loop is
+     one request, start to finish. */
+  const TD_CLIENT = [-0.76,  0.04,  0.12];
+  const TD_APP    = [-0.02,  0.08,  0.00];
+  const TD_STORE  = [ 0.64, -0.44, -0.08];
+  const TD_TPL    = [ 0.42,  0.54,  0.06];
+
   function glyphTodo(ctx, W, H, cam, t) {
     const pr = p => project(p, cam, W, H, ZOOM);
     const u = unit(W, H), px = n => n * u;
     const A = cam.hue || C.a;
-    const N = 5, CW = 0.52, CH = 0.11, GAP = 0.175;
-    const DB = [0.0, -0.66, 0.0];
-    const head = (t * 0.30) % 1.25;
 
-    // the stack recedes as it goes down, so the lower cards sit back
-    const rowY = i => 0.52 - i * GAP;
-    const stackFog = fogMaker(
-      Array.from({ length: N }, (_, i) => pr([0, rowY(i), 0])));
+    const PERIOD = 9.0;
+    const c = (t % PERIOD) / PERIOD;
+    const sp = (a, b) => sharedSpan(c, a, b);
 
-    const card = (i) => {
-      const y = rowY(i) + Math.sin(t * 0.5 + i * 1.2) * 0.004;
-      const done = head > (i + 1) / N * 1.05;
-      const just = Math.abs(head - (i + 1) / N * 1.05) < 0.05;
-      const v = [[-CW,y,-CH],[CW,y,-CH],[CW,y,CH],[-CW,y,CH]].map(pr);
-      const f = stackFog(pr([0, y, 0]).k);
+    const ask    = sharedEase(sp(0.00, 0.16));   // browser -> server
+    const query  = sharedEase(sp(0.18, 0.34));   // server -> store
+    const back   = sharedEase(sp(0.36, 0.50));   // store -> server
+    const render =            sp(0.52, 0.70);    // the template fills in
+    const reply  = sharedEase(sp(0.72, 0.88));   // server -> browser
+
+    const busy = ask > 0 && reply < 1;
+
+    const seg = (a, b, col, w, dash) => {
+      const p = pr(a), q = pr(b);
+      if (dash) ctx.setLineDash(dash.map(px));
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+      ctx.strokeStyle = col; ctx.lineWidth = px(w); ctx.stroke();
+      ctx.setLineDash([]);
+    };
+    const packet = (a, b, k) => {
+      const p = pr(a), q = pr(b);
       ctx.beginPath();
-      v.forEach((p, j) => j ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
-      ctx.closePath();
-      ctx.fillStyle = done ? rgba(C.b, 0.10 * f) : rgba(A, 0.06 * f);
-      ctx.fill();
-      ctx.strokeStyle = just ? C.b
-                      : done ? rgba(C.b, 0.5 * f) : rgba(A, 0.42 * f);
-      ctx.lineWidth = px(just ? 1.4 : 0.9);
-      ctx.stroke();
+      ctx.arc(p.x + (q.x - p.x) * k, p.y + (q.y - p.y) * k, px(2.8), 0, 6.2832);
+      ctx.fillStyle = C.b; ctx.fill();
+    };
 
-      // checkbox at the left edge
-      const bx = pr([-CW + 0.09, y, 0]);
-      ctx.beginPath(); ctx.rect(bx.x - px(3.2), bx.y - px(3.2), px(6.4), px(6.4));
-      ctx.strokeStyle = done ? C.b : rgba(A, 0.5 * f);
-      ctx.lineWidth = px(1); ctx.stroke();
+    /* the wiring, drawn before anything sits on it */
+    seg(TD_CLIENT, TD_APP,   rgba(A, 0.24), 0.9, [5, 5]);
+    seg(TD_APP,    TD_STORE, rgba(A, 0.24), 0.9, [5, 5]);
+    seg(TD_APP,    TD_TPL,   rgba(A, 0.24), 0.9, [5, 5]);
+    seg(TD_TPL,    TD_CLIENT, rgba(A, 0.14), 0.8, [4, 6]);
+
+    /* ── the document store ── */
+    const hitDb = query >= 1 && back < 1;
+    // Three documents, stacked and offset. A cylinder is the usual glyph for a
+    // store, but its rings collapse to flat lines at this near-level camera,
+    // and "document store" is the more honest shape for what is underneath.
+    const DW = 0.15, DH = 0.115;
+    for (let i = 2; i >= 0; i--) {
+      const ox = i * 0.035, oy = -i * 0.030, front = i === 0;
+      const q = [[-DW, DH], [DW, DH], [DW, -DH], [-DW, -DH]]
+        .map(([dx, dy]) => pr([TD_STORE[0] + dx + ox, TD_STORE[1] + dy + oy, TD_STORE[2]]));
+      ctx.beginPath();
+      q.forEach((v, j) => j ? ctx.lineTo(v.x, v.y) : ctx.moveTo(v.x, v.y));
+      ctx.closePath();
+      ctx.fillStyle = hitDb && front ? rgba(C.b, 0.20) : rgba(A, 0.10);
+      ctx.fill();
+      ctx.strokeStyle = hitDb && front ? C.b : rgba(A, 0.46);
+      ctx.lineWidth = px(front ? 1.2 : 0.9); ctx.stroke();
+      if (front) for (let k = 0; k < 3; k++) {
+        const y = TD_STORE[1] + oy + DH - 0.040 - k * 0.034;
+        seg([TD_STORE[0] + ox - DW + 0.03, y, TD_STORE[2]],
+            [TD_STORE[0] + ox + DW - 0.03 - k * 0.028, y, TD_STORE[2]],
+            hitDb ? rgba(C.b, 0.85) : rgba(A, 0.32), 1.1);
+      }
+    }
+
+    /* ── the template: a page whose lines are written as it renders ── */
+    const TW = 0.16, TH = 0.17;
+    const tq = [[-TW, TH], [TW, TH], [TW, -TH], [-TW, -TH]]
+      .map(([dx, dy]) => pr([TD_TPL[0] + dx, TD_TPL[1] + dy, TD_TPL[2]]));
+    ctx.beginPath();
+    tq.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = render > 0 && render < 1 ? rgba(C.b, 0.12) : rgba(A, 0.08);
+    ctx.fill();
+    ctx.strokeStyle = render > 0 && render < 1 ? C.b : rgba(A, 0.48);
+    ctx.lineWidth = px(1.0); ctx.stroke();
+    for (let i = 0; i < 4; i++) {
+      const written = render * 4 > i;
+      const y = TD_TPL[1] + TH - 0.055 - i * 0.048;
+      const x1 = TD_TPL[0] - TW + 0.045 + (i % 2 ? 0.16 : 0.22);
+      seg([TD_TPL[0] - TW + 0.045, y, TD_TPL[2]], [x1, y, TD_TPL[2]],
+          written ? rgba(C.b, 0.85) : rgba(A, 0.26), 1.2);
+    }
+
+    /* ── the server ── */
+    const aq = pr(TD_APP);
+    const beat = busy ? 1 + Math.sin(t * 7) * 0.13 : 1;
+    ctx.beginPath(); ctx.arc(aq.x, aq.y, px(15) * aq.k * beat, 0, 6.2832);
+    ctx.fillStyle = busy ? rgba(C.b, 0.14) : rgba(A, 0.08); ctx.fill();
+    ctx.beginPath(); ctx.arc(aq.x, aq.y, px(6.6) * aq.k, 0, 6.2832);
+    ctx.fillStyle = busy ? C.b : rgba(A, 0.78); ctx.fill();
+
+    /* ── the browser, whose list is written by the response ── */
+    const SW = 0.30, SH = 0.23;
+    const scr = (dx, dy) => [TD_CLIENT[0] + dx, TD_CLIENT[1] + dy, TD_CLIENT[2]];
+    const fq = [[-SW, SH], [SW, SH], [SW, -SH], [-SW, -SH]].map(([a, b]) => pr(scr(a, b)));
+    ctx.beginPath();
+    fq.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = rgba(A, 0.10); ctx.fill();
+    ctx.strokeStyle = rgba(A, 0.60); ctx.lineWidth = px(1.3); ctx.stroke();
+    // the chrome bar, so the panel reads as a page and not another card
+    seg(scr(-SW, SH - 0.06), scr(SW, SH - 0.06), rgba(A, 0.46), 1.0);
+    const dot = pr(scr(-SW + 0.035, SH - 0.03));
+    ctx.beginPath(); ctx.arc(dot.x, dot.y, px(2.0), 0, 6.2832);
+    ctx.fillStyle = rgba(A, 0.60); ctx.fill();
+
+    // four task rows, revealed as the response lands, two of them already done
+    for (let i = 0; i < 4; i++) {
+      if (reply * 4 <= i) continue;
+      const y = SH - 0.105 - i * 0.055;
+      const done = i < 2;
+      const bx = pr(scr(-SW + 0.05, y));
+      ctx.beginPath();
+      ctx.rect(bx.x - px(3.0), bx.y - px(3.0), px(6.0), px(6.0));
+      ctx.strokeStyle = done ? C.b : rgba(A, 0.55);
+      ctx.lineWidth = px(1.0); ctx.stroke();
       if (done) {
         ctx.beginPath();
-        ctx.moveTo(bx.x - px(2), bx.y);
-        ctx.lineTo(bx.x - px(0.4), bx.y + px(2));
-        ctx.lineTo(bx.x + px(2.4), bx.y - px(2.2));
+        ctx.moveTo(bx.x - px(1.8), bx.y);
+        ctx.lineTo(bx.x - px(0.3), bx.y + px(1.9));
+        ctx.lineTo(bx.x + px(2.2), bx.y - px(2.1));
         ctx.strokeStyle = C.b; ctx.lineWidth = px(1.3); ctx.stroke();
       }
-      // a ruled title line so the card reads as a task, not a plate
-      const t0 = pr([-CW + 0.19, y, 0]), t1 = pr([CW - 0.12 - (i % 3) * 0.1, y, 0]);
-      ctx.beginPath(); ctx.moveTo(t0.x, t0.y); ctx.lineTo(t1.x, t1.y);
-      ctx.strokeStyle = done ? rgba(C.dim, 0.8 * f) : rgba(C.text, 0.32 * f);
-      ctx.lineWidth = px(1.6); ctx.stroke();
+      seg(scr(-SW + 0.095, y), scr(SW - 0.05 - (i % 3) * 0.06, y),
+          done ? rgba(C.dim, 0.85) : rgba(C.text, 0.42), 1.5);
+    }
 
-      // the write that lands in the store
-      if (just) {
-        const a = pr([0, y, 0]), b = pr(DB);
-        const w = (head * 8) % 1;
-        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = rgba(C.b, 0.28); ctx.lineWidth = px(0.8); ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(a.x + (b.x - a.x) * w, a.y + (b.y - a.y) * w, px(2.2), 0, 6.2832);
-        ctx.fillStyle = C.b; ctx.fill();
-      }
-    };
-    for (let i = N - 1; i >= 0; i--) card(i);
-
-    // the store: a short cylinder drawn as two ellipse rings
-    const ring = (yy, alpha, lw) => {
-      ctx.beginPath();
-      for (let k = 0; k <= 36; k++) {
-        const a = (k / 36) * 6.2832;
-        const q = pr([Math.cos(a) * 0.30, yy, Math.sin(a) * 0.30]);
-        k ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y);
-      }
-      ctx.strokeStyle = rgba(A, alpha); ctx.lineWidth = px(lw); ctx.stroke();
-    };
-    ring(DB[1] + 0.10, 0.6, 1.0);
-    ring(DB[1] - 0.06, 0.35, 0.9);
-    [[-0.30, 0], [0.30, 0]].forEach(([x, z]) => {
-      const a = pr([x, DB[1] + 0.10, z]), b = pr([x, DB[1] - 0.06, z]);
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = rgba(A, 0.45); ctx.lineWidth = px(0.9); ctx.stroke();
-    });
+    /* ── whatever is in flight right now ── */
+    if (ask < 1)          packet(TD_CLIENT, TD_APP, ask);
+    else if (query < 1)   packet(TD_APP, TD_STORE, query);
+    else if (back < 1)    packet(TD_STORE, TD_APP, back);
+    else if (render < 1)  packet(TD_APP, TD_TPL, render);
+    else if (reply < 1)   packet(TD_TPL, TD_CLIENT, reply);
   }
 
   /* 8 · Drone Project
@@ -1064,8 +1127,8 @@ window.PF = window.PF || {};
     ctx.beginPath();
     flr.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
     ctx.closePath();
-    ctx.fillStyle = rgba(A, 0.04); ctx.fill();
-    ctx.strokeStyle = rgba(A, 0.15); ctx.lineWidth = px(0.7); ctx.stroke();
+    ctx.fillStyle = rgba(A, 0.10); ctx.fill();
+    ctx.strokeStyle = rgba(A, 0.24); ctx.lineWidth = px(0.9); ctx.stroke();
 
     // route: a catmull-ish sample through the waypoints
     const at = (s) => {
@@ -1092,7 +1155,7 @@ window.PF = window.PF || {};
       const a = pr(p), g = pr([p[0], GY, p[2]]);
       const f = wpFog(a.k);
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(g.x, g.y);
-      ctx.strokeStyle = rgba(A, 0.16 * f); ctx.lineWidth = px(0.7); ctx.stroke();
+      ctx.strokeStyle = rgba(A, 0.26 * f); ctx.lineWidth = px(0.9); ctx.stroke();
       const passed = i <= legNow;
       ctx.beginPath(); ctx.arc(a.x, a.y, px(2.6) * f, 0, 6.2832);
       ctx.fillStyle = passed ? C.b : rgba(A, 0.45 * f); ctx.fill();
@@ -1144,7 +1207,7 @@ window.PF = window.PF || {};
     ctx.fillStyle = rgba(A, 0.8); ctx.fill();
     const pk = (t * 0.7) % 1;
     ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(mast.x, mast.y);
-    ctx.strokeStyle = rgba(A, 0.14); ctx.lineWidth = px(0.7); ctx.stroke();
+    ctx.strokeStyle = rgba(A, 0.24); ctx.lineWidth = px(0.9); ctx.stroke();
     ctx.beginPath();
     ctx.arc(hub.x + (mast.x - hub.x) * pk, hub.y + (mast.y - hub.y) * pk, px(1.9), 0, 6.2832);
     ctx.fillStyle = rgba(C.b, 0.9); ctx.fill();

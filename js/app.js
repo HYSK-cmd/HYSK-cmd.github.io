@@ -7,7 +7,7 @@ window.PF = window.PF || {};
 (function (PF) {
   "use strict";
 
-  const { reduced, C, fitCanvas, cam, HERO_YAW, HERO_PITCH,
+  const { reduced, C, fitCanvas, frameTo, cam, HERO_YAW, HERO_PITCH,
           frameHero, drawHeroNetwork, WORK, glyphs, layoutCarousel } = PF;
 
   /* the canvas the stage draws on, and the state the loop advances */
@@ -15,6 +15,9 @@ window.PF = window.PF || {};
   let hero = fitCanvas(cv);
   let wave = 0.15;
   let t = 0;
+  // Set on every select() so the open scene starts at its own poseT rather
+  // than wherever the shared clock happens to be. See work.js.
+  let phase = 0;
 
   PF.selected = null;
 
@@ -28,18 +31,28 @@ window.PF = window.PF || {};
   const dLinks = document.getElementById("d-links");
   const scrollcueEl = document.getElementById("scrollcue");
 
-  /* Frame the open scene into the right half, clear of the copy. On a narrow
-     screen there is no right half, so centre it and shrink it instead. `fit`
-     is the project's own share of the frame — the scenes are not all the same
-     shape, so without it the small ones read as lost in the middle. */
+  /* Centre the open scene under the copy, the same composition the hero
+     uses: text on the middle axis up top, the drawing filling the space
+     below it. `fit` is the project's own share of the frame — the scenes are
+     not all the same shape, so without it the small ones read as lost in the
+     middle. offY pushes the scene clear of the panel; the panel is taller on
+     a narrow screen, where the chips wrap, so it pushes further there. */
   function frameStage(w) {
-    const narrow = window.innerWidth < 860;
-    cam.spread = (narrow ? 0.40 : 0.62) * (w.fit ?? 1);
-    cam.offX = narrow ? 0 : 0.18;
-    // Narrow: the copy sits over the scene, so push it clear downward. Wide:
-    // offX already clears the copy sideways, and nudging down as well only
-    // ran the ground-plane scenes off the bottom edge.
-    cam.offY = narrow ? 0.18 : -0.02;
+    const { W, H } = hero;
+    const pad = 16;
+    // The band starts under the panel as it actually laid out, so a project
+    // with seventeen stack chips gets the same clearance as one with five.
+    const panel = detailEl.hidden ? 0
+      : detailEl.getBoundingClientRect().bottom - cv.getBoundingClientRect().top;
+    const top = Math.min(panel + pad, H * 0.66);
+    // 0.55 is the scene's natural size. frameTo only shrinks below it when the
+    // band demands it, so the scenes keep their real size relative to each
+    // other (the drone mission is a bigger thing than the hub's tile wall)
+    // instead of every one being stretched to fill whatever space is left.
+    const f = frameTo(w, W, H, top, H - pad, 0.70);
+    cam.spread = f.spread;
+    cam.offX = 0;
+    cam.offY = f.offY;
   }
 
   function select(i) {
@@ -72,6 +85,7 @@ window.PF = window.PF || {};
     // the scene is painted in the project's own colour, the same one the card
     // carries, so opening a card does not change the colour you clicked on
     cam.hue = w.hue;
+    phase = (w.poseT ?? 0) - t;
     frameStage(w);
 
     document.querySelector(".stage")
@@ -101,6 +115,11 @@ window.PF = window.PF || {};
     glyphs.forEach(g => {
       const r = fitCanvas(g.cv);
       g.ctx = r.ctx; g.W = r.W; g.H = r.H;
+      // a card has no copy over it, so the band is the whole canvas less a margin
+      const pad = Math.max(5, r.H * 0.07);
+      const f = frameTo(WORK[g.idx], r.W, r.H, pad, r.H - pad, 0.62);
+      g.cam.spread = f.spread;
+      g.cam.offY = f.offY;
     });
   }
 
@@ -126,7 +145,7 @@ window.PF = window.PF || {};
       ctx.fillStyle = C.void;
       ctx.fillRect(0, 0, W, H);
       const liveCam = reduced ? cam : breathe(cam, t, 0.012, 0.006);
-      WORK[PF.selected].draw(ctx, W, H, liveCam, t);
+      WORK[PF.selected].draw(ctx, W, H, liveCam, t + phase);
     }
 
     // A card canvas that is scrolled out of view is still a canvas being
@@ -137,7 +156,7 @@ window.PF = window.PF || {};
       g.ctx.fillStyle = "#050810";
       g.ctx.fillRect(0, 0, g.W, g.H);
       const gCam = reduced ? g.cam : breathe(g.cam, t, 0.008, 0.004);
-      g.draw(g.ctx, g.W, g.H, gCam, t);
+      g.draw(g.ctx, g.W, g.H, gCam, t + g.poseT);
     });
 
     requestAnimationFrame(tick);
